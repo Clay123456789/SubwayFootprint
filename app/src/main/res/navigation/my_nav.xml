@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/frag_1">
+    <fragment
+        android:id="@+id/frag_1"
+        android:name="com.dominate_orientation.subwayfootprint.frag_1"
+        android:label="fragment_1"
+        tools:layout="@layout/frag_1" >
+        <action
+            android:id="@+id/action_frag_1_to_frag_2"
+            app:destination="@id/frag_2"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/frag_2"
+        android:name="com.dominate_orientation.subwayfootprint.frag_2"
+        android:label="frag_2"
+        tools:layout="@layout/frag_2" >
+        <action
+            android:id="@+id/action_frag_2_to_frag_1"
+            app:destination="@id/frag_1"
+            app:popUpTo="@+id/a"
+            app:popUpToInclusive="true"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"/>
+    </fragment>
+</navigation>
