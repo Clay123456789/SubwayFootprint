@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.132" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/bg_layout_shape.xml" value="0.118" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/bottom_layout_selector.xml" value="0.185" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/bottom_select.xml" value="0.185" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshapegraybg.xml" value="0.185" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.188" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_chat_bubble_outline_24.xml" value="0.188" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_launcher_background.xml" value="0.132" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_lock_black_24dp.xml" value="0.185" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/mid_layout_selector.xml" value="0.185" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/single_layout_selector.xml" value="0.185" />
@@ -22,9 +24,9 @@
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/top_unselect.xml" value="0.185" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w936dp/activity_login.xml" value="0.20546875" />
-        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_personalcenter.xml" value="0.27395833333333336" />
-        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_register.xml" value="0.27395833333333336" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_login.xml" value="0.152" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_personalcenter.xml" value="0.152" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_register.xml" value="0.12" />
       </map>
     </option>
   </component>

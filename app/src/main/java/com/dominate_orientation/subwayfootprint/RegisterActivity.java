@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,6 +18,9 @@ import android.widget.Toast;
 import com.dominate_orientation.subwayfootprint.ui.login.LoginActivity;
 
 import org.json.JSONObject;
+
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -54,10 +58,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!isUserNameValid(username.getText().toString())) {
-                    username.setError(getString(R.string.invalid_username));
+                    username.setError("邮箱格式不正确");
                     registerButton.setEnabled(false);
                 } else if (!isPasswordValid(password.getText().toString())) {
-                    password.setError(getString(R.string.invalid_password));
+                    password.setError("密码必须大于5个字符");
                     registerButton.setEnabled(false);
                 } else if (!isPassword1Valid(password.getText().toString(), password1.getText().toString())) {
                     password1.setError(getString(R.string.invalid_password1));
@@ -144,6 +148,26 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                //设置倒计时重发
+                long duration = TimeUnit.MINUTES.toMillis(1);
+                new CountDownTimer(duration, 1000){
+                    @Override
+                    public void onTick(long l) {
+                        String sDuration = String.format(Locale.ENGLISH,"%02ds后可重发",
+                                TimeUnit.MILLISECONDS.toSeconds(l) -
+                                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)));
+                        codeButton.setEnabled(false);
+                        codeButton.setText(sDuration);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        codeButton.setEnabled(true);
+                        codeButton.setText("获取验证码");
+                    }
+                }.start();
+
+                //http向后端发送请求
                 Thread t1 = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -176,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(RegisterActivity.this, "验证码发送失败", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "验证码发送失败,邮箱已注册或格式不正确", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
