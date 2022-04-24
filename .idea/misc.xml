@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_display_message.xml" value="0.5" />
+        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/frag_1.xml" value="0.358695652173913" />
         <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/frag_2.xml" value="0.358695652173913" />
       </map>
