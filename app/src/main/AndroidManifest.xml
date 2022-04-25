@@ -9,6 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SubwayFootprint">
+       
+        <activity
+            android:name=".Tanjifen_rank"
+            android:exported="false" />
+        <activity
+            android:name=".Tanjifen4"
+            android:exported="false" />
+        <activity
+            android:name=".Tanjifen_history"
+            android:exported="false" />
+        <activity
+            android:name=".Tanjifen_main"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -19,5 +32,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>
