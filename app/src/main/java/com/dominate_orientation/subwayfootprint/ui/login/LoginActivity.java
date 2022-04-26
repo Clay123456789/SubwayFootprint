@@ -43,7 +43,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
-
+    EditText usernameEditText;
+    EditText passwordEditText;
+    Button loginButton;
+    TextView goRegister;
+    ProgressBar loadingProgressBar;
+    String message="失败";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        final EditText usernameEditText = binding.username;
-        final EditText passwordEditText = binding.password;
-        final Button loginButton = binding.login;
-        final TextView goRegister = binding.goRegister;
-        final ProgressBar loadingProgressBar = binding.loading;
+        usernameEditText = binding.username;
+        passwordEditText = binding.password;
+        loginButton = binding.login;
+        goRegister = binding.goRegister;
+        loadingProgressBar = binding.loading;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -120,76 +125,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-
+                    Login();
                 }
                 return false;
             }
         });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-            String message="失败";
             @Override
             public void onClick(View v) {
-                Thread t1 = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            String json = "{\n" +
-                                    "\"username\": "+"\""+usernameEditText.getText().toString()+"\""+","+
-                                    "\"password\": "+"\""+passwordEditText.getText().toString()+"\""+
-                                    "}";
-                            OkHttpClient client = new OkHttpClient();
-                            Request request = new Request.Builder()
-                                    .url("http://123.56.150.89:8088/user/login")
-                                    .post(RequestBody.create(MediaType.parse("application/json"),json))
-                                    .build();
-                            Response response =client.newCall(request).execute();
-                            String responseData = response.body().string();
-                            JSONObject jsonObject = new JSONObject(responseData);
-                            Log.i("code",jsonObject.getString("code"));
-                            Log.i("message",jsonObject.getString("message"));
-                            Log.i("data",jsonObject.getString("data"));
-                            message = jsonObject.getString("message");
-                            Token app = (Token)getApplicationContext();
-                            app.setToken(jsonObject.getString("data"));
-                            if(message.equals("成功")){
-                                Intent intent =new Intent(LoginActivity.this, PersonalcenterActivity.class);
-                                startActivity(intent);
-                            }
-                            else{
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-
-                        }catch(Exception e){
-                            e.printStackTrace();
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(LoginActivity.this,"网络连接失败",Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    }
-                });
-                t1.start();
-                try {
-                    t1.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                if(message.equals("成功")){
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-                message = "失败";
-                }
+                Login();
             }
         });
 
@@ -201,6 +146,67 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void Login(){
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String json = "{\n" +
+                            "\"username\": "+"\""+usernameEditText.getText().toString()+"\""+","+
+                            "\"password\": "+"\""+passwordEditText.getText().toString()+"\""+
+                            "}";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("http://123.56.150.89:8088/user/login")
+                            .post(RequestBody.create(MediaType.parse("application/json"),json))
+                            .build();
+                    Response response =client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    Log.i("code",jsonObject.getString("code"));
+                    Log.i("message",jsonObject.getString("message"));
+                    Log.i("data",jsonObject.getString("data"));
+                    message = jsonObject.getString("message");
+                    Token app = (Token)getApplicationContext();
+                    app.setToken(jsonObject.getString("data"));
+                    if(message.equals("成功")){
+                        Intent intent =new Intent(LoginActivity.this, PersonalcenterActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this,"网络连接失败",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        if(message.equals("成功")){
+            loginViewModel.login(usernameEditText.getText().toString(),
+                    passwordEditText.getText().toString());
+            message = "失败";
+        }
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

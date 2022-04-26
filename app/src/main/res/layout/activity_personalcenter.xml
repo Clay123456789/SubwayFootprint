@@ -40,7 +40,7 @@
                     android:id="@+id/Head_imageView"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:onClick="chose_header_picture"
+                    android:onClick="alert_edit1"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher_round"
                     android:text="name"
@@ -59,7 +59,7 @@
                         android:textColor="@color/text_clo" />
 
                     <TextView
-                        android:id="@+id/username"
+                        android:id="@+id/nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="alert_edit1"
@@ -68,17 +68,18 @@
 
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/modify"
                     style="@style/mid_layout"
                     android:layout_width="120dp">
                     <ImageView
+                        android:id="@+id/modify"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_baseline_create_24"
-                        android:onClick="alert_edit2"
+                        android:onClick="alert_edit1"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <TextView
+                        android:onClick="alert_edit1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingRight="16dp"
@@ -93,9 +94,12 @@
             <View style="@style/bg_line"/>
             <!-- 无圆角-->
             <LinearLayout style="@style/mid_layout">
-                <TextView style="@style/usertext" android:text="签名" />
-                <TextView android:id="@+id/account"
+                <TextView style="@style/usertext" android:text="签名"
+                    android:onClick="alert_edit1"/>
+                <TextView android:id="@+id/qianming"
+                    android:onClick="alert_edit1"
                     android:text="NULL"
+                    android:maxLines="2"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content" />
             </LinearLayout>
@@ -106,17 +110,18 @@
             <!-- 下圆角-->
             <LinearLayout style="@style/mid_layout">
                 <TextView style="@style/usertext" android:text="性别"
-                    android:onClick="alert_edit2"/>
+                    android:onClick="alert_edit1"/>
                 <TextView
+                    android:id="@+id/sex"
                     android:paddingRight="10dp"
                     android:text="NULL"
+                    android:onClick="alert_edit1"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:onClick="alert_edit2"/>
+                    android:layout_width="wrap_content"/>
 
                 <ImageView
                     style="@style/img_arrow"
-                    android:onClick="alert_edit2"
+                    android:onClick="alert_edit1"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -125,17 +130,18 @@
             <!-- 下圆角-->
             <LinearLayout style="@style/mid_layout">
                 <TextView style="@style/usertext" android:text="电话"
-                    android:onClick="alert_edit2"/>
+                    android:onClick="alert_edit1"/>
                 <TextView
+                    android:id="@+id/tele"
                     android:paddingRight="10dp"
                     android:text="NULL"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:onClick="alert_edit2"/>
+                    android:onClick="alert_edit1"/>
 
                 <ImageView
                     style="@style/img_arrow"
-                    android:onClick="alert_edit2"
+                    android:onClick="alert_edit1"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -144,17 +150,18 @@
             <!-- 下圆角-->
             <LinearLayout style="@style/mid_layout">
                 <TextView style="@style/usertext" android:text="碳积分"
-                    android:onClick="alert_edit2"/>
+                    android:onClick="alert_edit1"/>
                 <TextView
+                    android:id="@+id/tpoints"
                     android:paddingRight="10dp"
                     android:text="NULL"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:onClick="alert_edit2"/>
+                    android:onClick="alert_edit1"/>
 
                 <ImageView
                     style="@style/img_arrow"
-                    android:onClick="alert_edit2"
+                    android:onClick="alert_edit1"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -163,17 +170,18 @@
             <!-- 下圆角-->
             <LinearLayout style="@style/bottom_layout">
                 <TextView style="@style/usertext" android:text="邮箱"
-                    android:onClick="alert_edit2"/>
-                <TextView android:id="@+id/motto"
+                    android:onClick="alert_edit1"/>
+                <TextView
+                    android:id="@+id/personal_email"
                     android:paddingRight="10dp"
                     android:text="NULL"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:onClick="alert_edit2"/>
+                    android:onClick="alert_edit1"/>
 
                 <ImageView
                     style="@style/img_arrow"
-                    android:onClick="alert_edit2"
+                    android:onClick="alert_edit1"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
         </LinearLayout>
