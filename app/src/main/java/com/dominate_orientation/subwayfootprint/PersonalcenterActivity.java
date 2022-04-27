@@ -2,7 +2,12 @@ package com.dominate_orientation.subwayfootprint;
 import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dominate_orientation.subwayfootprint.ui.login.LoginActivity;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONObject;
+
+import java.io.FileInputStream;
+import java.net.URI;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -35,6 +44,9 @@ public class PersonalcenterActivity extends AppCompatActivity {
     TextView email ;
     String age;
     String token;
+    String url;
+    RoundedImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +59,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
         tel = findViewById(R.id.tele);
         credit = findViewById(R.id.tpoints);
         email = findViewById(R.id.personal_email);
+        imageView = findViewById(R.id.Head_imageView);
         Token app = (Token)getApplicationContext();
         token=app.getToken();
         Thread t1 = new Thread(new Runnable() {
@@ -64,8 +77,10 @@ public class PersonalcenterActivity extends AppCompatActivity {
                     Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
                     JSONObject jsonObject = new JSONObject(responseData);
-                    JSONObject jsonObject1 = new JSONObject(jsonObject.getString("data"));
                     message = jsonObject.getString("message");
+                    Log.i("寄","寄");
+                    JSONObject jsonObject1 = new JSONObject(jsonObject.getString("data"));
+
                     if (message.equals("成功")) {
                         username.setText(jsonObject1.getString("username"));
                         sex.setText(jsonObject1.getString("sex"));
@@ -74,6 +89,9 @@ public class PersonalcenterActivity extends AppCompatActivity {
                         email.setText(jsonObject1.getString("email"));
                         qianming.setText(jsonObject1.getString("qianming"));
                         age=jsonObject1.getString("age");
+                        url=jsonObject1.getString("touxiang");
+                        Uri uri= Uri.parse(url);
+                        imageView.setImageURI(uri);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -109,12 +127,40 @@ public class PersonalcenterActivity extends AppCompatActivity {
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(PersonalcenterActivity.this, LoginActivity.class);
-                app.setToken(" ");
-                PersonalcenterActivity.this.startActivity(intent);
+            public void onClick(View view) {
+                //2.创建对话框的标题、图标、显示文字
+                AlertDialog.Builder builder = new AlertDialog.Builder(PersonalcenterActivity.this);
+                builder.setIcon(null);
+                builder.setTitle("退出提醒：");
+                builder.setMessage("确定要退出登录吗？");
+                //3.创建对话框中的“确定”及其单击事件
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(PersonalcenterActivity.this, "确认退出", Toast.LENGTH_SHORT).show();
+                        Intent intent =new Intent(PersonalcenterActivity.this, LoginActivity.class);
+                        app.setToken(" ");
+                        PersonalcenterActivity.this.startActivity(intent);
+                        PersonalcenterActivity.this.finish();
+                    }
+                });
+                //4.创建对话框中的“取消”及其单击事件
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(PersonalcenterActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
             }
         });
+    }
+
+    public void alert_edit2(View view){
+        Bundle bundle = new Bundle();
+        bundle.putString("email", email.getText().toString());
+        Intent intent =new Intent(PersonalcenterActivity.this, Password_EditActivity.class);
+        intent.putExtras(bundle);
+        PersonalcenterActivity.this.startActivity(intent);
     }
     public void alert_edit1(View view){
         Bundle bundle = new Bundle();
@@ -124,10 +170,10 @@ public class PersonalcenterActivity extends AppCompatActivity {
         bundle.putString("qianming", qianming.getText().toString());
         bundle.putString("sex", sex.getText().toString());
         bundle.putString("credit", credit.getText().toString());
+        bundle.putString("url", credit.getText().toString());
         Intent intent =new Intent(PersonalcenterActivity.this, PersonalEditActivity.class);
         intent.putExtras(bundle);
         PersonalcenterActivity.this.startActivity(intent);
     }
-
 
 }

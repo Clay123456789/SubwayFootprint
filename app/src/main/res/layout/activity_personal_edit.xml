@@ -181,7 +181,7 @@
                 android:id="@+id/persona_confirm"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="35dp"
 
                 android:background="@drawable/buttonshaperedbg"
                 android:fontFamily="@font/calibri"
