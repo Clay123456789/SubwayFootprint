@@ -1,21 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayMessageActivity">
+    android:background="#95CAE4"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <com.dominate_orientation.subwayfootprint.ClearEditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/login_edittext_bg"
+        android:drawableLeft="@drawable/icon_user"
+        android:drawableRight="@drawable/delete_selector"
+        android:hint="输入用户名"
+        android:singleLine="true" />
+
+    <com.dominate_orientation.subwayfootprint.ClearEditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/login_edittext_bg"
+        android:drawableLeft="@drawable/account_icon"
+        android:drawableRight="@drawable/delete_selector"
+        android:hint="输入密码"
+        android:password="true"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/login_button_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="25dp"
+        android:text="登录"
+        />
+</RelativeLayout>

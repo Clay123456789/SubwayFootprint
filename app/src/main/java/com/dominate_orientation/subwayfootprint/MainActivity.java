@@ -18,26 +18,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        num1 = (TextView) findViewById(R.id.textView1);
-        num2 = (TextView) findViewById(R.id.textView2);
-    }
-
-    public void aMethod(View view){
-        Navigation.findNavController(view).navigate(R.id.action_frag_1_to_frag_2);
-    }
-
-    public void aMethod2(View view){
-        Navigation.findNavController(view).navigate(R.id.action_frag_2_to_frag_1);
     }
 
     /** Called when the user taps the Send button */
-    public void sendMessage(View view) {
+    /*public void sendMessage(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
-    }
+    }*/
 
 }

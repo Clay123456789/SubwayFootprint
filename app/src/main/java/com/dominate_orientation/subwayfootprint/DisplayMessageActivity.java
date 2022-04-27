@@ -1,24 +1,49 @@
 package com.dominate_orientation.subwayfootprint;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class DisplayMessageActivity extends AppCompatActivity {
 
+public class DisplayMessageActivity extends Activity {
+
+    private Toast mToast;
+    private Button mButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_message);
-
-        // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
-        // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
+        setContentView(R.layout.activity_main);
+        final ClearEditText username = (ClearEditText) findViewById(R.id.username);
+        final ClearEditText password = (ClearEditText) findViewById(R.id.password);
+        mButton = (Button) findViewById(R.id.login);
+//        mButton.setOnClickListener(e->{
+//                if (TextUtils.isEmpty(username.getText())){
+//                    //设置晃动
+//                    username.setShakeAnimation();
+//                    //设置提示
+//                    showToast("用户名不能为空！");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(password.getText())) {
+//                    password.setShakeAnimation();
+//                    showToast("密码不能为空！");
+//                    return;
+//                }
+//        });
+    }
+    /**
+     * 显示Toast消息
+     * @param msg
+     */
+    private void showToast(String msg) {
+        if (mToast == null){
+            mToast = Toast.makeText(this,msg,Toast.LENGTH_SHORT);
+        }else{
+            mToast.setText(msg);
+        }
+        mToast.show();
     }
 }

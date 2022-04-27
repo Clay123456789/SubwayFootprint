@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Olive">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="394dp"
+
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.dominate_orientation.subwayfootprint.ClearEditText
+            android:id="@+id/start_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/rounded_coner"
+            android:drawableLeft="@drawable/get_start"
+            android:drawableRight="@drawable/delete_selector"
+            android:hint="起点"
+            android:minHeight="48dp"
+            android:singleLine="true" />
+
+        <com.dominate_orientation.subwayfootprint.ClearEditText
+            android:id="@+id/end_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/rounded_coner"
+            android:drawableLeft="@drawable/ending"
+            android:drawableRight="@drawable/delete_selector"
+            android:hint="终点"
+            android:minHeight="48dp"
+            android:singleLine="true"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/metro_overview"
+        android:layout_width="417dp"
+        android:layout_height="571dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:width="20dp"
+        android:height="20dp"
+        android:background="@drawable/rounded_coerner_button"
+        android:text="出发！"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
