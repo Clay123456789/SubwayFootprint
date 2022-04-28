@@ -105,7 +105,7 @@ public class Password_EditActivity extends AppCompatActivity {
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url("http://123.56.150.89:8088/user/changePassword")
+                            .url("https://thelittlestar.cn:8088/user/changePassword")
                             .addHeader("token",token)
                             .post(RequestBody.create(MediaType.parse("application/json"),json))
                             .build();

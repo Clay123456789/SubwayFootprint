@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     "}";
                             OkHttpClient client = new OkHttpClient();
                             Request request = new Request.Builder()
-                                    .url("http://123.56.150.89:8088/user/regist")
+                                    .url("https://thelittlestar.cn:8088/user/regist")
                                     .post(RequestBody.create(MediaType.parse("application/json"), json))
                                     .build();
                             Response response = client.newCall(request).execute();
@@ -177,7 +177,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     "}";
                             OkHttpClient client = new OkHttpClient();
                             Request request = new Request.Builder()
-                                    .url("http://123.56.150.89:8088/user/sendRegistEmail")
+                                    .url("https://thelittlestar.cn:8088/user/sendRegistEmail")
                                     .post(RequestBody.create(MediaType.parse("application/json"), json))
                                     .build();
                             Response response = client.newCall(request).execute();

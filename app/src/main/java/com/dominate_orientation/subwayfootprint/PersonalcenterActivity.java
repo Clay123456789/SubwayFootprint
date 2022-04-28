@@ -70,7 +70,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
                     String json = "";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url("http://123.56.150.89:8088/user/getUser")
+                            .url("https://thelittlestar.cn:8088/user/getUser")
                             .addHeader("token",token)
                             .post(RequestBody.create(MediaType.parse("application/json"), json))
                             .build();
@@ -78,7 +78,6 @@ public class PersonalcenterActivity extends AppCompatActivity {
                     String responseData = response.body().string();
                     JSONObject jsonObject = new JSONObject(responseData);
                     message = jsonObject.getString("message");
-                    Log.i("寄","寄");
                     JSONObject jsonObject1 = new JSONObject(jsonObject.getString("data"));
 
                     if (message.equals("成功")) {

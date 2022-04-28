@@ -170,7 +170,7 @@ public class PersonalEditActivity extends AppCompatActivity {
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url("http://123.56.150.89:8088/user/updateUser")
+                            .url("https://thelittlestar.cn:8088/user/updateUser")
                             .addHeader("token",token)
                             .post(RequestBody.create(MediaType.parse("application/json"),json))
                             .build();
@@ -316,15 +316,18 @@ public class PersonalEditActivity extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     File file = new File(imagePath1);
                     Log.d("文件上传",imagePath1);
-                    MultipartBody.Builder requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
-                    RequestBody fileBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);
-                    requestBody.addFormDataPart("file",file.getName(),fileBody);
+                    RequestBody fileBody = RequestBody.create(file,MediaType.parse("multipart/form-data"));
+                    MultipartBody requestBody = new MultipartBody.Builder()
+                            .setType(MultipartBody.FORM)
+                            .addFormDataPart("file",file.getName(),fileBody)
+                            .build();
                     Log.d("文件上传",file.getName());
                     Request request = new Request.Builder()
-                            .url("http://123.56.150.89:8088/file/uploadFiles")
+                            .url("https://thelittlestar.cn:8088/file/uploadOrderSignImage")
                             .addHeader("token",token)
-                            .post(requestBody.build())
+                            .post(requestBody)
                             .build();
+
                     client.newBuilder().readTimeout(5000, TimeUnit.MILLISECONDS).build().newCall(request).enqueue(new Callback() {
                         //上传超时
                         @Override
@@ -343,39 +346,34 @@ public class PersonalEditActivity extends AppCompatActivity {
                                     Log.d("文件名",jsonObject.getString("data"));
                                     message=jsonObject.getString("message");
                                     //上传成功
-                                    if(message.equals("成功")){
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(PersonalEditActivity.this,"头像上传成功",Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                        message = "失败";
-                                        try {
-                                            ImagePath=imagePath1;
-                                            FileInputStream fis = new FileInputStream(ImagePath);
-                                            BitmapFactory.Options options=new BitmapFactory.Options();
-                                            options.inJustDecodeBounds = false;
-                                            Bitmap bitmap = BitmapFactory.decodeStream(fis,null,options);
-                                            imageView.setImageBitmap(bitmap);
-                                        } catch (FileNotFoundException e) {
-                                            e.printStackTrace();
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(PersonalEditActivity.this,"头像上传成功",Toast.LENGTH_SHORT).show();
                                         }
-                                    }
-                                    //上传失败
-                                    else{
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(PersonalEditActivity.this,"头像上传失败",Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                    });
+                                    message = "失败";
+                                    try {
+                                        ImagePath=imagePath1;
+                                        FileInputStream fis = new FileInputStream(ImagePath);
+                                        BitmapFactory.Options options=new BitmapFactory.Options();
+                                        options.inJustDecodeBounds = false;
+                                        Bitmap bitmap = BitmapFactory.decodeStream(fis,null,options);
+                                        imageView.setImageBitmap(bitmap);
+                                    } catch (FileNotFoundException e) {
+                                        e.printStackTrace();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }else{
                                 Log.d("文件上传",response.message()+"error:body"+response.body().string());
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(PersonalEditActivity.this,"头像上传失败",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
 
                         }
@@ -393,6 +391,7 @@ public class PersonalEditActivity extends AppCompatActivity {
         }).start();
 
     }
+
 
     //获取图片路径
     @SuppressLint("Range")
