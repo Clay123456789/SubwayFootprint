@@ -1,20 +1,22 @@
 package com.dominate_orientation.subwayfootprint;
-import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +25,10 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
-import java.net.URI;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -46,6 +50,15 @@ public class PersonalcenterActivity extends AppCompatActivity {
     String token;
     String url;
     RoundedImageView imageView;
+    private AlertDialog dialog;
+
+    public TextView getCredit() {
+        return credit;
+    }
+
+    public void setCredit(TextView credit) {
+        this.credit = credit;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +102,22 @@ public class PersonalcenterActivity extends AppCompatActivity {
                         qianming.setText(jsonObject1.getString("qianming"));
                         age=jsonObject1.getString("age");
                         url=jsonObject1.getString("touxiang");
-                        Uri uri= Uri.parse(url);
-                        imageView.setImageURI(uri);
+                        new Thread(new Runnable(){
+                            @Override
+                            public void run() {
+                                try {
+                                    Bitmap bitmap = getBitmap(url);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            imageView.setImageBitmap(bitmap);
+                                        }
+                                    });
+                                }  catch(Exception e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -154,6 +181,45 @@ public class PersonalcenterActivity extends AppCompatActivity {
         });
     }
 
+    public void check_header_picture(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);//创建对话框
+        LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams") View layout = inflater.inflate(R.layout.dialog1, null);//获取自定义布局
+        builder.setView(layout);//设置对话框的布局
+        dialog = builder.create();//生成最终的对话框
+        dialog.show();//显示对话框
+        TextView PhotoviewTV = layout.findViewById(R.id.photoview);//查看
+        TextView cancelTV = layout.findViewById(R.id.cancel);//取消
+//分别设置监听
+        //查看
+        PhotoviewTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                pic_view(url);
+
+                dialog.dismiss();//关闭对话框
+            }
+        });
+
+        //取消
+        cancelTV.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();//关闭对话框
+            }
+        });
+    }
+    //查看图片
+    public void pic_view(String url){
+        Bundle bundle= new Bundle();
+        bundle.putString("Url",url);
+        Intent it =new Intent(this,show_picActivity.class);
+        it.putExtras(bundle);
+        PersonalcenterActivity.this.startActivity(it);
+    }
+
     public void alert_edit2(View view){
         Bundle bundle = new Bundle();
         bundle.putString("email", email.getText().toString());
@@ -169,10 +235,28 @@ public class PersonalcenterActivity extends AppCompatActivity {
         bundle.putString("qianming", qianming.getText().toString());
         bundle.putString("sex", sex.getText().toString());
         bundle.putString("credit", credit.getText().toString());
-        bundle.putString("url", credit.getText().toString());
+        bundle.putString("url", url);
         Intent intent =new Intent(PersonalcenterActivity.this, PersonalEditActivity.class);
         intent.putExtras(bundle);
         PersonalcenterActivity.this.startActivity(intent);
+    }
+
+    public Bitmap getBitmap(String path) throws IOException {
+        try {
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setRequestMethod("GET");
+            if (conn.getResponseCode() == 200) {
+                InputStream inputStream = conn.getInputStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                return bitmap;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

@@ -40,7 +40,7 @@
                     android:id="@+id/Head_imageView"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:onClick="alert_edit1"
+                    android:onClick="check_header_picture"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher_round"
                     android:text="name"
@@ -84,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:paddingRight="16dp"
                         android:text="编辑"
-                        android:textSize="18sp"/>
+                        android:textSize="17sp"/>
 
                 </LinearLayout>
 
@@ -150,18 +150,18 @@
             <!-- 下圆角-->
             <LinearLayout style="@style/mid_layout">
                 <TextView style="@style/usertext" android:text="碳积分"
-                    android:onClick="alert_edit1"/>
+                    android:onClick="onClick"/>
                 <TextView
                     android:id="@+id/tpoints"
                     android:paddingRight="10dp"
                     android:text="NULL"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:onClick="alert_edit1"/>
+                    android:onClick="onClick"/>
 
                 <ImageView
                     style="@style/img_arrow"
-                    android:onClick="alert_edit1"
+                    android:onClick="onClick"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -235,7 +235,7 @@
             <!-- 下圆角-->
             <LinearLayout style="@style/bottom_layout">
                 <TextView style="@style/usertext" android:text="出行历史"
-                   />
+                    />
 
                 <ImageView
                     style="@style/img_arrow"

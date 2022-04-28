@@ -8,6 +8,7 @@ import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -36,6 +37,7 @@ import android.widget.Toast;
 import com.dominate_orientation.subwayfootprint.ui.login.LoginActivity;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +45,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -72,7 +78,7 @@ public class PersonalEditActivity extends AppCompatActivity {
     private String ImagePath=" ";
     RoundedImageView imageView;
     String imagePath1;
-    Uri uri;
+    Uri uri1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +90,7 @@ public class PersonalEditActivity extends AppCompatActivity {
         qianming = findViewById(R.id.edit_qianming);
         tel = findViewById(R.id.edit_tele);
         age = findViewById(R.id.edit_age);
-        imageView = findViewById(R.id.Head_imageView);
+        imageView = findViewById(R.id.Head_imageView1);
         cancelbtn = findViewById(R.id.persona_cancel);
         confirmbtn =findViewById(R.id.persona_confirm);
         Intent intent= getIntent();
@@ -96,8 +102,25 @@ public class PersonalEditActivity extends AppCompatActivity {
         tel.setText(bundle.getString("tele"));
         credit =bundle.getString("credit");
         Url = bundle.getString("url");
-        uri = Uri.parse(Url);
-                //输入格式校验
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    Bitmap bitmap = getBitmap(Url);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageView.setImageBitmap(bitmap);
+                        }
+                    });
+                }  catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+
+        //输入格式校验
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -164,7 +187,7 @@ public class PersonalEditActivity extends AppCompatActivity {
                             "\"age\": "+"\""+age.getText().toString()+"\""+","+
                             "\"sex\": "+"\""+sex.getText().toString()+"\""+","+
                             "\"tel\": "+"\""+tel.getText().toString()+"\""+","+
-                            "\"touxiang\": "+"\""+uri.toString()+"\""+","+
+                            "\"touxiang\": "+"\""+Url+"\""+","+
                             "\"qianming\": "+"\""+qianming.getText().toString()+"\""+","+
                             "\"credit\": "+"\""+credit+"\""+
                             "}";
@@ -221,25 +244,9 @@ public class PersonalEditActivity extends AppCompatActivity {
         builder.setView(layout);//设置对话框的布局
         dialog = builder.create();//生成最终的对话框
         dialog.show();//显示对话框
-        TextView PhotoviewTV = layout.findViewById(R.id.photoview);//查看
         TextView choosePhotoTV = layout.findViewById(R.id.photo);//从相册中选择
         TextView cancelTV = layout.findViewById(R.id.cancel);//取消
 //分别设置监听
-        //查看
-        PhotoviewTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //查看原来的头像
-                if(ImagePath==" ") {
-                    pic_view(uri);
-                } else{
-                    Uri uri= Uri.fromFile(new File(ImagePath));
-                    pic_view(uri);
-                }
-                dialog.dismiss();//关闭对话框
-            }
-        });
-
         //从相册中选择
         choosePhotoTV.setOnClickListener(new View.OnClickListener() {
 
@@ -270,129 +277,136 @@ public class PersonalEditActivity extends AppCompatActivity {
         startActivityForResult(intent, CHOOSE_PHOTO); // 打开相册
     }
 
-    //查看图片
-    public void pic_view(Uri imageUri){
-        Intent it =new Intent(this,show_picActivity.class);
-        it.setDataAndType(imageUri, "image/*");
-        startActivity(it);
-    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Uri uri= data.getData();
-        Log.d("TAG", "handleImageOnKitKat: uri is " + uri);
-        String imagePath = null;
-        if (DocumentsContract.isDocumentUri(this, uri)) {
-            // 如果是document类型的Uri，则通过document id处理
-            String docId = DocumentsContract.getDocumentId(uri);
-            assert uri != null;
-            if("com.android.providers.media.documents".equals(uri.getAuthority())) {
-                String id = docId.split(":")[1]; // 解析出数字格式的id
-                String selection = MediaStore.Images.Media._ID + "=" + id;
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
-            }
-            else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
-                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
-                imagePath = getImagePath(contentUri, null);
-            }
-        }
-        else {
-            assert uri != null;
-            if ("content".equalsIgnoreCase(uri.getScheme())) {
-                // 如果是content类型的Uri，则使用普通方式处理
-                imagePath = getImagePath(uri, null);
-            }
-            else if ("file".equalsIgnoreCase(uri.getScheme())) {
-                // 如果是file类型的Uri，直接获取图片路径即可
-                imagePath = uri.getPath();
-            }
-        }
-//发送请求
-        imagePath1 = imagePath;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    OkHttpClient client = new OkHttpClient();
-                    File file = new File(imagePath1);
-                    Log.d("文件上传",imagePath1);
-                    RequestBody fileBody = RequestBody.create(file,MediaType.parse("multipart/form-data"));
-                    MultipartBody requestBody = new MultipartBody.Builder()
-                            .setType(MultipartBody.FORM)
-                            .addFormDataPart("file",file.getName(),fileBody)
-                            .build();
-                    Log.d("文件上传",file.getName());
-                    Request request = new Request.Builder()
-                            .url("https://thelittlestar.cn:8088/file/uploadOrderSignImage")
-                            .addHeader("token",token)
-                            .post(requestBody)
-                            .build();
-
-                    client.newBuilder().readTimeout(5000, TimeUnit.MILLISECONDS).build().newCall(request).enqueue(new Callback() {
-                        //上传超时
-                        @Override
-                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                            Log.d("文件上传","失败了！");
-                            e.printStackTrace();
-                        }
-
-                        //上传成功
-                        @Override
-                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                            if(response.isSuccessful()){
-                                try {
-                                    JSONObject jsonObject = new JSONObject((response.body().string()));
-                                    Log.d("文件上传成功",jsonObject.getString("code"));
-                                    Log.d("文件名",jsonObject.getString("data"));
-                                    message=jsonObject.getString("message");
-                                    //上传成功
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(PersonalEditActivity.this,"头像上传成功",Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                    message = "失败";
-                                    try {
-                                        ImagePath=imagePath1;
-                                        FileInputStream fis = new FileInputStream(ImagePath);
-                                        BitmapFactory.Options options=new BitmapFactory.Options();
-                                        options.inJustDecodeBounds = false;
-                                        Bitmap bitmap = BitmapFactory.decodeStream(fis,null,options);
-                                        imageView.setImageBitmap(bitmap);
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }else{
-                                Log.d("文件上传",response.message()+"error:body"+response.body().string());
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(PersonalEditActivity.this,"头像上传失败",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-
-                        }
-                    });
-                }catch(Exception e){
-                    e.printStackTrace();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(PersonalEditActivity.this,"网络连接失败",Toast.LENGTH_SHORT).show();
-                        }
-                    });
+        if (resultCode == RESULT_OK && data != null){
+            Uri uri = data.getData();
+            Log.d("TAG", "handleImageOnKitKat: uri is " + uri);
+            String imagePath = null;
+            if (DocumentsContract.isDocumentUri(this, uri)) {
+                // 如果是document类型的Uri，则通过document id处理
+                String docId = DocumentsContract.getDocumentId(uri);
+                assert uri != null;
+                if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
+                    String id = docId.split(":")[1]; // 解析出数字格式的id
+                    String selection = MediaStore.Images.Media._ID + "=" + id;
+                    imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
+                } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
+                    Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
+                    imagePath = getImagePath(contentUri, null);
+                }
+            } else {
+                assert uri != null;
+                if ("content".equalsIgnoreCase(uri.getScheme())) {
+                    // 如果是content类型的Uri，则使用普通方式处理
+                    imagePath = getImagePath(uri, null);
+                } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+                    // 如果是file类型的Uri，直接获取图片路径即可
+                    imagePath = uri.getPath();
                 }
             }
-        }).start();
+//发送请求
+            imagePath1 = imagePath;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        OkHttpClient client = new OkHttpClient();
+                        File file = new File(imagePath1);
+                        Log.d("文件上传", imagePath1);
+                        RequestBody fileBody = RequestBody.create(file, MediaType.parse("multipart/form-data"));
+                        MultipartBody requestBody = new MultipartBody.Builder()
+                                .setType(MultipartBody.FORM)
+                                .addFormDataPart("file", file.getName(), fileBody)
+                                .build();
+                        Log.d("文件上传", file.getName());
+                        Request request = new Request.Builder()
+                                .url("https://thelittlestar.cn:8088/file/uploadOrderSignImage")
+                                .addHeader("token", token)
+                                .post(requestBody)
+                                .build();
+                        Response response = client.newCall(request).execute();
 
+                        String responseData = response.body().string();
+                        JSONObject jsonObject = new JSONObject(responseData);
+                        Log.i("code", jsonObject.getString("code"));
+                        Log.i("message", jsonObject.getString("message"));
+                        Log.i("data", jsonObject.getString("data"));
+                        JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+
+                        message = jsonObject.getString("message");
+
+                        if (message.equals("成功")) {
+                            //上传成功
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(PersonalEditActivity.this, "头像上传成功", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            message = "失败";
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                Url = jsonArray.getString(i);
+
+                                Log.i("data", Url);
+                            }
+                            new Thread(new Runnable(){
+                                @Override
+                                public void run() {
+                                    try {
+                                        Bitmap bitmap = getBitmap(Url);
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                imageView.setImageBitmap(bitmap);
+                                            }
+                                        });
+                                    }  catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }).start();
+                        } else {
+                            Log.d("文件上传", message);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(PersonalEditActivity.this, "头像上传失败", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(PersonalEditActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            }).start();
+        }
     }
 
-
+    public Bitmap getBitmap(String path) throws IOException {
+        try {
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setRequestMethod("GET");
+            if (conn.getResponseCode() == 200) {
+                InputStream inputStream = conn.getInputStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                return bitmap;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
     //获取图片路径
     @SuppressLint("Range")
     private String getImagePath(Uri uri, String selection) {
