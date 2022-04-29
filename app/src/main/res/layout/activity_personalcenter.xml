@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,284 +8,343 @@
     android:background="#F0F3F6"
     >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:background="#FFFFFF"
-            android:gravity="left|center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="106dp"
-                android:layout_height="29dp"
-                android:fontFamily="@font/calibri"
-                android:gravity="center"
-                android:text="个人中心 "
-                android:textAlignment="center"
-                android:textColor="#3F51B5"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/wrap_layout" >
-            <!-- 上圆角-->
-            <LinearLayout style="@style/top_layout">
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/Head_imageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:onClick="check_header_picture"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher_round"
-                    android:text="name"
-                    app:riv_oval="true"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <LinearLayout
-                    style="@style/mid_layout"
-                    android:layout_width="150dp">
-
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:onClick="alert_edit1"
-                        android:text="昵称:"
-                        android:textColor="@color/text_clo" />
-
-                    <TextView
-                        android:id="@+id/nickname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="alert_edit1"
-                        android:paddingRight="16dp"
-                        android:text="NULL" />
-
-                </LinearLayout>
-                <LinearLayout
-                    style="@style/mid_layout"
-                    android:layout_width="120dp">
-                    <ImageView
-                        android:id="@+id/modify"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_baseline_create_24"
-                        android:onClick="alert_edit1"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <TextView
-                        android:onClick="alert_edit1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="16dp"
-                        android:text="编辑"
-                        android:textSize="17sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 无圆角-->
-            <LinearLayout style="@style/mid_layout">
-                <TextView style="@style/usertext" android:text="签名"
-                    android:onClick="alert_edit1"/>
-                <TextView android:id="@+id/qianming"
-                    android:onClick="alert_edit1"
-                    android:text="NULL"
-                    android:maxLines="2"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" />
-            </LinearLayout>
-
-
-            <!-- 无圆角-->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/mid_layout">
-                <TextView style="@style/usertext" android:text="性别"
-                    android:onClick="alert_edit1"/>
-                <TextView
-                    android:id="@+id/sex"
-                    android:paddingRight="10dp"
-                    android:text="NULL"
-                    android:onClick="alert_edit1"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-
-                <ImageView
-                    style="@style/img_arrow"
-                    android:onClick="alert_edit1"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/mid_layout">
-                <TextView style="@style/usertext" android:text="电话"
-                    android:onClick="alert_edit1"/>
-                <TextView
-                    android:id="@+id/tele"
-                    android:paddingRight="10dp"
-                    android:text="NULL"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:onClick="alert_edit1"/>
-
-                <ImageView
-                    style="@style/img_arrow"
-                    android:onClick="alert_edit1"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/mid_layout">
-                <TextView style="@style/usertext" android:text="碳积分"
-                    android:onClick="onClick"/>
-
-                <TextView
-                    android:id="@+id/tpoints"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onClick"
-                    android:paddingRight="10dp"
-                    android:text="NULL" />
-
-                <ImageView
-                    style="@style/img_arrow"
-                    android:onClick="onClick"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/bottom_layout">
-                <TextView style="@style/usertext" android:text="邮箱"/>
-                <TextView
-                    android:id="@+id/personal_email"
-                    android:paddingRight="10dp"
-                    android:text="NULL"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-
-                <ImageView
-                    style="@style/img_arrow"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-        </LinearLayout>
-        <!-- 全圆角-->
-        <LinearLayout style="@style/wrap_layout" >
-            <View style="@style/bg_line"/>
-            <!-- 上圆角-->
-            <LinearLayout style="@style/top_layout"
-                android:id="@+id/my_treasure_personal">
-                <TextView style="@style/usertext" android:text="我的宝箱"/>
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/buttonshaperedbg"
-                    android:fontFamily="@font/calibri"
-                    android:text="NULL"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    style="@style/img_arrow"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/bottom_layout">
-                <TextView style="@style/usertext" android:text="信息反馈"/>
-
-                <ImageView
-                    style="@style/img_arrow"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/bottom_layout">
-                <TextView style="@style/usertext" android:text="系统通知"/>
-
-                <ImageView
-                    style="@style/img_arrow"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/bottom_layout">
-                <TextView style="@style/usertext" android:text="出行历史"
-                    />
-
-                <ImageView
-                    style="@style/img_arrow"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-
-            <!-- 分割线 -->
-            <View style="@style/bg_line"/>
-            <!-- 下圆角-->
-            <LinearLayout style="@style/bottom_layout">
-                <TextView style="@style/usertext" android:text="修改密码"
-                    android:onClick="alert_edit2"/>
-
-                <ImageView
-                    style="@style/img_arrow"
-                    android:onClick="alert_edit2"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
-        </LinearLayout>
+        android:layout_height="match_parent"
+        android:background="#F0F3F6"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-224dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/logout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:background="#FFFFFF"
+                android:gravity="left|center"
+                android:orientation="horizontal">
 
-                android:background="@drawable/buttonshapebluebg"
-                android:fontFamily="@font/calibri"
-                android:text="退   出    账   号"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password"
-                app:layout_constraintVertical_bias="0.2" />
+                <TextView
+                    android:layout_width="106dp"
+                    android:layout_height="29dp"
+                    android:fontFamily="@font/calibri"
+                    android:gravity="center"
+                    android:text="个人中心 "
+                    android:textAlignment="center"
+                    android:textColor="#3F51B5"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/wrap_layout">
+                <!-- 上圆角-->
+                <LinearLayout style="@style/top_layout">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/Head_imageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:onClick="check_header_picture"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:text="name"
+                        app:riv_oval="true"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <LinearLayout
+                        style="@style/mid_layout"
+                        android:layout_width="150dp">
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:onClick="alert_edit1"
+                            android:text="昵称:"
+                            android:textColor="@color/text_clo" />
+
+                        <TextView
+                            android:id="@+id/nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="alert_edit1"
+                            android:paddingRight="16dp"
+                            android:text="NULL" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/mid_layout"
+                        android:layout_width="120dp">
+
+                        <ImageView
+                            android:id="@+id/modify"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:onClick="alert_edit1"
+                            android:src="@drawable/ic_baseline_create_24"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="alert_edit1"
+                            android:paddingRight="16dp"
+                            android:text="编辑"
+                            android:textSize="17sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 无圆角-->
+                <LinearLayout style="@style/mid_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:onClick="alert_edit1"
+                        android:text="签名" />
+
+                    <TextView
+                        android:id="@+id/qianming"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:onClick="alert_edit1"
+                        android:text="NULL" />
+                </LinearLayout>
+
+
+                <!-- 无圆角-->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/mid_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:onClick="alert_edit1"
+                        android:text="性别" />
+
+                    <TextView
+                        android:id="@+id/sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="alert_edit1"
+                        android:paddingRight="10dp"
+                        android:text="NULL" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        android:onClick="alert_edit1"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/mid_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:onClick="alert_edit1"
+                        android:text="电话" />
+
+                    <TextView
+                        android:id="@+id/tele"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="alert_edit1"
+                        android:paddingRight="10dp"
+                        android:text="NULL" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        android:onClick="alert_edit1"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/mid_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:onClick="onClick"
+                        android:text="碳积分" />
+
+                    <TextView
+                        android:id="@+id/tpoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClick"
+                        android:paddingRight="10dp"
+                        android:text="NULL" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        android:onClick="onClick"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/bottom_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:text="邮箱" />
+
+                    <TextView
+                        android:id="@+id/personal_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:text="NULL" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 全圆角-->
+            <LinearLayout style="@style/wrap_layout">
+
+                <View style="@style/bg_line" />
+                <!-- 上圆角-->
+                <LinearLayout
+                    android:id="@+id/my_treasure_personal"
+                    style="@style/top_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:text="我的宝箱" />
+
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/buttonshaperedbg"
+                        android:fontFamily="@font/calibri"
+                        android:text="NULL"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/bottom_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:text="信息反馈" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/bottom_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:text="系统通知" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/bottom_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:text="出行历史" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <!-- 分割线 -->
+                <View style="@style/bg_line" />
+                <!-- 下圆角-->
+                <LinearLayout style="@style/bottom_layout">
+
+                    <TextView
+                        style="@style/usertext"
+                        android:onClick="alert_edit2"
+                        android:text="修改密码" />
+
+                    <ImageView
+                        style="@style/img_arrow"
+                        android:onClick="alert_edit2"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="100dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+
+                    android:background="@drawable/buttonshapebluebg"
+                    android:fontFamily="@font/calibri"
+                    android:text="退   出    账   号"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/password"
+                    app:layout_constraintVertical_bias="0.2" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
+    </ScrollView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_icon"
+        android:theme="@style/footButton"
+        app:labelVisibilityMode="labeled"/>
 
-    </LinearLayout>
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
