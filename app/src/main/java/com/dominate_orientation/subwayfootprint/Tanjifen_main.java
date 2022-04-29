@@ -73,7 +73,7 @@ mButton1.setOnClickListener(new View.OnClickListener() {
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
-                    intent =new Intent(Tanjifen_main.this, PersonalcenterActivity.class);
+                    intent =new Intent(Tanjifen_main.this, MainActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_credit:
@@ -81,7 +81,7 @@ mButton1.setOnClickListener(new View.OnClickListener() {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(Tanjifen_main.this, PersonalcenterActivity.class);
+                    intent =new Intent(Tanjifen_main.this, MainActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:
