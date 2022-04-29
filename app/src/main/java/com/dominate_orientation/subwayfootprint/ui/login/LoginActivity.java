@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dominate_orientation.subwayfootprint.MainActivity;
 import com.dominate_orientation.subwayfootprint.PersonalcenterActivity;
 import com.dominate_orientation.subwayfootprint.R;
 import com.dominate_orientation.subwayfootprint.RegisterActivity;
@@ -172,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                     Token app = (Token)getApplicationContext();
                     app.setToken(jsonObject.getString("data"));
                     if(message.equals("成功")){
-                        Intent intent =new Intent(LoginActivity.this, PersonalcenterActivity.class);
+                        Intent intent =new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
                     else{
