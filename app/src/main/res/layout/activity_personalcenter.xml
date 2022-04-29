@@ -169,19 +169,16 @@
             <View style="@style/bg_line"/>
             <!-- 下圆角-->
             <LinearLayout style="@style/bottom_layout">
-                <TextView style="@style/usertext" android:text="邮箱"
-                    android:onClick="alert_edit1"/>
+                <TextView style="@style/usertext" android:text="邮箱"/>
                 <TextView
                     android:id="@+id/personal_email"
                     android:paddingRight="10dp"
                     android:text="NULL"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:onClick="alert_edit1"/>
+                    android:layout_width="wrap_content"/>
 
                 <ImageView
                     style="@style/img_arrow"
-                    android:onClick="alert_edit1"
                     tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
         </LinearLayout>

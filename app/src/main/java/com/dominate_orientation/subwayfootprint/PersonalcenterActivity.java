@@ -234,7 +234,6 @@ public class PersonalcenterActivity extends AppCompatActivity {
         bundle.putString("tele", tel.getText().toString());
         bundle.putString("qianming", qianming.getText().toString());
         bundle.putString("sex", sex.getText().toString());
-        bundle.putString("credit", credit.getText().toString());
         bundle.putString("url", url);
         Intent intent =new Intent(PersonalcenterActivity.this, PersonalEditActivity.class);
         intent.putExtras(bundle);

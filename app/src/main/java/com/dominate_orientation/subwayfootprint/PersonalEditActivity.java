@@ -50,6 +50,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -184,12 +185,11 @@ public class PersonalEditActivity extends AppCompatActivity {
                 try {
                     String json = "{\n" +
                             "\"username\": "+"\""+username.getText().toString()+"\""+","+
-                            "\"age\": "+"\""+age.getText().toString()+"\""+","+
+                            "\"age\":" +age.getText().toString()+","+
                             "\"sex\": "+"\""+sex.getText().toString()+"\""+","+
                             "\"tel\": "+"\""+tel.getText().toString()+"\""+","+
                             "\"touxiang\": "+"\""+Url+"\""+","+
-                            "\"qianming\": "+"\""+qianming.getText().toString()+"\""+","+
-                            "\"credit\": "+"\""+credit+"\""+
+                            "\"qianming\": "+"\""+qianming.getText().toString()+"\""+
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
@@ -426,8 +426,12 @@ public class PersonalEditActivity extends AppCompatActivity {
     public boolean isUserNameValid(String username) {
         return username != null && username.trim().length() < 10;
     }
+    public static boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile("[1-9][0-9]{0,1}$");
+        return pattern.matcher(str).matches();
+    }
     public boolean isAgeValid(String age) {
-        return age != null && Integer.parseInt(age)>0 && Integer.parseInt(age)<100;
+        return age != null && isNumeric(age);
     }
     public boolean isSexValid(String sex) {
         return sex != null && (sex.equals("male")||sex.equals("female"));
