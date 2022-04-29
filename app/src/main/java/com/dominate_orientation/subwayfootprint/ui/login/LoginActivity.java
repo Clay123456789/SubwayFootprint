@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dominate_orientation.subwayfootprint.Find_PasswordActivity;
 import com.dominate_orientation.subwayfootprint.PersonalcenterActivity;
 import com.dominate_orientation.subwayfootprint.R;
 import com.dominate_orientation.subwayfootprint.RegisterActivity;
@@ -207,6 +208,11 @@ public class LoginActivity extends AppCompatActivity {
                     passwordEditText.getText().toString());
             message = "失败";
         }
+    }
+
+    public void findPW(View view){
+        Intent intent =new Intent(LoginActivity.this, Find_PasswordActivity.class);
+        startActivity(intent);
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
