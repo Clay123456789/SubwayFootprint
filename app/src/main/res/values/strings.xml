@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">SubwayFootprint</string>
 
     <string name="title_activity_login">LoginActivity</string>
@@ -16,5 +17,6 @@
     <string name="credit_name">碳积分</string>
     <string name="shop_name">商城</string>
     <string name="person_name">我的</string>
+
 
 </resources>
