@@ -2,15 +2,8 @@
     <!-- Base application theme. -->
 
 
-    <style name="Theme.SubwayFootprint" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+    <style name="Theme.SubwayFootprint" parent="Theme.MaterialComponents.Light.NoActionBar">
 
-
-
-      
-      
-      
-      
-      
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -108,4 +101,11 @@
         <item name="colorControlNormal">#E0E0E0</item>
         <item name="colorControlActivated">#BBCEC8</item>
     </style>
+
+    <!-- 导航栏样式-->
+    <style name="footButton" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/daoqi</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+    </style>
+
 </resources>
