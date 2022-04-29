@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentUris;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -28,6 +29,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,6 +50,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -67,7 +70,7 @@ public class PersonalEditActivity extends AppCompatActivity {
     EditText  sex ;
     EditText  qianming ;
     EditText  tel ;
-    EditText  age ;
+    TextView  age ;
     String  credit ;
     Button cancelbtn ;
     Button confirmbtn ;
@@ -147,16 +150,13 @@ public class PersonalEditActivity extends AppCompatActivity {
                 } else if (!isTeleValid(tel.getText().toString())) {
                     tel.setError("电话格式不正确");
                     confirmbtn.setEnabled(false);
-                } else if (!isAgeValid(age.getText().toString())) {
-                    age.setError("年龄格式不正确");
-                    confirmbtn.setEnabled(false);
                 } else {
                     confirmbtn.setEnabled(true);
                 }
             }
         };
-        username.addTextChangedListener(afterTextChangedListener);
         age.addTextChangedListener(afterTextChangedListener);
+        username.addTextChangedListener(afterTextChangedListener);
         sex.addTextChangedListener(afterTextChangedListener);
         tel.addTextChangedListener(afterTextChangedListener);
         qianming.addTextChangedListener(afterTextChangedListener);
@@ -168,7 +168,45 @@ public class PersonalEditActivity extends AppCompatActivity {
             }
         });
 
+        age.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //通过自定义控件AlertDialog实现
+                AlertDialog.Builder builder = new AlertDialog.Builder(PersonalEditActivity.this);
+                View view = (LinearLayout) getLayoutInflater().inflate(R.layout.date_dialog, null);
+                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+                datePicker.setMaxDate(new Date().getTime());
+                //设置日期简略显示 否则详细显示 包括:星期\周
+                datePicker.setCalendarViewShown(false);
+                //设置date布局
+                builder.setView(view);
+                builder.setTitle("选择出生日期");
+                builder.setPositiveButton("确 定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //日期格式
+                        String year = String.valueOf(datePicker.getYear());
+                        String month = String.valueOf(datePicker.getMonth()+1);
+                        String dayOfMonth = String.valueOf(datePicker.getDayOfMonth());
+                        try {
+                            age.setText(year + month + dayOfMonth);
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton("取 消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+            }
+        });
 
+        //取消修改按钮
         cancelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,7 +215,7 @@ public class PersonalEditActivity extends AppCompatActivity {
             }
         });
     }
-
+    //确认修改
     public void comfirm(){
         new Thread(new Runnable() {
             @Override
@@ -426,13 +464,7 @@ public class PersonalEditActivity extends AppCompatActivity {
     public boolean isUserNameValid(String username) {
         return username != null && username.trim().length() < 10;
     }
-    public static boolean isNumeric(String str) {
-        Pattern pattern = Pattern.compile("[1-9][0-9]{0,1}$");
-        return pattern.matcher(str).matches();
-    }
-    public boolean isAgeValid(String age) {
-        return age != null && isNumeric(age);
-    }
+
     public boolean isSexValid(String sex) {
         return sex != null && (sex.equals("male")||sex.equals("female"));
     }
@@ -442,8 +474,5 @@ public class PersonalEditActivity extends AppCompatActivity {
     public boolean isTeleValid(String tele) {
         return Patterns.PHONE.matcher(tele).matches();
     }
-    // A placeholder password validation check
-    private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
-    }
+
 }
