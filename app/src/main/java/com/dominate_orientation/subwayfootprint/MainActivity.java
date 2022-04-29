@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //底部导航栏
+
+
+
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{

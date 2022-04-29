@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dominate_orientation.subwayfootprint.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class Tanjifen_main extends AppCompatActivity {
     private Button mButton1 ;
     private Button mButton2 ;
     private Button mButton3;
+    private Intent intent;
     private OkHttpClient okHttpClient;
     private  String s;
     public void setS(String s) {
@@ -66,7 +68,32 @@ mButton1.setOnClickListener(new View.OnClickListener() {
 
 
 
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent =new Intent(Tanjifen_main.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_credit:
+                    intent =new Intent(Tanjifen_main.this,Tanjifen_main.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_shop:
+                    intent =new Intent(Tanjifen_main.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_person:
+                    intent =new Intent(Tanjifen_main.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+            return true;
+        });
+
 
     }
+
 
 }
