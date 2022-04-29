@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dominate_orientation.subwayfootprint.ui.login.LoginActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONObject;
@@ -50,6 +51,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
     String token;
     String url;
     RoundedImageView imageView;
+    Intent intent;
     private AlertDialog dialog;
 
     public TextView getCredit() {
@@ -178,6 +180,29 @@ public class PersonalcenterActivity extends AppCompatActivity {
                     }
                 }).show();
             }
+        });
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent =new Intent(PersonalcenterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_credit:
+                    intent =new Intent(PersonalcenterActivity.this,Tanjifen_main.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_shop:
+                    intent =new Intent(PersonalcenterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_person:
+                    intent =new Intent(PersonalcenterActivity.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+            return true;
         });
     }
 
