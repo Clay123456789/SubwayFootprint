@@ -50,6 +50,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -174,6 +175,7 @@ public class PersonalEditActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PersonalEditActivity.this);
                 View view = (LinearLayout) getLayoutInflater().inflate(R.layout.date_dialog, null);
                 final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+                datePicker.setMaxDate(new Date().getTime());
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
                 //设置date布局
