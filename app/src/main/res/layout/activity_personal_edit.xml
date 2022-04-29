@@ -132,8 +132,8 @@
             <View style="@style/bg_line"/>
             <!-- 下圆角-->
             <LinearLayout style="@style/bottom_layout">
-                <TextView style="@style/usertext" android:text="年龄"/>
-                <EditText
+                <TextView style="@style/usertext" android:text="出生日期"/>
+                <TextView
                     android:id="@+id/edit_age"
                     android:paddingRight="10dp"
                     android:text="NULL"
