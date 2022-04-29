@@ -151,13 +151,14 @@
             <LinearLayout style="@style/mid_layout">
                 <TextView style="@style/usertext" android:text="碳积分"
                     android:onClick="onClick"/>
+
                 <TextView
                     android:id="@+id/tpoints"
-                    android:paddingRight="10dp"
-                    android:text="NULL"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:onClick="onClick"/>
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:paddingRight="10dp"
+                    android:text="NULL" />
 
                 <ImageView
                     style="@style/img_arrow"

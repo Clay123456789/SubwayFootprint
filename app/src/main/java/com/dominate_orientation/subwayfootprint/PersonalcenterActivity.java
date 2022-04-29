@@ -227,6 +227,11 @@ public class PersonalcenterActivity extends AppCompatActivity {
         intent.putExtras(bundle);
         PersonalcenterActivity.this.startActivity(intent);
     }
+    public void onClick(View view) {
+        //跳转碳积分1页面
+        Intent intent = new Intent(PersonalcenterActivity.this, Tanjifen_main.class);
+        startActivity(intent);
+    }
     public void alert_edit1(View view){
         Bundle bundle = new Bundle();
         bundle.putString("username", username.getText().toString());
