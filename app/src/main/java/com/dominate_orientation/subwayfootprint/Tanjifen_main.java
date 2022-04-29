@@ -69,7 +69,7 @@ mButton1.setOnClickListener(new View.OnClickListener() {
 
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
-
+        bottomNavigationView.setSelectedItemId(R.id.nav_credit);
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:

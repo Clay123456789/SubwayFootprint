@@ -62,7 +62,7 @@ public class Tanjifen_history extends AppCompatActivity {
        list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
-
+        bottomNavigationView.setSelectedItemId(R.id.nav_credit);
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
