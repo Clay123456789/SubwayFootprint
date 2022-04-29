@@ -2,6 +2,7 @@ package com.dominate_orientation.subwayfootprint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.dominate_orientation.subwayfootprint.R;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -25,7 +27,7 @@ import okhttp3.Response;
 
 public class Tanjifen_rank extends AppCompatActivity {
     private ListView mLv1=null;
-
+    private Intent intent;
     private TextView mTv1;
     private TextView mTv2;
     private OkHttpClient okHttpClient;
@@ -107,6 +109,35 @@ public class Tanjifen_rank extends AppCompatActivity {
         mTv2=findViewById(R.id.tv_2);
 
         mTv2.setText(data3);
+
+
+
+
+
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent =new Intent(Tanjifen_rank.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_credit:
+                    intent =new Intent(Tanjifen_rank.this,Tanjifen_main.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_shop:
+                    intent =new Intent(Tanjifen_rank.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_person:
+                    intent =new Intent(Tanjifen_rank.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+            return true;
+        });
+
 
 
     }

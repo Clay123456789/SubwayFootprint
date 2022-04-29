@@ -3,12 +3,14 @@ package com.dominate_orientation.subwayfootprint;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dominate_orientation.subwayfootprint.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -25,6 +27,7 @@ import okhttp3.Response;
 public class Tanjifen_history extends AppCompatActivity {
     private LinkedList<History> mData = null;
     private Context mContext;
+    private Intent intent;
     private ListView list_history;
     private OkHttpClient okHttpClient;
     private  String s;
@@ -57,6 +60,32 @@ public class Tanjifen_history extends AppCompatActivity {
         mData = gson.fromJson(data,type);
               list_history =  findViewById(R.id.lv_2);
        list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));
+
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent =new Intent(Tanjifen_history.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_credit:
+                    intent =new Intent(Tanjifen_history.this,Tanjifen_main.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_shop:
+                    intent =new Intent(Tanjifen_history.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_person:
+                    intent =new Intent(Tanjifen_history.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+            return true;
+        });
+
+
     }
 
 

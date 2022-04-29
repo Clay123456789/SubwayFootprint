@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410dp"
+        android:layout_height="64dp"
 
         android:layout_marginBottom="552dp"
         android:orientation="horizontal"
@@ -66,14 +66,14 @@
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="411dp"
-        android:layout_height="550dp"
+        android:layout_height="400dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
         app:layout_constraintTop_toTopOf="parent">
 
         <ListView
@@ -86,15 +86,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="414dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+        app:layout_constraintTop_toTopOf="@+id/linearLayout4">
 
         <Button
             android:id="@+id/button2"
@@ -112,4 +113,14 @@
             android:background="@color/white"
             android:text="下一页" />
     </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_icon"
+        android:theme="@style/footButton"
+        app:labelVisibilityMode="labeled"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
