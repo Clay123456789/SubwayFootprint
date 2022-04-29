@@ -1,4 +1,4 @@
-package com.example.zhuyihaotest1;
+package com.dominate_orientation.subwayfootprint;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.dominate_orientation.subwayfootprint.R;
 
 import java.util.LinkedList;
 
@@ -52,11 +55,15 @@ public class RankListAdapter extends BaseAdapter {
             holder.textView1=view.findViewById(R.id.User_rank);
             holder.textView2=view.findViewById(R.id.User_name);
             holder.textView3=view.findViewById(R.id.User_number);
+
             view.setTag(holder);
         }else{
+
             holder=(ViewHolder) view.getTag();
         }
-
+if(mData.get(i).getTouxiang()!=null) {
+    Glide.with(view).load(mData.get(i).getTouxiang()).into(holder.imageView);
+}
         holder.textView1.setText(mData.get(i).getRank());
        holder.textView2.setText(mData.get(i).getUsername());
        if(mData.get(i).getCredit()!=null){

@@ -1,21 +1,20 @@
-package com.example.zhuyihaotest1;
+package com.dominate_orientation.subwayfootprint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dominate_orientation.subwayfootprint.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.LinkedList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -73,7 +72,7 @@ public class Tanjifen_history extends AppCompatActivity {
             public void run(){
                 FormBody formBody=new FormBody.Builder().build();
 
-                Request request=new Request.Builder().url("http://123.56.150.89:8088/user/getUserCreditRecords").post(formBody).header("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuY24iLCJleHAiOjE2NTE1MDQzMTYsImVtYWlsIjoiMjAxOTIxMTk5NkBidXB0LmNuIn0.dOXcgd3RGZy560keD_lqZ1EewLrpC8WNi4XUO5lbpwI").build();
+                Request request=new Request.Builder().url("https://thelittlestar.cn:8088/user/getUserCreditRecords?group=1").post(formBody).header("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuY24iLCJleHAiOjE2NTE3MTI5MjksImVtYWlsIjoiMjAxOTIxMTk5NkBidXB0LmNuIn0.AYskxhwgQei8aRYUve5EYpPfnWUdJBFmULmnKARy_ds").build();
 
                 Call call=okHttpClient.newCall(request);
                 try {

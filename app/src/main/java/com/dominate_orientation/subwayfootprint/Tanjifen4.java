@@ -1,4 +1,4 @@
-package com.example.zhuyihaotest1;
+package com.dominate_orientation.subwayfootprint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dominate_orientation.subwayfootprint.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -15,12 +16,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.LinkedList;
 import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

@@ -1,4 +1,4 @@
-package com.example.zhuyihaotest1;
+package com.dominate_orientation.subwayfootprint;
 
 public class User_Rank {
    private String touxiang;
