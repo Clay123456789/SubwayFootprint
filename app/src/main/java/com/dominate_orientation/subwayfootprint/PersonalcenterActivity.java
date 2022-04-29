@@ -182,7 +182,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
             }
         });
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
-
+        bottomNavigationView.setSelectedItemId(R.id.nav_person);
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
