@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
 
 
-    <style name="Theme.SubwayFootprint" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.SubwayFootprint" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
 
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -105,7 +105,8 @@
     <!-- 导航栏样式-->
     <style name="footButton" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/daoqi</item>
-        <item name="android:textColorSecondary">@android:color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>
