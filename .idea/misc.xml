@@ -11,6 +11,8 @@
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1475" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2135" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_shop.xml" value="0.1605" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/single_select.xml" value="0.1605" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/top_select.xml" value="0.15" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w1240dp/dialog1.xml" value="0.26994535519125684" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w936dp/activity_login.xml" value="0.19375" />
@@ -25,8 +27,10 @@
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_tanjifen_history.xml" value="0.162109375" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_tanjifen_mian.xml" value="0.162109375" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_tanjifen_rank.xml" value="0.162109375" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/buttom_navigation_layout.xml" value="0.20546875" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/dialog.xml" value="0.19375" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/dialog1.xml" value="0.19375" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/person_fragment.xml" value="0.20546875" />
       </map>
     </option>
   </component>
