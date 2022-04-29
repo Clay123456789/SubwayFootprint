@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/treasure_closed" android:duration="120"/>
+    <item android:drawable="@drawable/treasure_open" android:duration="120"/>
+
+</animation-list>
