@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.dominate_orientation.subwayfootprint.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,6 +17,7 @@
         app:menu="@menu/bottom_nav_icon"
         android:theme="@style/footButton"
         app:labelVisibilityMode="labeled"/>
+
 
 
 
