@@ -87,7 +87,7 @@ public class Tanjifen_rank extends AppCompatActivity {
         String  data2 = jsonObject2.getString("data");     //用String接收json数据中的data数据
         Gson gson2=new Gson();
         User user= gson2.fromJson(data2, User.class);
-        //System.out.println("fuck"+data2);
+
 
         mTv1=findViewById(R.id.textView4);
         mTv1.setText(user.getCredit());
@@ -143,7 +143,7 @@ public class Tanjifen_rank extends AppCompatActivity {
     }
 
     public String postSync(String url) throws InterruptedException {
-        final String ss=null;
+
         Thread threadA= new Thread(){
 
             @Override
@@ -151,14 +151,19 @@ public class Tanjifen_rank extends AppCompatActivity {
             public void run(){
                 FormBody formBody=new FormBody.Builder().build();
 
-                Request request=new Request.Builder().url(url).post(formBody).header("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuY24iLCJleHAiOjE2NTE3MTI5MjksImVtYWlsIjoiMjAxOTIxMTk5NkBidXB0LmNuIn0.AYskxhwgQei8aRYUve5EYpPfnWUdJBFmULmnKARy_ds").build();
+                Token app = (Token)getApplicationContext();
+                String token = null;
+                token =app.getToken();
+                Request request=new Request.Builder().url(url).post(formBody).header("token", token).build();
+
+
 
                 Call call=okHttpClient.newCall(request);
                 try {
                     Response response=call.execute();
                     setS(response.body().string());
 
-                    Log.i(TAG,"postSync"+s);
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -169,7 +174,7 @@ public class Tanjifen_rank extends AppCompatActivity {
         threadA.start();
         threadA.join();
 
-        System.out.println("！"+s);
+
         return  s;
     }
 }
