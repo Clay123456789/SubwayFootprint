@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class main_page extends AppCompatActivity {
 
@@ -30,6 +32,8 @@ public class main_page extends AppCompatActivity {
     //final LinearLayout container = findViewById(R.id.container);
     ClearEditText cet1;
     ClearEditText cet2;
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,30 @@ public class main_page extends AppCompatActivity {
 
         //mlgb这文件路径名是真的逆天的批爆
         wv.loadUrl("file:///android_asset/map_overview.html");
+
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent =new Intent(main_page.this, main_page.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_credit:
+                    intent =new Intent(main_page.this,Tanjifen_main.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_shop:
+                    intent =new Intent(main_page.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_person:
+                    intent =new Intent(main_page.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+            return true;
+        });
 
     }
 
