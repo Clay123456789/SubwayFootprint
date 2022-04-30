@@ -74,7 +74,8 @@
             android:exported="false" />
         <activity
             android:name=".Tanjifen_main"
-            android:exported="false" />
+            android:exported="false"
+            android:usesCleartextTraffic="true"/>
         <activity
             android:name=".Tanjifen_history"
             android:exported="false" />
