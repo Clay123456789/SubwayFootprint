@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout"
     android:background="@color/Olive">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/container"
         android:layout_width="394dp"
 
         android:layout_height="0dp"
@@ -58,7 +59,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/container"
         app:layout_constraintVertical_bias="0" />
 
     <Button
@@ -74,6 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="letsgo"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

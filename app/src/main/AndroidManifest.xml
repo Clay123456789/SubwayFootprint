@@ -19,8 +19,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许写入扩展存储，用于搜索结果缓存，若无此权限则写到私有目录 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许读设备等信息，用于问题排查 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,34 +30,23 @@
         android:theme="@style/Theme.SubwayFootprint"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".main_page"
-            android:label="@string/title_activity_main_page"
-            android:theme="@style/Theme.SubwayFootprint.NoActionBar"
-            android:exported="true"
-            android:screenOrientation="portrait">
-        <!--此处设置 intent-filter-->
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:name=".route"
+            android:exported="false" />
         <activity
-            android:name=".DisplayMessageActivity"
+            android:name=".main_page"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:label="@string/title_activity_main_page"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SubwayFootprint.NoActionBar">
 
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-
+            <!-- 此处设置 intent-filter -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
