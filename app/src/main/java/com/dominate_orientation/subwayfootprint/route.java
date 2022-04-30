@@ -2,8 +2,12 @@ package com.dominate_orientation.subwayfootprint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,9 +30,16 @@ public class route extends AppCompatActivity {
     Button go_to_next=null;
     Button dig = null;
     Button ensconce = null;
+    Button closeBury=null;
 
+    View view_bury;
 
+    Dialog dialog;
 
+    AlertDialog buryAlert = null;
+    AlertDialog.Builder builder = null;
+
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,22 @@ public class route extends AppCompatActivity {
                 go_to_next.setEnabled(false);
             }
         }.start();*/
+
+        mContext=route.this;
+        builder=new AlertDialog.Builder(mContext);
+
+        final LayoutInflater inflater = route.this.getLayoutInflater();
+        view_bury = inflater.inflate(R.layout.bottom_sheet_bury, null,false);
+        builder.setView(view_bury);
+        builder.setCancelable(false);
+        buryAlert = builder.create();
+
+        view_bury.findViewById(R.id.btn_cancle).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                buryAlert.dismiss();
+            }
+        });
 
         Calculate();
         init_texts();
@@ -161,7 +188,7 @@ public class route extends AppCompatActivity {
     //藏宝
     //我已设定只有到终点此按钮才能互动
     public void ensconce(View view){
-
+        buryAlert.show();
     }
 }
 
