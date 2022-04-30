@@ -33,6 +33,7 @@ import com.dominate_orientation.subwayfootprint.R;
 import com.dominate_orientation.subwayfootprint.RegisterActivity;
 import com.dominate_orientation.subwayfootprint.Token;
 import com.dominate_orientation.subwayfootprint.databinding.ActivityLoginBinding;
+import com.dominate_orientation.subwayfootprint.main_page;
 
 import org.json.JSONObject;
 
@@ -175,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                     Token app = (Token)getApplicationContext();
                     app.setToken(jsonObject.getString("data"));
                     if(message.equals("成功")){
-                        Intent intent =new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent =new Intent(LoginActivity.this, main_page.class);
                         startActivity(intent);
                     }
                     else{

@@ -66,7 +66,7 @@ public class Tanjifen_history extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
-                    intent =new Intent(Tanjifen_history.this, PersonalcenterActivity.class);
+                    intent =new Intent(Tanjifen_history.this, main_page.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_credit:

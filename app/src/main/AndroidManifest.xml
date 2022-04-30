@@ -51,13 +51,6 @@
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SubwayFootprint.NoActionBar">
-
-            <!-- 此处设置 intent-filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 

@@ -186,7 +186,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
-                    intent =new Intent(PersonalcenterActivity.this, MainActivity.class);
+                    intent =new Intent(PersonalcenterActivity.this, main_page.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_credit:
