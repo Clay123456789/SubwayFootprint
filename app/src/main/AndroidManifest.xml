@@ -30,7 +30,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-
     <application
         android:name=".Token"
         android:allowBackup="true"
@@ -41,7 +40,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubwayFootprint"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".Treasure_message"
+            android:exported="false" />
+        <activity
+            android:name=".Treasure_user"
+            android:exported="false" />
         <activity
             android:name=".route"
             android:exported="false" />
@@ -50,10 +54,7 @@
             android:exported="true"
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SubwayFootprint.NoActionBar">
-        </activity>
-
-
+            android:theme="@style/Theme.SubwayFootprint.NoActionBar" />
         <activity
             android:name=".Find_PasswordActivity"
             android:exported="false" />
@@ -75,7 +76,7 @@
         <activity
             android:name=".Tanjifen_main"
             android:exported="false"
-            android:usesCleartextTraffic="true"/>
+            android:usesCleartextTraffic="true" />
         <activity
             android:name=".Tanjifen_history"
             android:exported="false" />

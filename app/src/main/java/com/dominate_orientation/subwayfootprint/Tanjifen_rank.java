@@ -54,12 +54,12 @@ public class Tanjifen_rank extends AppCompatActivity {
     public String getS() {
         return s;
     }
-    private LinkedList<User_Rank> userRanks =null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanjifen_rank);
-        userRanks = new LinkedList<User_Rank>();
+
         okHttpClient=new OkHttpClient();
         String json1= null;
         try {

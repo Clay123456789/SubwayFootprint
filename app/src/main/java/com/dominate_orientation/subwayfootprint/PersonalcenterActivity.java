@@ -257,6 +257,11 @@ public class PersonalcenterActivity extends AppCompatActivity {
         Intent intent = new Intent(PersonalcenterActivity.this, Tanjifen_main.class);
         startActivity(intent);
     }
+    public void onClick1(View view) {
+        //跳转我的宝箱
+        Intent intent = new Intent(PersonalcenterActivity.this, Treasure_user.class);
+        startActivity(intent);
+    }
     public void alert_edit1(View view){
         Bundle bundle = new Bundle();
         bundle.putString("username", username.getText().toString());
