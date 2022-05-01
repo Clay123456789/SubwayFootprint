@@ -240,6 +240,7 @@
 
                     <ImageView
                         style="@style/img_arrow"
+                        android:onClick="onClick1"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
 
