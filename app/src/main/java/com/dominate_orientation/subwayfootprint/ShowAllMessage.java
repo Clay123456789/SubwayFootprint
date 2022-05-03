@@ -18,9 +18,11 @@ public class ShowAllMessage extends AppCompatActivity {
     private TextView textView5;
     private TextView textView6;
     private TextView textView7;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_message);
         User_treasure cc=new User_treasure();
@@ -42,6 +44,30 @@ public class ShowAllMessage extends AppCompatActivity {
         textView7=findViewById(R.id.text07);
         textView7.setText(cc.getMid());
 
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.nav_credit);
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+           Intent intent1=new Intent();
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent1 =new Intent(ShowAllMessage.this, main_page.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.nav_credit:
+                    intent1 =new Intent(ShowAllMessage.this,Tanjifen_main.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.nav_shop:
+                    intent1 =new Intent(ShowAllMessage.this, PersonalcenterActivity.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.nav_person:
+                    intent1 =new Intent(ShowAllMessage.this, PersonalcenterActivity.class);
+                    startActivity(intent1);
+                    break;
+            }
+            return true;
+        });
 
 
 
