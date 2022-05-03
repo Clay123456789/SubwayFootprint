@@ -29,10 +29,15 @@ import com.dominate_orientation.subwayfootprint.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_MESSAGE = "lol wtf";
     public TextView num1 ;
     public TextView num2 ;
+
+    private Button btn_start;
+    private Button btn_stop;
+    private ImageView img_show;
+    private AnimationDrawable anim;
 
     public boolean flag = true;
     public Intent intent;
@@ -40,46 +45,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //底部导航栏
-
-
-
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
-
-        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
-            switch (menuItem.getItemId()){
-                case R.id.nav_home:
-                    intent =new Intent(MainActivity.this, PersonalcenterActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.nav_credit:
-                    intent =new Intent(MainActivity.this,Tanjifen_main.class);
-                    startActivity(intent);
-                    break;
-                case R.id.nav_shop:
-                    intent =new Intent(MainActivity.this, PersonalcenterActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.nav_person:
-                    intent =new Intent(MainActivity.this, PersonalcenterActivity.class);
-                    startActivity(intent);
-                    break;
-            }
-            return true;
-        });
-
+        bindViews();
+        anim = (AnimationDrawable) img_show.getBackground();
     }
 
+    private void bindViews() {
+        btn_start = (Button) findViewById(R.id.btn_start);
 
-    /** Called when the user taps the Send button */
-    /*public void sendMessage(View view) {
-        // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }*/
+        img_show = (ImageView) findViewById(R.id.img_show);
+        btn_start.setOnClickListener(this);
+       // btn_stop.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_start:
+                intent =new Intent(MainActivity.this, AnimOpenTreasure.class);
+                startActivity(intent);
+                break;
+
+        }
+    }
 }
 

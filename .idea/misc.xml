@@ -44,8 +44,10 @@
         <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/btn_selctor_choose.xml" value="0.241" />
         <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/sheet_background.xml" value="0.1" />
         <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/single_layout_selector.xml" value="0.1" />
+        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/treasure_open.xml" value="0.156" />
+        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_anim_open_treasure.xml" value="0.264" />
         <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_login.xml" value="0.24114583333333334" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_main.xml" value="0.24114583333333334" />
+        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_main_page.xml" value="0.24114583333333334" />
         <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_register.xml" value="0.24114583333333334" />
         <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_route.xml" value="0.24114583333333334" />
