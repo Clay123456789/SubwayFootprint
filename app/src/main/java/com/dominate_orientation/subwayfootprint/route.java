@@ -2,11 +2,36 @@ package com.dominate_orientation.subwayfootprint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class route extends AppCompatActivity {
     String msg="";
@@ -26,9 +51,27 @@ public class route extends AppCompatActivity {
     Button go_to_next=null;
     Button dig = null;
     Button ensconce = null;
+    Button closeBury=null;
 
+    View view_bury;
 
+    Dialog dialog;
 
+    AlertDialog buryAlert = null;
+    AlertDialog.Builder builder = null;
+
+    Context mContext;
+
+    Intent intent;
+
+    ImageView img_show;
+    AnimationDrawable anim;
+
+    String token;
+
+    ArrayList<Treasure> treasureList;
+
+    static  String TAG ="route";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +87,9 @@ public class route extends AppCompatActivity {
         ensconce =(Button)findViewById(R.id.ensconce);
         ensconce.setEnabled(false);
 
+        Token app = (Token)getApplicationContext();
+        token=app.getToken();
+
         /*new Thread()
         {
             @Override
@@ -52,6 +98,42 @@ public class route extends AppCompatActivity {
                 go_to_next.setEnabled(false);
             }
         }.start();*/
+
+        mContext=route.this;
+        builder=new AlertDialog.Builder(mContext);
+
+        final LayoutInflater inflater = route.this.getLayoutInflater();
+        view_bury = inflater.inflate(R.layout.bottom_sheet_bury, null,false);
+        builder.setView(view_bury);
+        builder.setCancelable(false);
+        buryAlert = builder.create();
+
+        view_bury.findViewById(R.id.btn_cancle).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                buryAlert.dismiss();
+            }
+        });
+
+        view_bury.findViewById(R.id.btn_close).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(getApplicationContext(), "祝您一路顺风~", Toast.LENGTH_SHORT).show();
+                buryAlert.dismiss();
+                intent =new Intent(route.this, main_page.class);
+                startActivity(intent);
+            }
+        });
+
+        view_bury.findViewById(R.id.btn_bury).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                buryAlert.dismiss();
+            }
+        });
+
+
+        //anim = (AnimationDrawable) img_show.getBackground();
 
         Calculate();
         init_texts();
@@ -101,7 +183,7 @@ public class route extends AppCompatActivity {
                     go_to_next.setEnabled(false);
                     ensconce.setEnabled(true);
                     ps(ns.getText());
-                    ns("已到达！可以挖宝啦");
+                    ns("已到达！可以藏宝啦");
                 }
             }else
             {
@@ -154,16 +236,190 @@ public class route extends AppCompatActivity {
     }
 
     //挖宝
+    //获取当前站点的一个宝箱
     public void dig(View view){
+        Thread t1 = new Thread(new Runnable() {
+            String message = "失败";
+            @Override
+            public void run() {
+                try {
+                    //String json = "";
+                    String json = "{\n" +
+                            "\"pid\": "+"\""+"第二站"+"\""+
+                            "}";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("https://thelittlestar.cn:8088/treasure/getPositionTreasure")
+ //                           .addHeader("token",token)
+                            .post(RequestBody.create(MediaType.parse("application/json"), json))
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    message = jsonObject.getString("message");
+                    Log.i("message",jsonObject.getString("message"));
+                    JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+                    if (jsonArray.length()!=0) {
+                        int ranPick=(int) (Math.random()*jsonArray.length());
+                        JSONObject pickTreasure=jsonArray.getJSONObject(ranPick);
+                        String tid=pickTreasure.getString("tid");
+                        Log.i("test",tid);
+                        //播放动画
+                        intent =new Intent(route.this, AnimOpenTreasure.class);
+                        startActivity(intent);
+                        //checkTreasure(tid);
+                        //getTreasure(tid);
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(route.this, "很遗憾并未获得任何宝藏，下一站再试试吧~", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
+
+    //挖宝 查看获得宝箱
+    //传入tid
+    public void checkTreasure(String tid){
+        Treasure treasure;
+        Thread t1 = new Thread(new Runnable() {
+            String message = "失败";
+            @Override
+            public void run() {
+                try {
+                    //String json = "";
+                    String json = "{\n" +
+                            "\"tid\": "+"\""+tid+"\""+
+                            "}";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("https://thelittlestar.cn:8088/treasure/getTreasure")
+                            //                           .addHeader("token",token)
+                            .post(RequestBody.create(MediaType.parse("application/json"), json))
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    message = jsonObject.getString("message");
+                    Log.i("message",jsonObject.getString("message"));
+                    JSONObject tre=new JSONObject(jsonObject.getString("data"));
+//                    Log.i("check",tre.getString("content"));
+//                    Log.i("check",tre.getString("tid"));
+//                    Log.i("check",tre.getString("fromdate"));
+//                    Log.i("check",tre.getString("todate"));
+//                    treasure.setTid(tre.getString("tid"));
+//                    treasure.setTid(tre.getString(""));
+//                    treasure.setTid(tre.getString(""));
+//                    treasure.setTid(tre.getString(""));
+//                    treasure.setTid(tre.getString(""));
+//                    treasure.setTid(tre.getString(""));
+//                    treasure.setTid(tre.getString(""));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //挖宝
+    //传入tid
+    public void getTreasure(String tid){
+        Thread t1 = new Thread(new Runnable() {
+            String message = "失败";
+            @Override
+            public void run() {
+                try {
+                    //String json = "";
+                    String json = "{\n" +
+                            "\"tid\": "+"\""+tid+"\""+
+                            "}";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("https://thelittlestar.cn:8088/treasure/getPositionTreasure")
+                            //                           .addHeader("token",token)
+                            .post(RequestBody.create(MediaType.parse("application/json"), json))
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    message = jsonObject.getString("message");
+                    Log.i("message",jsonObject.getString("message"));
+                    JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+                    if (message.equals("成功")) {
+                        int ranPick=(int) (Math.random()*jsonArray.length());
+                        JSONObject pickTreasure=jsonArray.getJSONObject(ranPick);
+                        String s=pickTreasure.getString("tid");
+                        Log.i("test",s);
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(route.this, "很遗憾并未获得任何宝藏，下一站再试试吧~", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     //藏宝
     //我已设定只有到终点此按钮才能互动
     public void ensconce(View view){
-
+        buryAlert.show();
     }
 }
+
 
 
 class Info{

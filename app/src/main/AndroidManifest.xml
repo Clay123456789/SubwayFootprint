@@ -41,6 +41,9 @@
         android:theme="@style/Theme.SubwayFootprint"
         android:usesCleartextTraffic="true">
         <activity
+
+            android:name=".AnimOpenTreasure"
+
             android:name=".ShowAllMessage"
             android:exported="false" />
         <activity
@@ -48,6 +51,7 @@
             android:exported="false" />
         <activity
             android:name=".Treasure_user"
+
             android:exported="false" />
         <activity
             android:name=".route"
@@ -58,6 +62,7 @@
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SubwayFootprint.NoActionBar" />
+
         <activity
             android:name=".Find_PasswordActivity"
             android:exported="false" />
@@ -93,15 +98,23 @@
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
     </application>
 
 </manifest>
