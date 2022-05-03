@@ -2,6 +2,7 @@ package com.dominate_orientation.subwayfootprint;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,10 +63,10 @@ public class TreasureUserAdapter extends BaseAdapter {
         }
         String s1=String.valueOf(mData.get(position).getContent());
         holder.tre_item.setText(s1);
-        String s2=String.valueOf(mData.get(position).getContent());
+        String s2=String.valueOf(mData.get(position).getMessage());
 
         holder.tre_content.setText(s2);
-        System.out.println(s1);
+
         String s3=mData.get(position).getContent();
         if(s3=="优惠券"){
 
@@ -84,12 +85,16 @@ public class TreasureUserAdapter extends BaseAdapter {
         holder.tre_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
-                Intent intent = new Intent(mContext, Tanjifen_rank.class);
+                Intent intent = new Intent(mContext, ShowAllMessage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
                 mContext.startActivity(intent);
-      }
+                User_treasure user_treasure=mData.get(position);
+
+                intent.putExtra("PERSON_INFO", user_treasure);
+                mContext.startActivity(intent);
+            }
         });
-        // Glide.with(this).load("url").into(holder.imageView);
+
         return convertView;
 
 

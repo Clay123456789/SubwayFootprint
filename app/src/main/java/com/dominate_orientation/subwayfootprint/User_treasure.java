@@ -1,17 +1,49 @@
 package com.dominate_orientation.subwayfootprint;
 
-public class User_treasure {
+import java.io.Serializable;
+
+public class User_treasure implements Serializable {
+    private static final long serialVersionUID = -7060210544600464481L;
     private String tid;
     private String variety;
     private String content;
     private String credit;
+
+    public String getGetdate() {
+        return getdate;
+    }
+
+    public void setGetdate(String getdate) {
+        this.getdate = getdate;
+    }
+
     private String pid;
     private String fromdate;
+    private String getdate;
+    private  String todate;
     private String status;
     private String uid;
+
+    public String getTodate() {
+        return todate;
+    }
+
+    public void setTodate(String todate) {
+        this.todate = todate;
+    }
+
     private String mid;
     private String uid2;
     private String gatedate;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public String getTid() {
         return tid;

@@ -41,6 +41,9 @@
         android:theme="@style/Theme.SubwayFootprint"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ShowAllMessage"
+            android:exported="false" />
+        <activity
             android:name=".Treasure_message"
             android:exported="false" />
         <activity
