@@ -68,7 +68,7 @@ public class TreasureUserAdapter extends BaseAdapter {
         holder.tre_content.setText(s2);
 
         String s3=mData.get(position).getContent();
-        if(s3=="优惠券"){
+        if(s3.equals("优惠券")){
 
             holder.tre_content_img.setImageDrawable(mContext.getResources().getDrawable(R.drawable.coupon));
          //   imageview.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_2));
