@@ -41,7 +41,17 @@
         android:theme="@style/Theme.SubwayFootprint"
         android:usesCleartextTraffic="true">
         <activity
+
             android:name=".AnimOpenTreasure"
+
+            android:name=".ShowAllMessage"
+            android:exported="false" />
+        <activity
+            android:name=".Treasure_message"
+            android:exported="false" />
+        <activity
+            android:name=".Treasure_user"
+
             android:exported="false" />
         <activity
             android:name=".route"
@@ -51,15 +61,8 @@
             android:exported="true"
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SubwayFootprint.NoActionBar">
+            android:theme="@style/Theme.SubwayFootprint.NoActionBar" />
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-        </activity>
         <activity
             android:name=".Find_PasswordActivity"
             android:exported="false" />
@@ -80,7 +83,8 @@
             android:exported="false" />
         <activity
             android:name=".Tanjifen_main"
-            android:exported="false" />
+            android:exported="false"
+            android:usesCleartextTraffic="true" />
         <activity
             android:name=".Tanjifen_history"
             android:exported="false" />
