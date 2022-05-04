@@ -1,6 +1,8 @@
 package com.dominate_orientation.subwayfootprint;
 
-public class Treasure {
+import java.io.Serializable;
+
+public class Treasure  implements Serializable {
     private String tid; //宝藏id
     private String variety; //宝藏种类
     private String content; //宝藏内容

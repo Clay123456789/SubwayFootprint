@@ -59,7 +59,7 @@ public class ShowAllMessage extends AppCompatActivity {
 
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.nav_credit);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
            Intent intent1=new Intent();
             switch (menuItem.getItemId()){

@@ -77,6 +77,8 @@ public class route extends AppCompatActivity {
 
     Treasure digTreasure=null;
 
+    User_treasure passTreasure;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +98,8 @@ public class route extends AppCompatActivity {
 //        Token app = (Token)getApplicationContext();
 //        token=app.getToken();
         token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
+
+         passTreasure=new User_treasure();
 
         /*new Thread()
         {
@@ -200,6 +204,12 @@ public class route extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 digAlert.dismiss();
+
+
+                intent.putExtra("PERSON_INFO", digTreasure);
+                intent = new Intent(route.this, ShowAllMessage.class);
+                mContext.startActivity(intent);
+
             }
         });
 
@@ -330,7 +340,7 @@ public class route extends AppCompatActivity {
                 try {
                     //String json = "";
                     String json = "{\n" +
-                            "\"pid\": "+"\""+"下一站"+"\""+
+                            "\"pid\": "+"\""+"131_生命科学"+"\""+
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
@@ -414,6 +424,9 @@ public class route extends AppCompatActivity {
                     digTreasure.setVariety(tre.getString("variety"));
                     digTreasure.setContent(tre.getString("content"));
                     digTreasure.setCredit(tre.getString("credit"));
+                    digTreasure.setPid(tre.getString("pid"));
+                    digTreasure.setFromdate(tre.getString("fromdate"));
+                    digTreasure.setMessage(tre.getString("message"));
                     Log.i("message",digTreasure.getTid());
 //                    digTreasure.setTid(tre.getString(""));
 //                    digTreasure.setTid(tre.getString(""));
