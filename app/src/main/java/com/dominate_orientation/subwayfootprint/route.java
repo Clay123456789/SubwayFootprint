@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,13 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
@@ -41,6 +36,9 @@ public class route extends AppCompatActivity {
     TextView ls =null;
     TextView ps = null;
     TextView ns = null;
+    TextView digText1 = null;
+    TextView digText2 = null;
+
 
     Boolean no_next_passed_station = false;
     Boolean last_station_used = false;
@@ -54,10 +52,12 @@ public class route extends AppCompatActivity {
     Button closeBury=null;
 
     View view_bury;
+    View view_dig;
 
     Dialog dialog;
 
     AlertDialog buryAlert = null;
+    AlertDialog digAlert = null;
     AlertDialog.Builder builder = null;
 
     Context mContext;
@@ -73,6 +73,10 @@ public class route extends AppCompatActivity {
 
     static  String TAG ="route";
 
+    boolean resumeFlag=false;
+
+    Treasure digTreasure=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,8 +91,11 @@ public class route extends AppCompatActivity {
         ensconce =(Button)findViewById(R.id.ensconce);
         ensconce.setEnabled(false);
 
-        Token app = (Token)getApplicationContext();
-        token=app.getToken();
+        digTreasure=new Treasure();
+
+//        Token app = (Token)getApplicationContext();
+//        token=app.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
 
         /*new Thread()
         {
@@ -107,6 +114,9 @@ public class route extends AppCompatActivity {
         builder.setView(view_bury);
         builder.setCancelable(false);
         buryAlert = builder.create();
+        view_dig = inflater.inflate(R.layout.bottom_sheet_dig, null,false);
+        builder.setView(view_dig);
+        digAlert=builder.create();
 
         view_bury.findViewById(R.id.btn_cancle).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -133,10 +143,85 @@ public class route extends AppCompatActivity {
         });
 
 
+        view_dig.findViewById(R.id.btn_cancle2).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                digAlert.dismiss();
+            }
+        });
+
+        view_dig.findViewById(R.id.btn_putin2).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(getApplicationContext(), "结束旅程之后在个人中心-我的宝箱中查看详情~", Toast.LENGTH_SHORT).show();
+                digAlert.dismiss();
+            }
+        });
+
+
+        view_dig.findViewById(R.id.btn_dig).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Thread t1 = new Thread(new Runnable() {
+                    String message = "失败";
+                    @Override
+                    public void run() {
+                        try {
+                            //String json = "";
+                            String json = "{\n" +
+                                    "\"tid\": "+"\""+digTreasure.getTid()+"\""+
+                                    "}";
+                            OkHttpClient client = new OkHttpClient();
+                            Request request = new Request.Builder()
+                                    .url("https://thelittlestar.cn:8088/treasure/openTreasure")
+                                    .addHeader("token",token)
+                                    .post(RequestBody.create(MediaType.parse("application/json"), json))
+                                    .build();
+                            Response response = client.newCall(request).execute();
+                            String responseData = response.body().string();
+                            JSONObject jsonObject = new JSONObject(responseData);
+                            message = jsonObject.getString("message");
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
+                t1.start();
+                try {
+                    t1.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                digAlert.dismiss();
+            }
+        });
+
         //anim = (AnimationDrawable) img_show.getBackground();
 
         Calculate();
         init_texts();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("11","route resume!!!!");
+        if(resumeFlag) {
+            resumeFlag = false;
+            digText1 = view_dig.findViewById(R.id.dig_text1);
+            digText1.setText("宝箱类型: " + digTreasure.getVariety());
+            digText2 = view_dig.findViewById(R.id.dig_text2);
+            digText2.setText("打开消耗碳积分: " + digTreasure.getCredit());
+            digAlert.show();
+        }
     }
 
     public void ls(String s){ ls.setText(s);}
@@ -245,7 +330,7 @@ public class route extends AppCompatActivity {
                 try {
                     //String json = "";
                     String json = "{\n" +
-                            "\"pid\": "+"\""+"第二站"+"\""+
+                            "\"pid\": "+"\""+"下一站"+"\""+
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
@@ -267,8 +352,9 @@ public class route extends AppCompatActivity {
                         //播放动画
                         intent =new Intent(route.this, AnimOpenTreasure.class);
                         startActivity(intent);
-                        //checkTreasure(tid);
-                        //getTreasure(tid);
+                        resumeFlag=true;
+                        checkTreasure(tid);
+                        getTreasure();
                     } else {
                         runOnUiThread(new Runnable() {
                             @Override
@@ -323,17 +409,15 @@ public class route extends AppCompatActivity {
                     message = jsonObject.getString("message");
                     Log.i("message",jsonObject.getString("message"));
                     JSONObject tre=new JSONObject(jsonObject.getString("data"));
-//                    Log.i("check",tre.getString("content"));
-//                    Log.i("check",tre.getString("tid"));
-//                    Log.i("check",tre.getString("fromdate"));
-//                    Log.i("check",tre.getString("todate"));
-//                    treasure.setTid(tre.getString("tid"));
-//                    treasure.setTid(tre.getString(""));
-//                    treasure.setTid(tre.getString(""));
-//                    treasure.setTid(tre.getString(""));
-//                    treasure.setTid(tre.getString(""));
-//                    treasure.setTid(tre.getString(""));
-//                    treasure.setTid(tre.getString(""));
+                    Log.i("message",tre.getString("tid"));
+                    digTreasure.setTid(tre.getString("tid"));
+                    digTreasure.setVariety(tre.getString("variety"));
+                    digTreasure.setContent(tre.getString("content"));
+                    digTreasure.setCredit(tre.getString("credit"));
+                    Log.i("message",digTreasure.getTid());
+//                    digTreasure.setTid(tre.getString(""));
+//                    digTreasure.setTid(tre.getString(""));
+//                    digTreasure.setTid(tre.getString(""));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -355,9 +439,9 @@ public class route extends AppCompatActivity {
     }
 
 
-    //挖宝
+    //挖宝 更改所有权
     //传入tid
-    public void getTreasure(String tid){
+    public void getTreasure(){
         Thread t1 = new Thread(new Runnable() {
             String message = "失败";
             @Override
@@ -365,33 +449,18 @@ public class route extends AppCompatActivity {
                 try {
                     //String json = "";
                     String json = "{\n" +
-                            "\"tid\": "+"\""+tid+"\""+
+                            "\"tid\": "+"\""+digTreasure.getTid()+"\""+
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url("https://thelittlestar.cn:8088/treasure/getPositionTreasure")
-                            //                           .addHeader("token",token)
+                            .url("https://thelittlestar.cn:8088/treasure/digTreasure")
+                            .addHeader("token",token)
                             .post(RequestBody.create(MediaType.parse("application/json"), json))
                             .build();
                     Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
                     JSONObject jsonObject = new JSONObject(responseData);
                     message = jsonObject.getString("message");
-                    Log.i("message",jsonObject.getString("message"));
-                    JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
-                    if (message.equals("成功")) {
-                        int ranPick=(int) (Math.random()*jsonArray.length());
-                        JSONObject pickTreasure=jsonArray.getJSONObject(ranPick);
-                        String s=pickTreasure.getString("tid");
-                        Log.i("test",s);
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(route.this, "很遗憾并未获得任何宝藏，下一站再试试吧~", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();

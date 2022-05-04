@@ -47,6 +47,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
     TextView tel ;
     TextView credit ;
     TextView email ;
+    TextView myTreasure;
     String age;
     String token;
     String url;
@@ -75,8 +76,17 @@ public class PersonalcenterActivity extends AppCompatActivity {
         credit = findViewById(R.id.tpoints);
         email = findViewById(R.id.personal_email);
         imageView = findViewById(R.id.Head_imageView);
+        myTreasure=findViewById(R.id.myTreasure);
         Token app = (Token)getApplicationContext();
         token=app.getToken();
+        myTreasure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent =new Intent(PersonalcenterActivity.this,Treasure_user.class);
+                startActivity(intent);
+            }
+        });
+
         Thread t1 = new Thread(new Runnable() {
             String message = "失败";
             @Override
@@ -205,6 +215,9 @@ public class PersonalcenterActivity extends AppCompatActivity {
             return true;
         });
     }
+
+
+
 
     public void check_header_picture(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);//创建对话框
