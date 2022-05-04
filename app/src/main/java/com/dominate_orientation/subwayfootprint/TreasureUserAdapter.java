@@ -42,7 +42,7 @@ public class TreasureUserAdapter extends BaseAdapter {
 
     static class ViewHolder{
 
-        public TextView tre_content,tre_item;
+        public TextView tre_content,tre_item,tre_credit;
         public ImageView tre_content_img;
         public Button tre_button;
     }
@@ -56,30 +56,36 @@ public class TreasureUserAdapter extends BaseAdapter {
             holder.tre_content_img =  convertView.findViewById(R.id.T_U_3);
             holder.tre_content =  convertView.findViewById(R.id.T_U_4);
             holder.tre_button=convertView.findViewById(R.id.buttonT);
-
+            holder.tre_credit=convertView.findViewById(R.id.T_U_5);
             convertView.setTag(holder);
         }else{
             holder=(TreasureUserAdapter.ViewHolder) convertView.getTag();
         }
-        String s1=String.valueOf(mData.get(position).getContent());
+        String s1=String.valueOf(mData.get(position).getVariety());
         holder.tre_item.setText(s1);
-        String s2=String.valueOf(mData.get(position).getMessage());
+        String s2=String.valueOf(mData.get(position).getContent());
 
         holder.tre_content.setText(s2);
 
-        String s3=mData.get(position).getContent();
+        String s3=mData.get(position).getVariety();
         if(s3.equals("优惠券")){
 
             holder.tre_content_img.setImageDrawable(mContext.getResources().getDrawable(R.drawable.coupon));
          //   imageview.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_2));
-        }else if(mData.get(position).getContent()=="系统称号"){
+        }else if(s3.equals("系统称号")){
             holder.tre_content_img.setImageDrawable(mContext.getResources().getDrawable(R.drawable.title));
 
-        }else if(mData.get(position).getContent()=="碳积分"){
+        }else if(s3.equals("碳积分")){
             holder.tre_content_img.setImageDrawable(mContext.getResources().getDrawable(R.drawable.co2));
 
-        }else if(mData.get(position).getContent()=="实体物品"){
+        }else if(s3.equals("实体物品")){
             holder.tre_content_img.setImageDrawable(mContext.getResources().getDrawable(R.drawable.things));
+        }
+
+        if(mData.get(position).getCredit().equals("1")){
+            holder.tre_credit.setText("已打开");
+        }else{
+            holder.tre_credit.setText("未打开");
         }
 
         holder.tre_button.setOnClickListener(new View.OnClickListener() {

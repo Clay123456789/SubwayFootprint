@@ -24,6 +24,7 @@ public class User_treasure implements Serializable {
     private String status;
     private String uid;
 
+
     public String getTodate() {
         return todate;
     }

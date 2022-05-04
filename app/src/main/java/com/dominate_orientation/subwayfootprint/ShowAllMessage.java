@@ -18,6 +18,8 @@ public class ShowAllMessage extends AppCompatActivity {
     private TextView textView5;
     private TextView textView6;
     private TextView textView7;
+    private TextView textView8;
+    private TextView textView9;
     private Intent intent;
 
     @Override
@@ -28,11 +30,11 @@ public class ShowAllMessage extends AppCompatActivity {
         User_treasure cc=new User_treasure();
         AtomicReference<Intent> intent = new AtomicReference<>(getIntent());
          cc =  (User_treasure) intent.get().getSerializableExtra("PERSON_INFO");
-         System.out.println(cc.getUid());
-        textView1=findViewById(R.id.ty1);
-        textView1.setText(cc.getUid());
+
+        textView1=findViewById(R.id.text0);
+        textView1.setText(cc.getTid());
         textView2=findViewById(R.id.text02);
-        textView2.setText(cc.getContent());
+        textView2.setText(cc.getVariety());
         textView3=findViewById(R.id.text03);
         textView3.setText(cc.getCredit());
         textView4=findViewById(R.id.text04);
@@ -40,9 +42,21 @@ public class ShowAllMessage extends AppCompatActivity {
         textView5=findViewById(R.id.text05);
         textView5.setText(cc.getGetdate());
         textView6=findViewById(R.id.text06);
-        textView6.setText(cc.getMessage());
+        textView6.setText(cc.getContent());
         textView7=findViewById(R.id.text07);
         textView7.setText(cc.getMid());
+        textView8=findViewById(R.id.text08);
+        textView8.setText(cc.getMessage());
+        textView9=findViewById(R.id.text09);
+        if(cc.getStatus().equals("1")){
+            textView9.setText("已打开宝箱");
+        }else{
+            textView9.setText("未打开宝箱");
+        }
+
+
+
+
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.nav_credit);

@@ -44,19 +44,29 @@
 
         <TextView
             android:id="@+id/T_U_4"
-            android:layout_width="135dp"
+            android:layout_width="105dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+
+            android:gravity="center"
+            android:maxLength="6"
+
+            android:text="无数据"></TextView>
+        <TextView
+            android:id="@+id/T_U_5"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:background="@color/white"
 
             android:gravity="center"
             android:text="无数据"
 
-
+            android:maxLength="6"
             ></TextView>
 
         <Button
             android:id="@+id/buttonT"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="查看详细内容"

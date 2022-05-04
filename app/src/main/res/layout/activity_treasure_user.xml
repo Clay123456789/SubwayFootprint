@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/History_4"
-            android:layout_width="135dp"
+            android:layout_width="91dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="宝箱内容"
@@ -55,7 +55,7 @@
             android:layout_width="119dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="详情"
+            android:text="              详情"
 
 
             android:textColor="@color/black"
