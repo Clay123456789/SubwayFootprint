@@ -225,6 +225,7 @@
 
                     <TextView
                         style="@style/usertext"
+                        android:id="@+id/myTreasure"
                         android:text="我的宝箱" />
 
                     <Button
@@ -236,7 +237,8 @@
                         android:textAllCaps="false"
                         android:textColor="#FFFFFF"
                         android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
 
                     <ImageView
                         style="@style/img_arrow"

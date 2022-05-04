@@ -43,8 +43,6 @@
         <activity
 
             android:name=".AnimOpenTreasure"
-
-            android:name=".ShowAllMessage"
             android:exported="false" />
         <activity
             android:name=".Treasure_message"
@@ -61,7 +59,15 @@
             android:exported="true"
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SubwayFootprint.NoActionBar" />
+            android:theme="@style/Theme.SubwayFootprint.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <activity
             android:name=".Find_PasswordActivity"
@@ -99,12 +105,12 @@
             android:exported="true"
             android:label="@string/title_activity_login">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".MainActivity"
