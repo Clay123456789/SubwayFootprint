@@ -19,6 +19,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -206,9 +207,21 @@ public class route extends AppCompatActivity {
                 digAlert.dismiss();
 
 
-                intent.putExtra("PERSON_INFO", digTreasure);
-                intent = new Intent(route.this, ShowAllMessage.class);
-                mContext.startActivity(intent);
+                intent= new Intent(route.this,FirstOpen.class);
+                //bundle对象
+                Bundle b=new Bundle();
+                //数据对象
+
+                //将数据打包进bundle中
+                b.putSerializable("digTreasure", (Serializable) digTreasure);
+                //将打包好的bundle发送出去
+                intent.putExtras(b);
+                startActivity(intent);
+
+
+
+
+
 
             }
         });
