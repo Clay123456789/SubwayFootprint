@@ -78,7 +78,7 @@
         <ListView
             android:id="@+id/lv_2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="551dp"
             android:clickable="false"></ListView>
 
     </LinearLayout>
@@ -94,27 +94,7 @@
         app:layout_constraintBottom_toBottomOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="@id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/linearLayout4">
-
-        <Button
-            android:id="@+id/button_last"
-            android:layout_width="145dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="2dp"
-            android:background="@drawable/radius_border"
-            android:text="上一页"
-            android:clickable="true"
-            />
-
-        <Button
-            android:id="@+id/button_next"
-            android:layout_width="146dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="110dp"
-            android:background="@drawable/radius_border"
-            android:clickable="true"
-            android:text="下一页" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="@id/linearLayout4"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
