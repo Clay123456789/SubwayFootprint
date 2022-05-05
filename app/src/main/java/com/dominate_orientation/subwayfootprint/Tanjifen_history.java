@@ -34,7 +34,8 @@ public class Tanjifen_history extends AppCompatActivity {
     private Button mButton1;
     private Button mButton2;
     private OkHttpClient okHttpClient;
-    private  String s;
+    private   String s;
+    public String page="1";
     private  static  String TAG ="Tanjifen_history";
 
     public void setS(String s) {
@@ -57,8 +58,9 @@ public class Tanjifen_history extends AppCompatActivity {
                 //碳积分历史页面
                 okHttpClient=new OkHttpClient();
                 String json= null;
+                page=page+1;
                 try {
-                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group=2");
+                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+page);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -80,8 +82,9 @@ public class Tanjifen_history extends AppCompatActivity {
                 //碳积分历史页面
                 okHttpClient=new OkHttpClient();
                 String json= null;
+
                 try {
-                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group=2");
+                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+"1");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
