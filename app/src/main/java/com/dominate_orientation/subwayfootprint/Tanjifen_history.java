@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -29,8 +31,11 @@ public class Tanjifen_history extends AppCompatActivity {
     private Context mContext;
     private Intent intent;
     private ListView list_history;
+    private Button mButton1;
+    private Button mButton2;
     private OkHttpClient okHttpClient;
-    private  String s;
+    private   String s;
+    public String page="1";
     private  static  String TAG ="Tanjifen_history";
 
     public void setS(String s) {
@@ -46,10 +51,60 @@ public class Tanjifen_history extends AppCompatActivity {
         setContentView(R.layout.activity_tanjifen_history);
         mContext = Tanjifen_history.this;
 
+        mButton1=findViewById(R.id.button_next);
+        mButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view1) {
+                //碳积分历史页面
+                okHttpClient=new OkHttpClient();
+                String json= null;
+                page=page+1;
+                try {
+                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+page);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                JSONObject jsonObject = JSONObject.parseObject(json);  //接收到所有传过来的json数据
+                String  data = jsonObject.getString("data");     //用String接收json数据中的data数据
+                Type type=new TypeToken<LinkedList<History>>(){}.getType();
+                Gson gson=new Gson();
+                mData = gson.fromJson(data,type);
+                list_history =  findViewById(R.id.lv_2);
+                list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));
+            }
+        });
+
+
+        mButton2=findViewById(R.id.button_last);
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view1) {
+                //碳积分历史页面
+                okHttpClient=new OkHttpClient();
+                String json= null;
+
+                try {
+                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+"1");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                JSONObject jsonObject = JSONObject.parseObject(json);  //接收到所有传过来的json数据
+                String  data = jsonObject.getString("data");     //用String接收json数据中的data数据
+                Type type=new TypeToken<LinkedList<History>>(){}.getType();
+                Gson gson=new Gson();
+                mData = gson.fromJson(data,type);
+                list_history =  findViewById(R.id.lv_2);
+                list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));
+            }
+        });
+
+
+
+
         okHttpClient=new OkHttpClient();
         String json= null;
         try {
-            json = postSync();
+            json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group=1");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -66,7 +121,7 @@ public class Tanjifen_history extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
-                    intent =new Intent(Tanjifen_history.this, PersonalcenterActivity.class);
+                    intent =new Intent(Tanjifen_history.this, main_page.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_credit:
@@ -92,7 +147,7 @@ public class Tanjifen_history extends AppCompatActivity {
 
 
 
-    public String postSync() throws InterruptedException {
+    public String postSync(String url) throws InterruptedException {
         final String ss=null;
         Thread threadA= new Thread(){
 
@@ -100,8 +155,10 @@ public class Tanjifen_history extends AppCompatActivity {
 
             public void run(){
                 FormBody formBody=new FormBody.Builder().build();
-
-                Request request=new Request.Builder().url("https://thelittlestar.cn:8088/user/getUserCreditRecords?group=1").post(formBody).header("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuY24iLCJleHAiOjE2NTE3MTI5MjksImVtYWlsIjoiMjAxOTIxMTk5NkBidXB0LmNuIn0.AYskxhwgQei8aRYUve5EYpPfnWUdJBFmULmnKARy_ds").build();
+                Token app = (Token)getApplicationContext();
+                String token = null;
+                token =app.getToken();
+                Request request=new Request.Builder().url(url).post(formBody).header("token", token).build();
 
                 Call call=okHttpClient.newCall(request);
                 try {

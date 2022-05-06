@@ -6,10 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-<<<<<<< Updated upstream
 import android.content.Intent;
 import android.os.Bundle;
-=======
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -26,12 +25,10 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
->>>>>>> Stashed changes
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-<<<<<<< Updated upstream
-=======
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -41,6 +38,8 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -54,7 +53,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
->>>>>>> Stashed changes
+
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class route extends AppCompatActivity {
     String msg="";
@@ -64,8 +71,6 @@ public class route extends AppCompatActivity {
     TextView ls =null;
     TextView ps = null;
     TextView ns = null;
-<<<<<<< Updated upstream
-=======
     TextView digText1 = null;
     TextView digText2 = null;
 
@@ -108,8 +113,6 @@ public class route extends AppCompatActivity {
 
 
 
->>>>>>> Stashed changes
-
     Boolean no_next_passed_station = false;
     Boolean last_station_used = false;
     Boolean no_station_left=false;
@@ -119,9 +122,35 @@ public class route extends AppCompatActivity {
     Button go_to_next=null;
     Button dig = null;
     Button ensconce = null;
+    Button closeBury=null;
 
+    View view_bury;
+    View view_dig;
 
+    Dialog dialog;
 
+    AlertDialog buryAlert = null;
+    AlertDialog digAlert = null;
+    AlertDialog.Builder builder = null;
+
+    Context mContext;
+
+    Intent intent;
+
+    ImageView img_show;
+    AnimationDrawable anim;
+
+    String token;
+
+    ArrayList<Treasure> treasureList;
+
+    static  String TAG ="route";
+
+    boolean resumeFlag=false;
+
+    Treasure digTreasure=null;
+
+    User_treasure passTreasure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +179,27 @@ public class route extends AppCompatActivity {
         pre_next.setAlpha(0);
 
 
+        //地理位置区
+        latitudeTextView = (TextView)findViewById(R.id.latitudeTextView);
+        longitTextView = (TextView)findViewById(R.id.longitTextView);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        //线路显示区
+        pre_line = (ImageView)findViewById(R.id.img_pre_station);
+        next_line = (ImageView)findViewById(R.id.img_next_station);
+        last_line= (ImageView)findViewById(R.id.img_last_station);
+        last_pre = (ImageView)findViewById(R.id.last_pre_exchange);
+        pre_next = (ImageView)findViewById(R.id.pre_next_exchange);
+        last_pre.setAlpha(0);
+        pre_next.setAlpha(0);
+
+        digTreasure=new Treasure();
+
+//        Token app = (Token)getApplicationContext();
+//        token=app.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
+
+        passTreasure=new User_treasure();
+
         /*new Thread()
         {
             @Override
@@ -159,10 +209,120 @@ public class route extends AppCompatActivity {
             }
         }.start();*/
 
+        mContext=route.this;
+        builder=new AlertDialog.Builder(mContext);
+
+        final LayoutInflater inflater = route.this.getLayoutInflater();
+        view_bury = inflater.inflate(R.layout.bottom_sheet_bury, null,false);
+        builder.setView(view_bury);
+        builder.setCancelable(false);
+        buryAlert = builder.create();
+        view_dig = inflater.inflate(R.layout.bottom_sheet_dig, null,false);
+        builder.setView(view_dig);
+        digAlert=builder.create();
+
+        view_bury.findViewById(R.id.btn_cancle).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                buryAlert.dismiss();
+            }
+        });
+
+        view_bury.findViewById(R.id.btn_close).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(getApplicationContext(), "祝您一路顺风~", Toast.LENGTH_SHORT).show();
+                buryAlert.dismiss();
+                intent =new Intent(route.this, main_page.class);
+                startActivity(intent);
+            }
+        });
+
+        view_bury.findViewById(R.id.btn_bury).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                buryAlert.dismiss();
+            }
+        });
+
+
+        view_dig.findViewById(R.id.btn_cancle2).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                digAlert.dismiss();
+            }
+        });
+
+        view_dig.findViewById(R.id.btn_putin2).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(getApplicationContext(), "结束旅程之后在个人中心-我的宝箱中查看详情~", Toast.LENGTH_SHORT).show();
+                digAlert.dismiss();
+            }
+        });
+
+
+        view_dig.findViewById(R.id.btn_dig).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Thread t1 = new Thread(new Runnable() {
+                    String message = "失败";
+                    @Override
+                    public void run() {
+                        try {
+                            //String json = "";
+                            String json = "{\n" +
+                                    "\"tid\": "+"\""+digTreasure.getTid()+"\""+
+                                    "}";
+                            OkHttpClient client = new OkHttpClient();
+                            Request request = new Request.Builder()
+                                    .url("https://thelittlestar.cn:8088/treasure/openTreasure")
+                                    .addHeader("token",token)
+                                    .post(RequestBody.create(MediaType.parse("application/json"), json))
+                                    .build();
+                            Response response = client.newCall(request).execute();
+                            String responseData = response.body().string();
+                            JSONObject jsonObject = new JSONObject(responseData);
+                            message = jsonObject.getString("message");
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
+                t1.start();
+                try {
+                    t1.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                digAlert.dismiss();
+
+
+                intent= new Intent(route.this,FirstOpen.class);
+                //bundle对象
+                Bundle b=new Bundle();
+                //数据对象
+
+                //将数据打包进bundle中
+                b.putSerializable("digTreasure", (Serializable) digTreasure);
+                //将打包好的bundle发送出去
+                intent.putExtras(b);
+                startActivity(intent);
+                }
+        });
+
+        //anim = (AnimationDrawable) img_show.getBackground();
+
         Calculate();
         init_texts();
 
-        
         new Thread(new Runnable() {
             String message = "失败";
             @Override
@@ -177,9 +337,6 @@ public class route extends AppCompatActivity {
         }
         ).start();
     }
-
-<<<<<<< Updated upstream
-=======
 
     @Override
     protected void onResume() {
@@ -198,7 +355,6 @@ public class route extends AppCompatActivity {
         }
     }
 
->>>>>>> Stashed changes
     public void ls(String s){ ls.setText(s);}
     public void ps(String s){ ps.setText(s);}
     public void ns(String s){ ns.setText(s);}
@@ -255,12 +411,8 @@ public class route extends AppCompatActivity {
                     go_to_next.setEnabled(false);
                     ensconce.setEnabled(true);
                     ps(ns.getText());
-<<<<<<< Updated upstream
-                    ns("已到达！可以挖宝啦");
-=======
                     set_line(next_line,infos[infos_index].line);
                     ns("已到达！可以藏宝啦");
->>>>>>> Stashed changes
                 }
             }else
             {
@@ -283,6 +435,7 @@ public class route extends AppCompatActivity {
             }
         }
     }
+
 
     public void Calculate()
     {
@@ -316,6 +469,7 @@ public class route extends AppCompatActivity {
     {
         finish();
     }
+    //设置线路图
 
     public void set_line(ImageView iv, String s)
     {
@@ -455,15 +609,176 @@ public class route extends AppCompatActivity {
 
 
     //挖宝
+    //获取当前站点的一个宝箱
     public void dig(View view){
+        Thread t1 = new Thread(new Runnable() {
+            String message = "失败";
+            @Override
+            public void run() {
+                try {
+                    //String json = "";
+                    String json = "{\n" +
+                            "\"pid\": "+"\""+"131_生命科学"+"\""+
+                            "}";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("https://thelittlestar.cn:8088/treasure/getPositionTreasure")
+                            //                           .addHeader("token",token)
+                            .post(RequestBody.create(MediaType.parse("application/json"), json))
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    message = jsonObject.getString("message");
+                    Log.i("message",jsonObject.getString("message"));
+                    JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+                    if (jsonArray.length()!=0) {
+                        int ranPick=(int) (Math.random()*jsonArray.length());
+                        JSONObject pickTreasure=jsonArray.getJSONObject(ranPick);
+                        String tid=pickTreasure.getString("tid");
+                        Log.i("test",tid);
+                        //播放动画
+                        intent =new Intent(route.this, AnimOpenTreasure.class);
+                        startActivity(intent);
+                        resumeFlag=true;
+                        checkTreasure(tid);
+                        getTreasure();
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(route.this, "很遗憾并未获得任何宝藏，下一站再试试吧~", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
+
+    //挖宝 查看获得宝箱
+    //传入tid
+    public void checkTreasure(String tid){
+        Treasure treasure;
+        Thread t1 = new Thread(new Runnable() {
+            String message = "失败";
+            @Override
+            public void run() {
+                try {
+                    //String json = "";
+                    String json = "{\n" +
+                            "\"tid\": "+"\""+tid+"\""+
+                            "}";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("https://thelittlestar.cn:8088/treasure/getTreasure")
+                            //                           .addHeader("token",token)
+                            .post(RequestBody.create(MediaType.parse("application/json"), json))
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    message = jsonObject.getString("message");
+                    Log.i("message",jsonObject.getString("message"));
+                    JSONObject tre=new JSONObject(jsonObject.getString("data"));
+                    Log.i("message",tre.getString("tid"));
+                    digTreasure.setTid(tre.getString("tid"));
+                    digTreasure.setVariety(tre.getString("variety"));
+                    digTreasure.setContent(tre.getString("content"));
+                    digTreasure.setCredit(tre.getString("credit"));
+                    digTreasure.setPid(tre.getString("pid"));
+                    digTreasure.setFromdate(tre.getString("fromdate"));
+                    digTreasure.setMessage(tre.getString("message"));
+                    Log.i("message",digTreasure.getTid());
+//                    digTreasure.setTid(tre.getString(""));
+//                    digTreasure.setTid(tre.getString(""));
+//                    digTreasure.setTid(tre.getString(""));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //挖宝 更改所有权
+    //传入tid
+    public void getTreasure(){
+        Thread t1 = new Thread(new Runnable() {
+            String message = "失败";
+            @Override
+            public void run() {
+                try {
+                    //String json = "";
+                    String json = "{\n" +
+                            "\"tid\": "+"\""+digTreasure.getTid()+"\""+
+                            "}";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("https://thelittlestar.cn:8088/treasure/digTreasure")
+                            .addHeader("token",token)
+                            .post(RequestBody.create(MediaType.parse("application/json"), json))
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    message = jsonObject.getString("message");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     //藏宝
     //我已设定只有到终点此按钮才能互动
     public void ensconce(View view){
-
+        buryAlert.show();
     }
+
 
     //地理位置记录器
     @SuppressLint("MissingPermission")
@@ -502,22 +817,6 @@ public class route extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private void requestNewLocationData() {
-
-        // Initializing LocationRequest
-        // object with appropriate methods
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5);
-        mLocationRequest.setFastestInterval(0);
-        mLocationRequest.setNumUpdates(1);
-
-        // setting LocationRequest
-        // on FusedLocationClient
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-    }
 
     private LocationCallback mLocationCallback = new LocationCallback() {
 
@@ -538,6 +837,26 @@ public class route extends AppCompatActivity {
         // use:
         // ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
+
+
+    //地理位置记录器
+    @SuppressLint("MissingPermission")
+    private void requestNewLocationData() {
+
+        // Initializing LocationRequest
+        // object with appropriate methods
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(5);
+        mLocationRequest.setFastestInterval(0);
+        mLocationRequest.setNumUpdates(1);
+
+        // setting LocationRequest
+        // on FusedLocationClient
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+    }
+
 
     // method to request for permissions
     private void requestPermissions() {
@@ -567,6 +886,7 @@ public class route extends AppCompatActivity {
     }
 
 }
+
 
 
 class Info{

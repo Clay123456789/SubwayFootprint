@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item
+        android:drawable="@drawable/treasure_open1"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open2"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open3"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open4"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open5"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open6"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open7"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open8"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open9"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open10"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open11"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open12"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open13"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open14"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open15"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open16"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open17"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open18"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open19"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/treasure_open20"
+        android:duration="80" />
+</animation-list>

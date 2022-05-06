@@ -41,7 +41,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#CCCCCC"
+        android:background="#F5F5F5"
         android:gravity="left"
         android:orientation="vertical"
         android:padding="10dp"
@@ -53,7 +53,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="77dp"
-            android:background="#99ff33"
+            android:background="@drawable/p_4"
+
             android:gravity="left"
             android:padding="5dp"
 
@@ -65,20 +66,23 @@
                 android:layout_height="wrap_content"
 
                 android:layout_weight="1"
-                android:background="#99ff33"
-                android:padding="20dp"
 
-                android:text="当前碳积分" />
+                android:padding="20dp"
+                android:textStyle="bold"
+                  android:textSize="20dp"
+                android:text="当前碳积分:" />
 
             <TextView
+                android:id="@+id/tv_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
 
                 android:layout_weight="100"
-                android:background="#99ff33"
+                android:textStyle="bold"
                 android:padding="20dp"
-                android:text="125"
-                android:textSize="20dp"></TextView>
+                android:text="115"
+                android:textSize="22dp"></TextView>
         </LinearLayout>
 
 
@@ -86,14 +90,13 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
-            android:background="@color/white">
+            android:background="#F5F5F5">
 
             <Button
                 android:id="@+id/Tbutton_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-
+                android:background="@drawable/radius_border"
                 android:backgroundTint="#FDFDFD"
                 android:clickable="true"
                 android:text="碳积分历史"
@@ -105,15 +108,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/white">
+            android:layout_marginTop="5dp"
+            android:background="#F5F5F5">
 
             <Button
                 android:id="@+id/Tbutton_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:background="@color/white"
+                android:background="@drawable/radius_border"
                 android:clickable="true"
                 android:text="碳积分排行">
 
@@ -122,15 +125,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/white">
+            android:layout_marginTop="5dp"
+            android:background="#F5F5F5">
 
             <Button
                 android:id="@+id/Tbutton_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:background="@color/white"
+                android:background="@drawable/radius_border"
                 android:clickable="true"
                 android:text="查看使用规则">
 

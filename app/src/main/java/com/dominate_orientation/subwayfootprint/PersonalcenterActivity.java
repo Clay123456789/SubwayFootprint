@@ -47,6 +47,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
     TextView tel ;
     TextView credit ;
     TextView email ;
+    TextView myTreasure;
     String age;
     String token;
     String url;
@@ -75,8 +76,17 @@ public class PersonalcenterActivity extends AppCompatActivity {
         credit = findViewById(R.id.tpoints);
         email = findViewById(R.id.personal_email);
         imageView = findViewById(R.id.Head_imageView);
+        myTreasure=findViewById(R.id.myTreasure);
         Token app = (Token)getApplicationContext();
         token=app.getToken();
+        myTreasure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent =new Intent(PersonalcenterActivity.this,Treasure_user.class);
+                startActivity(intent);
+            }
+        });
+
         Thread t1 = new Thread(new Runnable() {
             String message = "失败";
             @Override
@@ -186,7 +196,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
-                    intent =new Intent(PersonalcenterActivity.this, MainActivity.class);
+                    intent =new Intent(PersonalcenterActivity.this, main_page.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_credit:
@@ -205,6 +215,9 @@ public class PersonalcenterActivity extends AppCompatActivity {
             return true;
         });
     }
+
+
+
 
     public void check_header_picture(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);//创建对话框
@@ -255,6 +268,11 @@ public class PersonalcenterActivity extends AppCompatActivity {
     public void onClick(View view) {
         //跳转碳积分1页面
         Intent intent = new Intent(PersonalcenterActivity.this, Tanjifen_main.class);
+        startActivity(intent);
+    }
+    public void onClick1(View view) {
+        //跳转我的宝箱
+        Intent intent = new Intent(PersonalcenterActivity.this, Treasure_user.class);
         startActivity(intent);
     }
     public void alert_edit1(View view){

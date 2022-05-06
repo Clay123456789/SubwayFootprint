@@ -19,6 +19,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class main_page extends AppCompatActivity {
 
@@ -35,6 +37,8 @@ public class main_page extends AppCompatActivity {
     ClearEditText cet1;
     ClearEditText cet2;
 
+    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,7 @@ public class main_page extends AppCompatActivity {
         cet1 = (ClearEditText) findViewById(R.id.start_point);
         cet2 = (ClearEditText) findViewById(R.id.end_point);
         voyage = (Button) findViewById(R.id.voyage);
+
         route_exist = false;
 
         wv = (WebView) findViewById(R.id.metro_overview);
@@ -62,6 +67,30 @@ public class main_page extends AppCompatActivity {
         //mlgb这文件路径名是真的逆天的批爆
         wv.loadUrl("file:///android_asset/map_overview.html");
 
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent =new Intent(main_page.this, main_page.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_credit:
+                    intent =new Intent(main_page.this,Tanjifen_main.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_shop:
+                    intent =new Intent(main_page.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_person:
+                    intent =new Intent(main_page.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+            return true;
+        });
+
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -75,7 +104,6 @@ public class main_page extends AppCompatActivity {
         this.msg = msg;
         //Toast.makeText(this, info[1].start, Toast.LENGTH_SHORT).show();
     }
-
     @JavascriptInterface
     public void voyage_enable() {
         //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

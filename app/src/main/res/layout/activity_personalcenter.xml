@@ -224,22 +224,14 @@
                     style="@style/top_layout">
 
                     <TextView
+                        android:id="@+id/myTreasure"
                         style="@style/usertext"
+                        android:onClick="onClick1"
                         android:text="我的宝箱" />
-
-                    <Button
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/buttonshaperedbg"
-                        android:fontFamily="@font/calibri"
-                        android:text="NULL"
-                        android:textAllCaps="false"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
 
                     <ImageView
                         style="@style/img_arrow"
+                        android:onClick="onClick1"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
 

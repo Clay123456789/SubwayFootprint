@@ -5,6 +5,10 @@ plugins {
 android {
     compileSdk 31
 
+    //逃避图片审查
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
     defaultConfig {
         applicationId "com.dominate_orientation.subwayfootprint"
 
@@ -84,6 +88,6 @@ dependencies {
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
