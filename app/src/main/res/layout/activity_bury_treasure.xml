@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".buryTreasure"
     >
 
 
@@ -42,6 +44,7 @@
         android:background="@drawable/btn_pressed"
         android:layout_marginTop="20dp"
         android:id="@+id/btn_check_bury"
+        android:onClick="startBury"
         />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

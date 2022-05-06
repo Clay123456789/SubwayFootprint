@@ -39,7 +39,8 @@ public class route extends AppCompatActivity {
     TextView ns = null;
     TextView digText1 = null;
     TextView digText2 = null;
-
+    TextView buryText1 = null;
+    TextView buryText2 = null;
 
     Boolean no_next_passed_station = false;
     Boolean last_station_used = false;
@@ -144,8 +145,13 @@ public class route extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 intent =new Intent(route.this, buryTreasure.class);
-                startActivity(intent);
+
+//                final StringBuilder sb = new StringBuilder(ps.getText().length());
+//                sb.append(ps.getText());
+                Log.i("test",ps.getText().toString());
+                intent.putExtra("POSITION",ps.getText().toString());
                 buryAlert.dismiss();
+                startActivity(intent);
             }
         });
 
@@ -219,11 +225,6 @@ public class route extends AppCompatActivity {
                 //将打包好的bundle发送出去
                 intent.putExtras(b);
                 startActivity(intent);
-
-
-
-
-
 
             }
         });
@@ -513,6 +514,10 @@ public class route extends AppCompatActivity {
     //藏宝
     //我已设定只有到终点此按钮才能互动
     public void ensconce(View view){
+        buryText1 = view_bury.findViewById(R.id.bury_text1);
+        buryText1.setText("到达终点站： "+ps.getText().toString());
+        buryText2 = view_bury.findViewById(R.id.bury_text2);
+        buryText2.setText("是否要在此处进行藏宝？");
         buryAlert.show();
     }
 }
