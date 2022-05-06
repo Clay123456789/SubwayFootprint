@@ -36,6 +36,15 @@ public class Tanjifen_history extends AppCompatActivity {
     private OkHttpClient okHttpClient;
     private   String s;
     public String page="1";
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
     private  static  String TAG ="Tanjifen_history";
 
     public void setS(String s) {
@@ -58,9 +67,12 @@ public class Tanjifen_history extends AppCompatActivity {
                 //碳积分历史页面
                 okHttpClient=new OkHttpClient();
                 String json= null;
-                page=page+1;
+                String p;
+                p=String.valueOf(Integer.parseInt(getPage()) + 1);
+                setPage(p);
+                System.out.println("next!!!!!!"+getPage());
                 try {
-                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+page);
+                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+p);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -82,9 +94,15 @@ public class Tanjifen_history extends AppCompatActivity {
                 //碳积分历史页面
                 okHttpClient=new OkHttpClient();
                 String json= null;
-
+                String p;
+                p = String.valueOf(Integer.parseInt(getPage()) - 1);
+                if(!p.equals("0")){
+                setPage(p);
+                System.out.println("last!!!!!!!!!!!"+getPage());}else{
+                    p = String.valueOf(Integer.parseInt(getPage()));;System.out.println("last!!!!!!!!!!!"+getPage());
+                }
                 try {
-                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+"1");
+                    json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+p);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
