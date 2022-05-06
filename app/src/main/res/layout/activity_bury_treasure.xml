@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请从下列奖品中选择一个进行埋藏"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_above="@+id/award_listview"
+        android:textSize="25dp"
+        android:layout_marginBottom="30dp"
+        >
+
+    </TextView>
+
+    <ListView
+        android:id="@+id/award_listview"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:choiceMode="singleChoice"
+        android:divider="@color/black"
+        android:dividerHeight="2dp" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="进行埋藏"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/award_listview"
+        android:background="@drawable/btn_pressed"
+        />
+
+
+</RelativeLayout>

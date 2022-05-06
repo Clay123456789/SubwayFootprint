@@ -143,6 +143,8 @@ public class route extends AppCompatActivity {
         view_bury.findViewById(R.id.btn_bury).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                intent =new Intent(route.this, buryTreasure.class);
+                startActivity(intent);
                 buryAlert.dismiss();
             }
         });
