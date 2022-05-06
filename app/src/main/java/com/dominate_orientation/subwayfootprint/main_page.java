@@ -11,7 +11,9 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,7 @@ public class main_page extends AppCompatActivity {
     WebView wv = null;
     String msg = "";
     Info[] infos = null;
+    Button voyage = null;
 
     //layout
     //final LinearLayout container = findViewById(R.id.container);
@@ -35,12 +38,17 @@ public class main_page extends AppCompatActivity {
 
     Intent intent;
 
+    Boolean route_exist = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         cet1 = (ClearEditText) findViewById(R.id.start_point);
         cet2 = (ClearEditText) findViewById(R.id.end_point);
+        voyage = (Button) findViewById(R.id.voyage);
+
+        route_exist = false;
 
         wv = (WebView) findViewById(R.id.metro_overview);
         wv.setWebViewClient(new WebViewClient());
@@ -97,6 +105,12 @@ public class main_page extends AppCompatActivity {
         this.msg = msg;
         //Toast.makeText(this, info[1].start, Toast.LENGTH_SHORT).show();
     }
+    @JavascriptInterface
+    public void voyage_enable() {
+        //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        route_exist = true;
+        //Toast.makeText(this, info[1].start, Toast.LENGTH_SHORT).show();
+    }
 
 
 
@@ -116,9 +130,14 @@ public class main_page extends AppCompatActivity {
         //cet1.setVisibility(View.GONE);
         //cet2.setVisibility(View.GONE);
 
-        Intent it = new Intent(this, route.class);
-        it.putExtra("msg", msg);
-        startActivity(it);
+        if(route_exist) {
+            Intent it = new Intent(this, route.class);
+            it.putExtra("msg", msg);
+            startActivity(it);
+        }else
+        {
+            Toast.makeText(this, "请先选择路线哦", Toast.LENGTH_SHORT).show();
+        }
 
         /*LinearLayout l=new LinearLayout(getApplicationContext());
         final ViewGroup.LayoutParams params =

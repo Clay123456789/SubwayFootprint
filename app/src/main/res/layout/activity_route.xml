@@ -6,8 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".route">
 
+    <!--app:srcCompat="@drawable/line_s1"-->
 
+    <TextView
+        android:id="@+id/longitTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/pre_next_exchange"
+        android:layout_width="66dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toTopOf="@+id/next_station"
+        app:layout_constraintEnd_toStartOf="@+id/tv3"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toEndOf="@+id/tv2"
+        app:srcCompat="@drawable/exchange_station" />
+
+    <ImageView
+        android:id="@+id/img_next_station"
+        android:layout_width="66dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next_station" />
+
+    <ImageView
+        android:id="@+id/img_pre_station"
+        android:layout_width="66dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/img_last_station"
+        app:layout_constraintTop_toBottomOf="@+id/pre_station" />
+
+    <ImageView
+        android:id="@+id/img_last_station"
+        android:layout_width="66dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_station"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -39,7 +86,7 @@
         android:id="@+id/pre_station"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -61,7 +108,7 @@
         android:id="@+id/tv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="288dp"
         android:layout_marginEnd="4dp"
         android:text="下一站"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -86,7 +133,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv3"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.065" />
 
     <Button
         android:id="@+id/go_to_next_station"
@@ -121,4 +168,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:onClick="ensconce"/>
+
+    <ImageView
+        android:id="@+id/last_pre_exchange"
+        android:layout_width="66dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/last_station"
+        app:layout_constraintEnd_toStartOf="@+id/tv2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv1"
+        app:srcCompat="@drawable/exchange_station" />
+
+    <TextView
+        android:id="@+id/latitudeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
