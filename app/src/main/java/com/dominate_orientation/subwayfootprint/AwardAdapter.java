@@ -2,6 +2,7 @@ package com.dominate_orientation.subwayfootprint;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,13 +87,12 @@ public class AwardAdapter extends BaseAdapter {
         holder.award_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
-                Intent intent = new Intent(mContext, main_page.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
+                Intent intent = new Intent(mContext, showAward.class);
+  //              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
+                Award award=awardLinkedList.get(position);
+                Log.i("test",award.getAid());
+                intent.putExtra("AWARD", award);
                 mContext.startActivity(intent);
-//                User_treasure user_treasure=mData.get(position);
-//
-//                intent.putExtra("PERSON_INFO", user_treasure);
-//                mContext.startActivity(intent);
             }
         });
 

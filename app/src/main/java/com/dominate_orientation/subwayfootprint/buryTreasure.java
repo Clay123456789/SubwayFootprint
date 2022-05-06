@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -44,6 +45,7 @@ public class buryTreasure extends AppCompatActivity {
         getSomeAwards(5);
         mLv1=findViewById(R.id.award_listview);
         mLv1.setAdapter(new AwardAdapter(awardLinkedList,buryTreasure.this));
+        setBottomNavi();
     }
 
 
@@ -109,5 +111,36 @@ public class buryTreasure extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setBottomNavi(){
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        bottomNavigationView.setOnItemSelectedListener((menuItem)->{
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    intent =new Intent(buryTreasure.this, main_page.class);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case R.id.nav_credit:
+                    intent =new Intent(buryTreasure.this,Tanjifen_main.class);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case R.id.nav_shop:
+                    intent =new Intent(buryTreasure.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case R.id.nav_person:
+                    intent =new Intent(buryTreasure.this, PersonalcenterActivity.class);
+                    startActivity(intent);
+                    finish();
+                    break;
+            }
+            return true;
+        });
+
     }
 }
