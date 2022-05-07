@@ -6,12 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ShowAllMessage">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#f5f5f5"
         >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="返回"
+            android:src="@drawable/ic_goback"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="go_back_to_route"
+            />
 
         <TextView
             android:layout_width="wrap_content"
