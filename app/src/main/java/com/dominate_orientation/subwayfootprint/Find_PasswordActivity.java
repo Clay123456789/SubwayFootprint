@@ -53,6 +53,10 @@ public class Find_PasswordActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!isUserNameValid(email.getText().toString())) {
                     email.setError("邮箱格式不正确");
+                    find_PW_Button.setEnabled(false);
+                }
+                else{
+                    find_PW_Button.setEnabled(true);
                 }
             }
         };
@@ -118,7 +122,7 @@ public class Find_PasswordActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Find_PasswordActivity.this, data, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Find_PasswordActivity.this, message, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
