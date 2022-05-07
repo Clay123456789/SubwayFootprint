@@ -1,7 +1,9 @@
 package com.dominate_orientation.subwayfootprint;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -48,8 +51,15 @@ public class buryTreasure extends AppCompatActivity {
     Award selectAward;
     Button goBuryBtn;
     String thisPosition;
-    int inputCredit=0;
+    String inputCredit;
     String inputMessage;
+    AlertDialog checkAlert=null;
+    AlertDialog.Builder builder = null;
+    View checkView;
+    Context mContext;
+    EditText editText1;
+    EditText editText2;
+    boolean buryFlag=true;
 
 
     @Override
@@ -57,14 +67,14 @@ public class buryTreasure extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bury_treasure);
         //获取当前站点
-//        thisPosition=getIntent().getStringExtra("POSITION");
-//        Log.i("test",thisPosition);
-//        thisPosition="131_"+thisPosition;
-//        Log.i("test",thisPosition);
-        //获取token
-        //        Token app = (Token)getApplicationContext();
-//        token=app.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
+        thisPosition=getIntent().getStringExtra("POSITION");
+        Log.i("test",thisPosition);
+        thisPosition="131_"+thisPosition;
+        Log.i("test",thisPosition);
+//        thisPosition="131_西土城";
+        Token app = (Token)getApplicationContext();
+        token=app.getToken();
+//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
         getSomeAwards(5);
         mLv1=findViewById(R.id.award_listview);
         mAdapter=new AwardAdapter(awardLinkedList,buryTreasure.this);
@@ -77,8 +87,51 @@ public class buryTreasure extends AppCompatActivity {
             Log.i("test",String.valueOf(position));
         });
         setBottomNavi();
+        mContext=buryTreasure.this;
+        builder=new AlertDialog.Builder(mContext);
+
+        final LayoutInflater inflater = buryTreasure.this.getLayoutInflater();
+        checkView = inflater.inflate(R.layout.bury_input_dialog, null,false);
+        builder.setView(checkView);
+        builder.setCancelable(false);
+        checkAlert=builder.create();
+        editText1=checkView.findViewById(R.id.input_credit);
+        editText2=checkView.findViewById(R.id.input_message);
+        setViews();
     }
 
+
+    public void setViews(){
+        checkView.findViewById(R.id.btn_cancle3).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                checkAlert.dismiss();
+            }
+        });
+
+        checkView.findViewById(R.id.btn_end_tour).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                checkAlert.dismiss();
+            }
+        });
+
+        checkView.findViewById(R.id.btn_bury_check).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                intent =new Intent(buryTreasure.this, main_page.class);
+                checkAlert.dismiss();
+                inputCredit=editText1.getText().toString();
+                inputMessage=editText2.getText().toString();
+                Log.i("test",inputCredit);
+                Log.i("test",inputMessage);
+                buryFlag=true;
+                checkBury();
+//                Toast.makeText(getApplicationContext(), "祝您一路顺风~", Toast.LENGTH_SHORT).show();
+//                startActivity(intent);
+            }
+        });
+    }
 
     public void getSomeAwards(int num){
         Thread t1 = new Thread(new Runnable() {
@@ -145,12 +198,17 @@ public class buryTreasure extends AppCompatActivity {
     }
 
     public void startBury(View view){
+        checkAlert.show();
+    }
+
+    public void checkBury(){
+        buryFlag=false;
         if(selectPosition==-1){
             Toast.makeText(buryTreasure.this, "请先选择埋藏对象~", Toast.LENGTH_SHORT).show();
             return;
         }
         Thread t1 = new Thread(new Runnable() {
-            String data = "失败";
+            String message = "失败";
             Award chooseAward=awardLinkedList.get(selectPosition);
             @Override
             public void run() {
@@ -158,10 +216,11 @@ public class buryTreasure extends AppCompatActivity {
 //                    FormBody.Builder params=new FormBody.Builder();
 //                    params.add("num","3");
                     String json="";
+                    Log.i("test","wuhu"+chooseAward.getAid());
                     FormBody formBody = new FormBody.Builder()
                             .add("aid",chooseAward.getAid())
-                            .add("num", "1")
-                            .add("credit",String.valueOf(chooseAward.getCredit()))
+                            .add("num", String.valueOf(1))
+                            .add("credit",inputCredit)
                             .add("pid",thisPosition)
                             .add("message",inputMessage)
                             .build();
@@ -171,20 +230,22 @@ public class buryTreasure extends AppCompatActivity {
                             .addHeader("token",token)
                             .post(formBody)
                             .build();
-                    Log.i("test",chooseAward.getAid());
-//                    Response response = client.newCall(request).execute();
-//                    String responseData = response.body().string();
-//                    JSONObject jsonObject = new JSONObject(responseData);
-//                    data = jsonObject.getString("data");
-                    if (data.equals("藏宝成功")) {
-                        Toast.makeText(buryTreasure.this, "藏宝成功，期待您的下一次出行~", Toast.LENGTH_SHORT).show();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    message = jsonObject.getString("message");
+                    Log.i("test","wuhu"+message);
+                    if (message.equals("成功")) {
+                        buryFlag=true;
+                        //Toast.makeText(buryTreasure.this, "藏宝成功，期待您的下一次出行~", Toast.LENGTH_SHORT).show();
                     } else {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(buryTreasure.this, "奖池为空", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(buryTreasure.this, "藏宝失败", Toast.LENGTH_SHORT).show();
                             }
                         });
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -192,6 +253,7 @@ public class buryTreasure extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(buryTreasure.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+
                         }
                     });
                 }
@@ -200,6 +262,10 @@ public class buryTreasure extends AppCompatActivity {
         t1.start();
         try {
             t1.join();
+            if(buryFlag){
+                Toast.makeText(getApplicationContext(), "祝您一路顺风~", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

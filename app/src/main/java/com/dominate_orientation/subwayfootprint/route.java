@@ -96,10 +96,10 @@ public class route extends AppCompatActivity {
         ensconce.setEnabled(false);
 
         digTreasure=new Treasure();
-
-//        Token app = (Token)getApplicationContext();
-//        token=app.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
+//token
+        Token app = (Token)getApplicationContext();
+        token=app.getToken();
+//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
 
          passTreasure=new User_treasure();
 
