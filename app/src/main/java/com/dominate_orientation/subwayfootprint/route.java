@@ -630,7 +630,7 @@ public class route extends AppCompatActivity {
                 try {
                     //String json = "";
                     String json = "{\n" +
-                            "\"pid\": "+"\""+"131_生命科学"+"\""+
+                            "\"pid\": "+"\""+"131_"+ps.getText().toString()+"\""+
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
@@ -638,6 +638,7 @@ public class route extends AppCompatActivity {
                             //                           .addHeader("token",token)
                             .post(RequestBody.create(MediaType.parse("application/json"), json))
                             .build();
+                    Log.i("mark","getPositionTreasure in "+"131_"+ps.getText().toString());
                     Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
                     JSONObject jsonObject = new JSONObject(responseData);
