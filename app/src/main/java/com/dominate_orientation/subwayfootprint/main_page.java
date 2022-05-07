@@ -22,6 +22,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
+//发数据取决于route_enabled和msg内容！！！
 public class main_page extends AppCompatActivity {
 
     //variable
@@ -31,6 +32,11 @@ public class main_page extends AppCompatActivity {
     Info[] infos = null;
     Button voyage = null;
     Boolean route_exist = false;
+    Button swap_city = null;
+
+    //city list
+    String[] web_files = null;
+    Integer web_files_index = 0;
 
     //layout
     //final LinearLayout container = findViewById(R.id.container);
@@ -46,26 +52,11 @@ public class main_page extends AppCompatActivity {
         cet1 = (ClearEditText) findViewById(R.id.start_point);
         cet2 = (ClearEditText) findViewById(R.id.end_point);
         voyage = (Button) findViewById(R.id.voyage);
+        swap_city = (Button)findViewById(R.id.swap_city);
+        wv = (WebView) findViewById(R.id.metro_overview);
+        init_web();
 
         route_exist = false;
-
-        wv = (WebView) findViewById(R.id.metro_overview);
-        wv.setWebViewClient(new WebViewClient());
-        //改设置很重要！
-        wv.getSettings().setAllowFileAccess(true);
-        wv.getSettings().setAllowContentAccess(true);
-        wv.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.getSettings().setDomStorageEnabled(true);
-        wv.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-        wv.getSettings().setGeolocationEnabled(true);
-        wv.addJavascriptInterface(this, "passStations");
-        wv.setHorizontalScrollBarEnabled(false);
-        wv.setVerticalScrollBarEnabled(true);
-        wv.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-
-        //mlgb这文件路径名是真的逆天的批爆
-        wv.loadUrl("file:///android_asset/map_overview.html");
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);
 
@@ -154,4 +145,44 @@ public class main_page extends AppCompatActivity {
 
         container.addView(l);*/
     }
+    public void init_web()
+    {
+        load_webs();
+
+        //改设置很重要！
+        wv.setWebViewClient(new WebViewClient());
+        wv.getSettings().setAllowFileAccess(true);
+        wv.getSettings().setAllowContentAccess(true);
+        wv.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.getSettings().setDomStorageEnabled(true);
+        wv.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        wv.getSettings().setGeolocationEnabled(true);
+        wv.addJavascriptInterface(this, "passStations");
+        wv.setHorizontalScrollBarEnabled(false);
+        wv.setVerticalScrollBarEnabled(true);
+        wv.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        //mlgb这文件路径名是真的逆天的批爆
+        wv.loadUrl(web_files[web_files_index]);
+    }
+
+    public void load_webs()
+    {
+        web_files = new String[2];
+        web_files[0] = "file:///android_asset/map_overview.html";
+        web_files[1] = "file:///android_asset/map_overview_sh.html";
+    }
+
+    public void swap_city(View view)
+    {
+        if(web_files_index>web_files.length-1)
+        {
+            web_files_index=0;
+        }else
+        {
+            web_files_index++;
+        }
+        wv.loadUrl(web_files[web_files_index]);
+    }
+
 }
