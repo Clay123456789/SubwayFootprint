@@ -3,23 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/account_icon.xml" value="0.113" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/bottom_layout_selector.xml" value="0.185" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/bottom_select.xml" value="0.1605" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshapebluebg.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshapegraybg.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshaperedbg.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshapewhitebg.xml" value="0.1475" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/delete_selector.xml" value="0.179" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/frame1.xml" value="0.163" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1475" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_shop.xml" value="0.1605" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/icon_user.xml" value="0.179" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/single_select.xml" value="0.1605" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/top_select.xml" value="0.15" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/top_unselect.xml" value="0.179" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/xiaxian.xml" value="0.179" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w1240dp/dialog1.xml" value="0.26994535519125684" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w936dp/activity_login.xml" value="0.19375" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_find_password.xml" value="0.15625" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_login.xml" value="0.19375" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_main_page.xml" value="0.16484375" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_paaword_edit.xml" value="0.20546875" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_password_edit.xml" value="0.2" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_personal_edit.xml" value="0.2" />
@@ -40,104 +46,9 @@
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/layout_list_item.xml" value="0.132421875" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/person_fragment.xml" value="0.20546875" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/shop_fragment.xml" value="0.19375" />
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> master
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/bottom_select.xml" value="0.1935" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/bottom_unselect.xml" value="0.1935" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/btn_bury_exit.xml" value="0.124" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/btn_selctor_choose.xml" value="0.241" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/ic_credit.xml" value="0.1935" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/sheet_background.xml" value="0.1" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/single_layout_selector.xml" value="0.1" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/drawable/treasure_open.xml" value="0.156" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_anim_open_treasure.xml" value="0.264" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_login.xml" value="0.24114583333333334" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_main_page.xml" value="0.24114583333333334" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_personalcenter.xml" value="0.1" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_register.xml" value="0.24114583333333334" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_route.xml" value="0.24114583333333334" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/activity_treasure_user.xml" value="0.264" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/bottom_sheet_bury.xml" value="0.24114583333333334" />
-        <entry key="..\:/SubwayFootprint/app/src/main/res/layout/bottom_sheet_dig.xml" value="0.2" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/drawable/buttonshapebluebg.xml" value="0.1185" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/drawable/radius_border.xml" value="0.3135" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/drawable/rounded_coerner_button.xml" value="0.476" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/drawable/top_layout_selector.xml" value="0.543" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/drawable/top_select.xml" value="0.543" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.4054421768707483" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_find_password.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_first_open.xml" value="0.35208333333333336" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_login.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_main_page.xml" value="0.3567708333333333" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_password_edit.xml" value="0.346875" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_personalcenter.xml" value="0.5" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_register.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_route.xml" value="0.346875" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_show_all_message.xml" value="0.5020242914979757" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_show_pic.xml" value="0.346875" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_tanjifen4.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_tanjifen_history.xml" value="0.3567708333333333" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_tanjifen_mian.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_tanjifen_rank.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_treasure_message.xml" value="0.346875" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/activity_treasure_user.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/buttom_navigation_layout.xml" value="0.346875" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/credit_fragment.xml" value="0.346875" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/dialog.xml" value="0.3515625" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/dialog1.xml" value="0.3515625" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/fragment_upper_bar.xml" value="0.3515625" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/home_fragment.xml" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/item_list_history.xml" value="0.3567708333333333" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/item_list_treasure_user" value="0.5494791666666666" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/item_list_treasure_user.xml" value="0.5" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/layout_list_item.xml" value="0.3567708333333333" />
-        <entry key="..\:/Users/10421/Desktop/zyh/SubwayFootprint/app/src/main/res/layout/person_fragment.xml" value="0.3515625" />
-<<<<<<< HEAD
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_display_message.xml" value="0.5" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_route.xml" value="0.358695652173913" />
-=======
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SF_master/SubwayFootprint/app/src/main/res/drawable/btn_selctor_exit.xml" value="0.284" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SF_master/SubwayFootprint/app/src/main/res/drawable/treasure_open.xml" value="0.1345" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SF_master/SubwayFootprint/app/src/main/res/layout/activity_route.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_display_message.xml" value="0.5" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/activity_main.xml" value="0.5" />
->>>>>>> master
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/frag_1.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/SubwayFootprint/app/src/main/res/layout/frag_2.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/drawable/account_icon.xml" value="0.196" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/drawable/delete_selector.xml" value="0.196" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/drawable/get_start.xml" value="0.11" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/drawable/ic_launcher_background.xml" value="0.196" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/drawable/rounded_coerner_button.xml" value="0.187" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/drawable/rounded_coner.xml" value="0.187" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/activity_display_message.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/activity_main.xml" value="0.14722222222222223" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/activity_main_page.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/frag_1.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/fragment_first.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/fragment_second.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/fragment_upper_bar.xml" value="0.5" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/inpubarcollection.xml" value="0.33" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/inputbarcollection.xml" value="0.33" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/gd/SubwayFootprint-gd/app/src/main/res/layout/upper_bar.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/github/SubwayFootprint-gd/app/src/main/res/drawable/ic_goback.xml" value="0.3675" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/github/SubwayFootprint-gd/app/src/main/res/layout/activity_main_page.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/13577/AndroidStudioProjects/github/SubwayFootprint-gd/app/src/main/res/layout/activity_route.xml" value="0.33" />
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> master
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
 </project>
