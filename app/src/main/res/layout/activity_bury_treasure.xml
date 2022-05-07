@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".buryTreasure"
+    >
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请从下列奖品中选择一个进行埋藏"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/award_text7"
+        android:layout_alignParentTop="true"
+        >
+
+    </TextView>
+
+    <ListView
+        android:id="@+id/award_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:choiceMode="singleChoice"
+        android:divider="@color/black"
+        android:dividerHeight="2dp"
+        android:layout_below="@+id/award_text7"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="进行埋藏"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/award_listview"
+        android:background="@drawable/btn_pressed"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_check_bury"
+        android:onClick="startBury"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_icon"
+        android:theme="@style/footButton"
+        app:labelVisibilityMode="labeled"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
