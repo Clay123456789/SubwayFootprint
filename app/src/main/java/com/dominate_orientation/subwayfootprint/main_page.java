@@ -49,8 +49,8 @@ public class main_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-        cet1 = (ClearEditText) findViewById(R.id.start_point);
-        cet2 = (ClearEditText) findViewById(R.id.end_point);
+        //cet1 = (ClearEditText) findViewById(R.id.start_point);
+        //cet2 = (ClearEditText) findViewById(R.id.end_point);
         voyage = (Button) findViewById(R.id.voyage);
         swap_city = (Button)findViewById(R.id.swap_city);
         wv = (WebView) findViewById(R.id.metro_overview);
@@ -175,7 +175,7 @@ public class main_page extends AppCompatActivity {
 
     public void swap_city(View view)
     {
-        if(web_files_index>web_files.length-1)
+        if(web_files_index>=web_files.length-1)
         {
             web_files_index=0;
         }else

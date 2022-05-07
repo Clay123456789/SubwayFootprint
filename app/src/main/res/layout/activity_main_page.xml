@@ -7,7 +7,7 @@
     android:id="@+id/main_layout"
     android:background="@color/Olive">
 
-    <LinearLayout
+    <!--LinearLayout
         android:id="@+id/container"
         android:layout_width="394dp"
 
@@ -50,17 +50,17 @@
             android:singleLine="true"
             tools:ignore="TouchTargetSizeCheck" />
 
-    </LinearLayout>
+    </LinearLayout-->
 
     <WebView
         android:id="@+id/metro_overview"
-        android:layout_width="417dp"
-        android:layout_height="571dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_width="411dp"
+        android:layout_height="672dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container"
-        app:layout_constraintVertical_bias="0" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </WebView>
 
@@ -70,7 +70,8 @@
         android:layout_height="wrap_content"
         android:text="城市切换"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_coerner_button"
         android:onClick="swap_city"/>
 
     <Button
