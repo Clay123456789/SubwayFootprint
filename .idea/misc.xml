@@ -3,23 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/account_icon.xml" value="0.113" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/bottom_layout_selector.xml" value="0.185" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/bottom_select.xml" value="0.1605" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshapebluebg.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshapegraybg.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshaperedbg.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/buttonshapewhitebg.xml" value="0.1475" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/delete_selector.xml" value="0.179" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/frame1.xml" value="0.163" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1475" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2135" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/ic_shop.xml" value="0.1605" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/icon_user.xml" value="0.179" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/single_select.xml" value="0.1605" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/top_select.xml" value="0.15" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/top_unselect.xml" value="0.179" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/drawable/xiaxian.xml" value="0.179" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w1240dp/dialog1.xml" value="0.26994535519125684" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout-w936dp/activity_login.xml" value="0.19375" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_find_password.xml" value="0.15625" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_login.xml" value="0.19375" />
+        <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_main_page.xml" value="0.16484375" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_paaword_edit.xml" value="0.20546875" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_password_edit.xml" value="0.2" />
         <entry key="..\:/Andriod Studio/SubwayFootprint/app/src/main/res/layout/activity_personal_edit.xml" value="0.2" />
@@ -130,7 +136,4 @@
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
 </project>
