@@ -182,6 +182,7 @@ public class route extends AppCompatActivity {
 
 
 
+
         pre_line = (ImageView)findViewById(R.id.img_pre_station);
         next_line = (ImageView)findViewById(R.id.img_next_station);
         last_line= (ImageView)findViewById(R.id.img_last_station);
@@ -258,7 +259,12 @@ public class route extends AppCompatActivity {
 //                final StringBuilder sb = new StringBuilder(ps.getText().length());
 //                sb.append(ps.getText());
                 Log.i("test",ps.getText().toString());
-                intent.putExtra("POSITION",ps.getText().toString());
+                //传String
+//                intent.putExtra("POSITION",ps.getText().toString());
+//                intent.putExtra("KEY",city_to_pid.keySet().toString());
+//                intent.putExtra("VALUE",city_to_pid.values().toString());
+                //传Class
+                intent.putExtra("MAP",new route2bury(city_to_pid,present_city,ps.getText().toString()));
                 buryAlert.dismiss();
                 startActivity(intent);
             }

@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 import okhttp3.FormBody;
@@ -51,6 +52,7 @@ public class buryTreasure extends AppCompatActivity {
     Award selectAward;
     Button goBuryBtn;
     String thisPosition;
+    String thisCity;
     String inputCredit;
     String inputMessage;
     AlertDialog checkAlert=null;
@@ -60,16 +62,22 @@ public class buryTreasure extends AppCompatActivity {
     EditText editText1;
     EditText editText2;
     boolean buryFlag=true;
-
-
+    String key;
+    String value;
+    route2bury passData;
+    LinkedHashMap<String,String> city_to_pid = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bury_treasure);
-        //获取当前站点
-        thisPosition=getIntent().getStringExtra("POSITION");
-        Log.i("test",thisPosition);
-        thisPosition="131_"+thisPosition;
+        //数据接收
+        intent=getIntent();
+        passData=(route2bury) intent.getSerializableExtra("MAP");
+        city_to_pid=passData.getParaMap();
+        thisCity=passData.getPresentCity();
+        thisPosition=passData.getPresentPosition();
+        //组合成标准格式
+        thisPosition=city_to_pid.get(thisCity)+thisPosition;
         Log.i("test",thisPosition);
 //        thisPosition="131_西土城";
         Token app = (Token)getApplicationContext();
