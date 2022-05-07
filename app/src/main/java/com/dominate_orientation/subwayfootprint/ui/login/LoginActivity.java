@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button loginButton;
     TextView goRegister;
-    ProgressBar loadingProgressBar;
     String message="失败";
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = binding.password;
         loginButton = binding.login;
         goRegister = binding.goRegister;
-        loadingProgressBar = binding.loading;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -91,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult == null) {
                     return;
                 }
-                loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
                 }
@@ -205,7 +202,6 @@ public class LoginActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        loadingProgressBar.setVisibility(View.VISIBLE);
         if(message.equals("成功")){
             loginViewModel.login(usernameEditText.getText().toString(),
                     passwordEditText.getText().toString());
