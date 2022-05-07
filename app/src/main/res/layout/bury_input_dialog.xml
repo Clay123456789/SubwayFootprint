@@ -24,7 +24,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_cancle"
+            android:id="@+id/btn_cancle3"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -42,25 +42,42 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:text="通过setView()方法定制AlertDialog"
-            android:textColor="#04AEDA"
-            android:textSize="18sp"
-            android:id="@+id/bury_text1"/>
+            <EditText
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="输入打开所需碳积分"
+                android:inputType="number"
+                android:id="@+id/input_credit"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="作者:Coder-pig"
-            android:textColor="#04AEDA"
-            android:textSize="18sp"
-            android:id="@+id/bury_text2"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="输入您的的留言"
+                android:inputType="text"
+                android:singleLine="false"
+                android:id="@+id/input_message"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="通过setView()方法定制AlertDialog"-->
+<!--            android:textColor="#04AEDA"-->
+<!--            android:textSize="18sp"-->
+<!--            android:id="@+id/bury_text1"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:text="作者:Coder-pig"-->
+<!--            android:textColor="#04AEDA"-->
+<!--            android:textSize="18sp"-->
+<!--            android:id="@+id/bury_text2"/>-->
     </LinearLayout>
 
     <LinearLayout
@@ -71,24 +88,24 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_bury"
+            android:id="@+id/btn_bury_check"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/btn_selctor_choose"
-            android:text="埋藏宝藏"
+            android:text="确认埋藏"
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/btn_close"
+            android:id="@+id/btn_end_tour"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/btn_selctor_choose"
-            android:text="结束旅程"
+            android:text="重新选择"
             android:textColor="#ffffff"
             android:textSize="20sp" />
 

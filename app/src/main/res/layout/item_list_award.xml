@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
+
+
+
+        <ImageView
+            android:id="@+id/award_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:src="@drawable/co2"
+            android:text="无数据"></ImageView>
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/T_U_1"-->
+
+        <!--            android:layout_width="69dp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@color/white"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="无数据"></TextView>-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/T_U_4"-->
+        <!--            android:layout_width="105dp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@color/white"-->
+
+        <!--            android:gravity="center"-->
+        <!--            android:maxLength="6"-->
+
+        <!--            android:text="无数据"></TextView>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/T_U_5"-->
+        <!--            android:layout_width="60dp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@color/white"-->
+
+        <!--            android:gravity="center"-->
+        <!--            android:text="无数据"-->
+
+        <!--            android:maxLength="6"-->
+        <!--            ></TextView>-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/award_variety"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="无数据"
+                android:textColor="#1D1D1C"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/award_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8px"
+                android:text="无数据"
+                android:textColor="#B4B4B9"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/check_award"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/radius_border"
+            android:clickable="true"
+            android:text="查看详情" />
+
+        <RadioButton
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/award_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:clickable="false"
+
+            android:focusableInTouchMode="false"
+            />
+
+
+
+
+    </LinearLayout>
+
