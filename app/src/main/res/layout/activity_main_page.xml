@@ -55,7 +55,7 @@
     <WebView
         android:id="@+id/metro_overview"
         android:layout_width="411dp"
-        android:layout_height="672dp"
+        android:layout_height="635dp"
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

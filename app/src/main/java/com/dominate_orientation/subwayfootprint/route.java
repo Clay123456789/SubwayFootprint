@@ -354,9 +354,10 @@ public class route extends AppCompatActivity {
             @Override
             public void run() {
                 try{
-                while(true) {
+                //while(true) {
                     getLastLocation();
-                }}catch (Exception e){
+                //}
+            }catch (Exception e){
                     System.out.println(e);
                 }
             }
