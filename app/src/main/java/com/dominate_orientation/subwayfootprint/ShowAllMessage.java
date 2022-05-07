@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -85,5 +86,10 @@ public class ShowAllMessage extends AppCompatActivity {
 
 
 
+    }
+
+    public void go_back_to_route(View view)
+    {
+        finish();
     }
 }
