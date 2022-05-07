@@ -800,8 +800,11 @@ public class route extends AppCompatActivity {
                         if (location == null) {
                             requestNewLocationData();
                         } else {
+                            /*
                             latitudeTextView.setText(location.getLatitude() + "");
                             longitTextView.setText(location.getLongitude() + "");
+                            */
+                            Toast.makeText(mContext, "您当前纬度为："+location.getLatitude()+" ,经度为："+location.getLongitude()+"距离站点距离过远哦", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
