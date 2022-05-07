@@ -21,6 +21,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 
 //发数据取决于route_enabled和msg内容！！！
 public class main_page extends AppCompatActivity {
@@ -34,9 +37,12 @@ public class main_page extends AppCompatActivity {
     Boolean route_exist = false;
     Button swap_city = null;
 
+
     //city list
     String[] web_files = null;
     Integer web_files_index = 0;
+    String present_city = "";
+    LinkedHashMap<Integer,String> index_to_city= null;
 
     //layout
     //final LinearLayout container = findViewById(R.id.container);
@@ -54,6 +60,8 @@ public class main_page extends AppCompatActivity {
         voyage = (Button) findViewById(R.id.voyage);
         swap_city = (Button)findViewById(R.id.swap_city);
         wv = (WebView) findViewById(R.id.metro_overview);
+        index_to_city = new LinkedHashMap<Integer,String>();
+        
         init_web();
 
         route_exist = false;
@@ -92,7 +100,7 @@ public class main_page extends AppCompatActivity {
     @JavascriptInterface
     public void get_station(String msg) {
         //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        this.msg = msg;
+        this.msg = present_city+".city."+msg;
         //Toast.makeText(this, info[1].start, Toast.LENGTH_SHORT).show();
     }
     @JavascriptInterface
@@ -171,6 +179,10 @@ public class main_page extends AppCompatActivity {
         web_files = new String[2];
         web_files[0] = "file:///android_asset/map_overview.html";
         web_files[1] = "file:///android_asset/map_overview_sh.html";
+
+        index_to_city.put(0,"北京");
+        index_to_city.put(1,"上海");
+
     }
 
     public void swap_city(View view)
@@ -182,6 +194,7 @@ public class main_page extends AppCompatActivity {
         {
             web_files_index++;
         }
+        present_city = index_to_city.get(web_files_index);
         wv.loadUrl(web_files[web_files_index]);
     }
 

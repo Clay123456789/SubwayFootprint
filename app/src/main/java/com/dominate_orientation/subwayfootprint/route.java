@@ -46,6 +46,8 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 import okhttp3.MediaType;
@@ -110,6 +112,9 @@ public class route extends AppCompatActivity {
     String line_capair = "@drawable/line_capair";
     String line_dxair = "@drawable/line_air";
 
+    String present_city = null;
+    LinkedHashMap<String,String> city_to_pid = null;
+
     //地理位置
     FusedLocationProviderClient mFusedLocationClient;
     TextView latitudeTextView, longitTextView;
@@ -172,6 +177,9 @@ public class route extends AppCompatActivity {
         latitudeTextView = (TextView)findViewById(R.id.latitudeTextView);
         longitTextView = (TextView)findViewById(R.id.longitTextView);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        city_to_pid = new LinkedHashMap<>();
+        addMap();
+
 
 
         pre_line = (ImageView)findViewById(R.id.img_pre_station);
@@ -350,6 +358,11 @@ public class route extends AppCompatActivity {
         ).start();
     }
 
+    private void addMap() {
+        city_to_pid.put("北京","131_");
+        city_to_pid.put("上海","289_");
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -451,6 +464,9 @@ public class route extends AppCompatActivity {
 
     public void Calculate()
     {
+        present_city = msg.split(".city.")[0];
+        msg = msg.split(".city.")[1];
+
         String[] set = msg.split(".line.");
         infos=new Info[set.length-1];
         int index=0;
@@ -630,7 +646,7 @@ public class route extends AppCompatActivity {
                 try {
                     //String json = "";
                     String json = "{\n" +
-                            "\"pid\": "+"\""+"131_"+ps.getText().toString()+"\""+
+                            "\"pid\": "+"\""+city_to_pid.get(present_city)+ps.getText().toString()+"\""+
                             "}";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
@@ -638,7 +654,7 @@ public class route extends AppCompatActivity {
                             //                           .addHeader("token",token)
                             .post(RequestBody.create(MediaType.parse("application/json"), json))
                             .build();
-                    Log.i("mark","getPositionTreasure in "+"131_"+ps.getText().toString());
+                    Log.i("mark","getPositionTreasure in "+city_to_pid.get(present_city)+ps.getText().toString());
                     Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
                     JSONObject jsonObject = new JSONObject(responseData);
