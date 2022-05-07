@@ -29,7 +29,7 @@ import com.dominate_orientation.subwayfootprint.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "lol wtf";
     public TextView num1 ;
     public TextView num2 ;
@@ -45,27 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bindViews();
-        anim = (AnimationDrawable) img_show.getBackground();
     }
 
-    private void bindViews() {
-        btn_start = (Button) findViewById(R.id.btn_start);
-
-        img_show = (ImageView) findViewById(R.id.img_show);
-        btn_start.setOnClickListener(this);
-       // btn_stop.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_start:
-                intent =new Intent(MainActivity.this, AnimOpenTreasure.class);
-                startActivity(intent);
-                break;
-
-        }
-    }
 }
 
