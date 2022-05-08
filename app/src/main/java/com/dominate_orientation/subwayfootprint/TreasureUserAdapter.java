@@ -84,8 +84,9 @@ public class TreasureUserAdapter extends BaseAdapter {
 
         if(mData.get(position).getCredit().equals("1")){
             holder.tre_credit.setText("已打开");
+
         }else{
-            holder.tre_credit.setText("未打开");
+            holder.tre_credit.setText("未打开"); holder.tre_button.setText("打开宝箱");
         }
 
         holder.tre_button.setOnClickListener(new View.OnClickListener() {
