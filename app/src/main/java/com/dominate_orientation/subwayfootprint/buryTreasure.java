@@ -7,6 +7,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +68,9 @@ public class buryTreasure extends AppCompatActivity {
     String value;
     route2bury passData;
     LinkedHashMap<String,String> city_to_pid = null;
+    boolean textCheckFlag1 =false;
+    boolean textCheckFlag2 =false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,9 +89,9 @@ public class buryTreasure extends AppCompatActivity {
         thisPosition=city_to_pid.get(thisCity)+thisPosition;
         Log.i("test",thisPosition);
 //        thisPosition="131_西土城";
-        Token app = (Token)getApplicationContext();
-        token=app.getToken();
-//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
+//        Token app = (Token)getApplicationContext();
+//        token=app.getToken();
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
         getSomeAwards(5);
         mLv1=findViewById(R.id.award_listview);
         mAdapter=new AwardAdapter(awardLinkedList,buryTreasure.this);
@@ -109,6 +114,7 @@ public class buryTreasure extends AppCompatActivity {
         checkAlert=builder.create();
         editText1=checkView.findViewById(R.id.input_credit);
         editText2=checkView.findViewById(R.id.input_message);
+        addListener();
         setViews();
     }
 
@@ -132,17 +138,115 @@ public class buryTreasure extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 intent =new Intent(buryTreasure.this, main_page.class);
-                checkAlert.dismiss();
+
                 inputCredit=editText1.getText().toString();
                 inputMessage=editText2.getText().toString();
                 Log.i("test",inputCredit);
                 Log.i("test",inputMessage);
                 buryFlag=true;
+//                if(!checkInput(inputCredit,inputMessage)) {
+//                    return;
+//                }
+                if(!(textCheckFlag1&&textCheckFlag2)){
+                    Toast.makeText(buryTreasure.this, "请检查输入是否合法", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 checkBury();
+                checkAlert.dismiss();
 //                Toast.makeText(getApplicationContext(), "祝您一路顺风~", Toast.LENGTH_SHORT).show();
 //                startActivity(intent);
             }
         });
+    }
+
+    public void addListener(){
+        editText1.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0) return;
+//                editText1.removeTextChangedListener(this);
+                Log.i("test","onTextChangedCalled");
+                Award chooseAward=awardLinkedList.get(selectPosition);
+                double num_input,num_standard;
+                num_input=Integer.parseInt(s.toString());
+                num_standard=chooseAward.getCredit();
+                if(num_input<0.6*num_standard||num_input>1.2*num_standard){
+                    editText1.setError("开启宝箱所需碳积分应为兑换奖品碳积分的60%-120%");
+                    textCheckFlag1=false;
+                    return;
+                }
+                textCheckFlag1=true;
+//                editText1.addTextChangedListener(this);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.i("test","onTextChangedCalled");
+//          do nothing
+            }
+        });
+
+        editText2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if(s.length()==0){
+                    editText2.setError("留言不能为空");
+                    textCheckFlag2=false;
+                    return;
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                editText1.removeTextChangedListener(this);
+                Log.i("test","onTextChangedCalled");
+
+                if(s.length()==0){
+                    editText2.setError("留言不能为空");
+                    textCheckFlag2=false;
+                    return;
+                }
+                else if(s.length()>30){
+                    editText2.setError("留言不能多于30个字符");
+                    textCheckFlag2=false;
+                    return;
+                }
+                textCheckFlag2=true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //do nothing
+            }
+        });
+
+    }
+
+
+    public boolean checkInput(String a,String b){
+        Award chooseAward=awardLinkedList.get(selectPosition);
+        double num_input,num_standard;
+        num_input=Integer.parseInt(a);
+        num_standard=chooseAward.getCredit();
+        if(num_input<0.6*num_standard||num_input>1.2*num_standard){
+            editText1.setError("开启宝箱所需碳积分应为兑换奖品碳积分的60%-120%");
+            return false;
+        }
+        if(b.length()==0){
+            editText2.setError("留言不能为空");
+            return false;
+        }
+        else if(b.length()>30){
+            editText2.setError("留言长度应小于30个字符");
+            return false;
+        }
+        return true;
     }
 
     public void getSomeAwards(int num){
@@ -210,15 +314,15 @@ public class buryTreasure extends AppCompatActivity {
     }
 
     public void startBury(View view){
+        if(selectPosition==-1){
+            Toast.makeText(buryTreasure.this, "请先选择埋藏对象~", Toast.LENGTH_SHORT).show();
+            return;
+        }
         checkAlert.show();
     }
 
     public void checkBury(){
         buryFlag=false;
-        if(selectPosition==-1){
-            Toast.makeText(buryTreasure.this, "请先选择埋藏对象~", Toast.LENGTH_SHORT).show();
-            return;
-        }
         Thread t1 = new Thread(new Runnable() {
             String message = "失败";
             Award chooseAward=awardLinkedList.get(selectPosition);

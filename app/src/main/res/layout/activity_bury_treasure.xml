@@ -21,6 +21,7 @@
         android:layout_marginBottom="20dp"
         android:id="@+id/award_text7"
         android:layout_alignParentTop="true"
+
         >
 
     </TextView>
@@ -33,6 +34,7 @@
         android:choiceMode="singleChoice"
         android:divider="@color/black"
         android:dividerHeight="2dp"
+        android:layout_above="@+id/btn_check_bury"
         android:layout_below="@+id/award_text7"/>
 
     <Button
@@ -40,9 +42,11 @@
         android:layout_height="wrap_content"
         android:text="进行埋藏"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/award_listview"
+
+        android:layout_above="@id/bottomNavigationView"
         android:background="@drawable/btn_pressed"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/btn_check_bury"
         android:onClick="startBury"
         />
