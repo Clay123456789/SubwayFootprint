@@ -187,7 +187,9 @@ public class PersonalEditActivity extends AppCompatActivity {
                         //日期格式
                         String year = String.valueOf(datePicker.getYear());
                         String month = String.valueOf(datePicker.getMonth()+1);
+                        month = month.length()<2?"0"+month:month;
                         String dayOfMonth = String.valueOf(datePicker.getDayOfMonth());
+                        dayOfMonth = dayOfMonth.length()<2?"0"+dayOfMonth:dayOfMonth;
                         try {
                             age.setText(year + month + dayOfMonth);
                         }catch(Exception e){
