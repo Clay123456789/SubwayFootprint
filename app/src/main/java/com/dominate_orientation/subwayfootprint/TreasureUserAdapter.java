@@ -1,6 +1,8 @@
 package com.dominate_orientation.subwayfootprint;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -10,13 +12,16 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
-public class TreasureUserAdapter extends BaseAdapter {
+public class TreasureUserAdapter extends BaseAdapter  {
     private LinkedList<User_treasure> mData;
     private Context mContext;
     private LayoutInflater mlayoutInflater;
+    private AlertDialog alert = null;
+    private AlertDialog.Builder builder = null;
 
     public TreasureUserAdapter(LinkedList<User_treasure> mData, Context context) {
         this.mData = mData;
@@ -92,13 +97,46 @@ public class TreasureUserAdapter extends BaseAdapter {
         holder.tre_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
-                Intent intent = new Intent(mContext, ShowAllMessage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
-                mContext.startActivity(intent);
-                User_treasure user_treasure=mData.get(position);
+                if (mData.get(position).getCredit().equals("1")) {
+                    Intent intent = new Intent(mContext, ShowAllMessage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
+                    mContext.startActivity(intent);
+                    User_treasure user_treasure = mData.get(position);
 
-                intent.putExtra("PERSON_INFO", user_treasure);
-                mContext.startActivity(intent);
+                    intent.putExtra("PERSON_INFO", user_treasure);
+                    mContext.startActivity(intent);
+                }else {
+
+                    alert = null;
+                    builder = new AlertDialog.Builder(mContext);
+                    alert = builder
+                            .setTitle("系统提示：")
+                            .setMessage("您确定要打开宝箱吗")
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(mContext, "取消", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(mContext, "确定", Toast.LENGTH_SHORT
+                                    ).show();
+                                    Intent intent = new Intent(mContext, ShowAllMessage.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
+                                    mContext.startActivity(intent);
+                                    User_treasure user_treasure = mData.get(position);
+
+                                    intent.putExtra("PERSON_INFO", user_treasure);
+                                    mContext.startActivity(intent);
+                                }
+                            })
+                           .create();             //创建AlertDialog对象
+                    alert.show();                    //显示对话框
+
+
+                }
             }
         });
 
