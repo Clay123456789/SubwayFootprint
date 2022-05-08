@@ -89,9 +89,9 @@ public class buryTreasure extends AppCompatActivity {
         thisPosition=city_to_pid.get(thisCity)+thisPosition;
         Log.i("test",thisPosition);
 //        thisPosition="131_西土城";
-//        Token app = (Token)getApplicationContext();
-//        token=app.getToken();
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
+        Token app = (Token)getApplicationContext();
+        token=app.getToken();
+//        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyMDE5MjExOTk2QGJ1cHQuZWR1LmNuIiwiZXhwIjoxNjUyMjQ3NzU3fQ.GzUepl2fYoK2fIPunLD4BFaVhek36YPZboMJNiEhQGI";
         getSomeAwards(5);
         mLv1=findViewById(R.id.award_listview);
         mAdapter=new AwardAdapter(awardLinkedList,buryTreasure.this);
