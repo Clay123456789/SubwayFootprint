@@ -41,7 +41,7 @@ public class main_page extends AppCompatActivity {
     //city list
     String[] web_files = null;
     Integer web_files_index = 0;
-    String present_city = "";
+    String present_city = "北京";
     LinkedHashMap<Integer,String> index_to_city= null;
 
     //layout
@@ -194,6 +194,7 @@ public class main_page extends AppCompatActivity {
         {
             web_files_index++;
         }
+
         present_city = index_to_city.get(web_files_index);
         wv.loadUrl(web_files[web_files_index]);
     }

@@ -167,6 +167,7 @@ public class route extends AppCompatActivity {
         setContentView(R.layout.activity_route);
         it = getIntent();
         msg = it.getStringExtra("msg");
+
         ls = (TextView) findViewById(R.id.last_station);
         ps = (TextView) findViewById(R.id.pre_station);
         ns = (TextView) findViewById(R.id.next_station);
@@ -264,7 +265,13 @@ public class route extends AppCompatActivity {
 //                intent.putExtra("KEY",city_to_pid.keySet().toString());
 //                intent.putExtra("VALUE",city_to_pid.values().toString());
                 //传Class
-                intent.putExtra("MAP",new route2bury(city_to_pid,present_city,ps.getText().toString()));
+                route2bury params=new route2bury(city_to_pid,present_city,ps.getText().toString());
+                intent.putExtra("MAP",params);
+                Log.i("test",params.getPresentCity());
+                System.out.println("gd:"+present_city+"zzy:"+params.getPresentCity()+"map:"+city_to_pid.get(present_city));
+                Log.i("test",params.getPresentPosition());
+                Log.i("test",params.getParaMap().values().toString());
+                Log.i("test",params.getParaMap().keySet().toString());
                 buryAlert.dismiss();
                 startActivity(intent);
             }

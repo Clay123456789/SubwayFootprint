@@ -76,6 +76,10 @@ public class buryTreasure extends AppCompatActivity {
         city_to_pid=passData.getParaMap();
         thisCity=passData.getPresentCity();
         thisPosition=passData.getPresentPosition();
+        Log.i("test",thisPosition);
+        Log.i("test",thisCity);
+        Log.i("test",city_to_pid.keySet().toString());
+        Log.i("test",city_to_pid.values().toString());
         //组合成标准格式
         thisPosition=city_to_pid.get(thisCity)+thisPosition;
         Log.i("test",thisPosition);
