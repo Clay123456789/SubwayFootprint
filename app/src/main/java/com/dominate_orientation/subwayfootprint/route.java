@@ -136,7 +136,6 @@ public class route extends AppCompatActivity {
     View view_bury;
     View view_dig;
 
-    Dialog dialog;
 
     AlertDialog buryAlert = null;
     AlertDialog digAlert = null;
@@ -160,6 +159,8 @@ public class route extends AppCompatActivity {
     Treasure digTreasure=null;
 
     User_treasure passTreasure;
+
+    boolean canBury=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -420,6 +421,7 @@ public class route extends AppCompatActivity {
 
     public void go_to_next_station(View view)
     {
+        canBury=true;
         ls(ps.getText());
         set_line(last_line,ps.getText().toString());
         ps(ns.getText());
@@ -653,6 +655,10 @@ public class route extends AppCompatActivity {
     //挖宝
     //获取当前站点的一个宝箱
     public void dig(View view){
+        if(!canBury){
+            Toast.makeText(getApplicationContext(), "一个站点只能挖宝一次哦~", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Thread t1 = new Thread(new Runnable() {
             String message = "失败";
             @Override
@@ -712,7 +718,7 @@ public class route extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        canBury=false;
     }
 
     //挖宝 查看获得宝箱

@@ -13,15 +13,37 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+<<<<<<< HEAD
 
 import java.util.LinkedList;
 
 public class TreasureUserAdapter extends BaseAdapter  {
+=======
+
+import androidx.appcompat.app.AlertDialog;
+
+import org.json.JSONObject;
+
+import java.util.LinkedList;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class TreasureUserAdapter extends BaseAdapter {
+>>>>>>> master
     private LinkedList<User_treasure> mData;
     private Context mContext;
     private LayoutInflater mlayoutInflater;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
+
+    View view;
+    AlertDialog openAlert=null;
+    AlertDialog.Builder builder=null;
+
 
     public TreasureUserAdapter(LinkedList<User_treasure> mData, Context context) {
         this.mData = mData;
@@ -91,12 +113,18 @@ public class TreasureUserAdapter extends BaseAdapter  {
             holder.tre_credit.setText("已打开");
 
         }else{
+<<<<<<< HEAD
             holder.tre_credit.setText("未打开"); holder.tre_button.setText("打开宝箱");
+=======
+            holder.tre_credit.setText("未打开");
+            holder.tre_button.setText("打开宝箱");
+>>>>>>> master
         }
 
         holder.tre_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
+<<<<<<< HEAD
                 if (mData.get(position).getCredit().equals("1")) {
                     Intent intent = new Intent(mContext, ShowAllMessage.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
@@ -137,6 +165,53 @@ public class TreasureUserAdapter extends BaseAdapter  {
 
 
                 }
+=======
+                Intent intent = new Intent(mContext, ShowAllMessage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
+                mContext.startActivity(intent);
+                User_treasure user_treasure=mData.get(position);
+                if(user_treasure.getStatus().equals("1")) {
+//                    Thread t1 = new Thread(new Runnable() {
+//                        String message = "失败";
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                //String json = "";
+//                                String json = "{\n" +
+//                                        "\"tid\": "+"\""+user_treasure.getTid()+"\""+
+//                                        "}";
+//                                OkHttpClient client = new OkHttpClient();
+//                                Request request = new Request.Builder()
+//                                        .url("https://thelittlestar.cn:8088/treasure/openTreasure")
+//                                        .addHeader("token",token)
+//                                        .post(RequestBody.create(MediaType.parse("application/json"), json))
+//                                        .build();
+//                                Response response = client.newCall(request).execute();
+//                                String responseData = response.body().string();
+//                                JSONObject jsonObject = new JSONObject(responseData);
+//                                message = jsonObject.getString("message");
+//
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Toast.makeText(route.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                            }
+//                        }
+//                    });
+//                    t1.start();
+//                    try {
+//                        t1.join();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+                }
+                intent.putExtra("PERSON_INFO", user_treasure);
+                mContext.startActivity(intent);
+>>>>>>> master
             }
         });
 
