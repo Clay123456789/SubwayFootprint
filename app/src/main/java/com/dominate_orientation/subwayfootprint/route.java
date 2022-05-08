@@ -873,8 +873,8 @@ public class route extends AppCompatActivity {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            latitudeTextView.setText("Latitude: " + mLastLocation.getLatitude() + "");
-            longitTextView.setText("Longitude: " + mLastLocation.getLongitude() + "");
+            //latitudeTextView.setText("Latitude: " + mLastLocation.getLatitude() + "");
+            //longitTextView.setText("Longitude: " + mLastLocation.getLongitude() + "");
         }
     };
 
