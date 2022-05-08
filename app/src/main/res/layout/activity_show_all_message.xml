@@ -22,11 +22,10 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
             android:contentDescription="返回"
+            android:onClick="go_back_to_route"
             android:src="@drawable/ic_goback"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="go_back_to_route"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
