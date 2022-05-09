@@ -155,7 +155,7 @@ public class Tanjifen_history extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(Tanjifen_history.this, PersonalcenterActivity.class);
+                    intent =new Intent(Tanjifen_history.this, Shangcheng.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:

@@ -113,7 +113,7 @@ public class Tanjifen_main extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(Tanjifen_main.this, MainActivity.class);
+                    intent =new Intent(Tanjifen_main.this,Shangcheng.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:
