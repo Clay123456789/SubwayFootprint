@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -84,8 +85,9 @@ public class FirstOpen extends AppCompatActivity {
             }
             return true;
         });
+    }
 
-
-
+    public void go_back_to_route2(View view){
+        finish();
     }
 }
