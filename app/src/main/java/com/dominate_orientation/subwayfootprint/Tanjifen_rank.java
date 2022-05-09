@@ -127,7 +127,7 @@ public class Tanjifen_rank extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(Tanjifen_rank.this, PersonalcenterActivity.class);
+                    intent =new Intent(Tanjifen_rank.this,Shangcheng.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:

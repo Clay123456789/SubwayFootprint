@@ -79,7 +79,7 @@ public class main_page extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(main_page.this, PersonalcenterActivity.class);
+                    intent =new Intent(main_page.this, Shangcheng.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:
