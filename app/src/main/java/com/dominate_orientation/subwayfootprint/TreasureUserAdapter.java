@@ -102,8 +102,9 @@ public class TreasureUserAdapter extends BaseAdapter {
             holder.tre_content_img.setImageDrawable(mContext.getResources().getDrawable(R.drawable.things));
         }
 
-        if(mData.get(position).getCredit().equals("1")){
+        if(mData.get(position).getStatus().equals("2")){
             holder.tre_credit.setText("已打开");
+            holder.tre_button.setText("查看内容");
 
         }else{
             holder.tre_credit.setText("未打开");
@@ -113,7 +114,7 @@ public class TreasureUserAdapter extends BaseAdapter {
         holder.tre_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
-                if (mData.get(position).getCredit().equals("1")) {
+                if (mData.get(position).getStatus().equals("2")) {
                     Intent intent = new Intent(mContext, ShowAllMessage.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
                     mContext.startActivity(intent);
@@ -123,11 +124,12 @@ public class TreasureUserAdapter extends BaseAdapter {
                     mContext.startActivity(intent);
                 }else {
 
+                    //
                     alert = null;
                     builder = new AlertDialog.Builder(mContext);
                     alert = builder
                             .setTitle("系统提示：")
-                            .setMessage("您确定要打开宝箱吗")
+                            .setMessage("您确定要打开宝箱吗？\r\n消耗碳积分："+mData.get(position).getCredit())
                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -157,7 +159,7 @@ public class TreasureUserAdapter extends BaseAdapter {
                                             OkHttpClient client = new OkHttpClient();
                                             Request request = new Request.Builder()
                                                     .url("https://thelittlestar.cn:8088/treasure/openTreasure")
-                                                    .addHeader("token",token)
+                            //                       .addHeader("token",token)
                                                     .post(RequestBody.create(MediaType.parse("application/json"), json))
                                                     .build();
                                             Response response = client.newCall(request).execute();
