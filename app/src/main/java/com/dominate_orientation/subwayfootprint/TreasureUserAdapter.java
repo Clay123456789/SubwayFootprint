@@ -129,7 +129,7 @@ public class TreasureUserAdapter extends BaseAdapter {
                     builder = new AlertDialog.Builder(mContext);
                     alert = builder
                             .setTitle("系统提示：")
-                            .setMessage("您确定要打开宝箱吗？\r消耗碳积分："+mData.get(position).getCredit())
+                            .setMessage("您确定要打开宝箱吗？\r\n消耗碳积分："+mData.get(position).getCredit())
                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
