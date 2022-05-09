@@ -204,7 +204,7 @@ public class PersonalcenterActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(PersonalcenterActivity.this, MainActivity.class);
+                    intent =new Intent(PersonalcenterActivity.this, Shangcheng.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:

@@ -403,7 +403,7 @@ public class buryTreasure extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(buryTreasure.this, MainActivity.class);
+                    intent =new Intent(buryTreasure.this, Shangcheng.class);
                     startActivity(intent);
                     finish();
                     break;

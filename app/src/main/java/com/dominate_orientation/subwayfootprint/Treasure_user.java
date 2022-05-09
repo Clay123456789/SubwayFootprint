@@ -70,7 +70,7 @@ public class Treasure_user extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(Treasure_user.this, PersonalcenterActivity.class);
+                    intent =new Intent(Treasure_user.this, Shangcheng.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:
@@ -120,7 +120,7 @@ public class Treasure_user extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(Treasure_user.this, PersonalcenterActivity.class);
+                    intent =new Intent(Treasure_user.this, Shangcheng.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:
