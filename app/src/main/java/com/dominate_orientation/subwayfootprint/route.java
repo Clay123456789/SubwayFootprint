@@ -423,9 +423,9 @@ public class route extends AppCompatActivity {
     {
         canBury=true;
         ls(ps.getText());
-        set_line(last_line,ps.getText().toString());
+        last_line.setImageDrawable(pre_line.getDrawable());
         ps(ns.getText());
-        set_line(pre_line,ns.getText().toString());
+        pre_line.setImageDrawable(next_line.getDrawable());
 
         last_line.setImageDrawable(pre_line.getDrawable());
         pre_line.setImageDrawable(next_line.getDrawable());
@@ -464,7 +464,14 @@ public class route extends AppCompatActivity {
             }
         }else{
             pre_next.setAlpha(0);
-            if(passed_station_index>=infos[infos_index].passed.length)
+            if(last_station_used)
+            {
+                ns("已到达！可以藏宝啦");
+                Toast.makeText(mContext, "没有下一站了哦", Toast.LENGTH_SHORT).show();
+                go_to_next.setEnabled(false);
+                ensconce.setEnabled(true);
+            }
+            else if(passed_station_index>=infos[infos_index].passed.length)
             {
                 ns(infos[infos_index].end);
                 set_line(next_line,infos[infos_index].line);
@@ -475,6 +482,7 @@ public class route extends AppCompatActivity {
                 set_line(next_line,infos[infos_index].line);
             }
         }
+        System.out.println(infos[infos_index].line);
     }
 
 
@@ -519,42 +527,42 @@ public class route extends AppCompatActivity {
     {
         String tmp = null;
         try {
-            if (s.indexOf("1号") != -1) {
+            if (s.indexOf("1号") != -1 && s.indexOf("11")== -1) {
                 tmp = line_1;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
-            }else if (s.indexOf("2号") != -1) {
+            }else if (s.indexOf("2号") != -1&& s.indexOf("12")== -1) {
                 tmp = line_2;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
-            }else if (s.indexOf("4号") != -1) {
+            }else if (s.indexOf("4号") != -1&& s.indexOf("14")== -1) {
                 tmp = line_4;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
-            }else if (s.indexOf("5号") != -1) {
+            }else if (s.indexOf("5号") != -1&& s.indexOf("15")== -1) {
                 tmp = line_5;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
-            }else if (s.indexOf("6号") != -1) {
+            }else if (s.indexOf("6号") != -1&& s.indexOf("16")== -1) {
                 tmp = line_6;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
-            }else if (s.indexOf("7号") != -1) {
+            }else if (s.indexOf("7号") != -1&& s.indexOf("17")== -1) {
                 tmp = line_7;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
-            }else if (s.indexOf("8号") != -1) {
+            }else if (s.indexOf("8号") != -1&& s.indexOf("18")== -1) {
                 tmp = line_8;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
-            }else if (s.indexOf("9号") != -1) {
+            }else if (s.indexOf("9号") != -1&& s.indexOf("19")== -1) {
                 tmp = line_9;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
