@@ -118,7 +118,7 @@ public class TreasureUserAdapter extends BaseAdapter {
                 if (mData.get(position).getStatus().equals("2")) {
                     Intent intent = new Intent(mContext, ShowAllMessage.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
-                    mContext.startActivity(intent);
+
                     User_treasure user_treasure = mData.get(position);
 
                     intent.putExtra("PERSON_INFO", user_treasure);
@@ -144,7 +144,7 @@ public class TreasureUserAdapter extends BaseAdapter {
                                     ).show();
                                     Intent intent = new Intent(mContext, ShowAllMessage.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法
-                                    mContext.startActivity(intent);
+
                                     User_treasure user_treasure = mData.get(position);
 
 
