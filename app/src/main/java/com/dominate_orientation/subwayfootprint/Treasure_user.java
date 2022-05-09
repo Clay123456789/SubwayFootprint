@@ -49,8 +49,9 @@ public class Treasure_user extends AppCompatActivity {
         String  data = jsonObject.getString("data");     //用String接收json数据中的data数据
         Type type=new TypeToken<LinkedList<User_treasure>>(){}.getType();
         Gson gson=new Gson();
+
         mData = gson.fromJson(data,type);
-      System.out.println(json1);
+
         mLv1 =  findViewById(R.id.lv_2);
         mLv1.setAdapter(new TreasureUserAdapter(mData,Treasure_user.this));
 
