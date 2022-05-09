@@ -107,14 +107,23 @@
             android:clickable="true"
             />
 
+        <TextView
+            android:id="@+id/page_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="TextView" />
         <Button
             android:id="@+id/button_next"
             android:layout_width="146dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="110dp"
+            android:layout_marginLeft="1dp"
             android:background="@drawable/radius_border"
             android:clickable="true"
             android:text="下一页" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

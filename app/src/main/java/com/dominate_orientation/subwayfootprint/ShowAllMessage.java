@@ -23,6 +23,7 @@ public class ShowAllMessage extends AppCompatActivity {
     private TextView textView9;
     private Intent intent;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

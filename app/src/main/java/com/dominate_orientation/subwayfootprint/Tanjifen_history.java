@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dominate_orientation.subwayfootprint.R;
@@ -33,6 +34,7 @@ public class Tanjifen_history extends AppCompatActivity {
     private ListView list_history;
     private Button mButton1;
     private Button mButton2;
+    private TextView pageT;
     private OkHttpClient okHttpClient;
     private   String s;
     public String page="1";
@@ -59,7 +61,8 @@ public class Tanjifen_history extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanjifen_history);
         mContext = Tanjifen_history.this;
-
+        pageT=findViewById(R.id.page_1);
+        pageT.setText("第1页");
         mButton1=findViewById(R.id.button_next);
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,8 +84,12 @@ public class Tanjifen_history extends AppCompatActivity {
                 Type type=new TypeToken<LinkedList<History>>(){}.getType();
                 Gson gson=new Gson();
                 mData = gson.fromJson(data,type);
+                System.out.println("?????????"+data);
+                if(!data.equals("[]")){
+                    pageT.setText("第"+p+"页");
+
                 list_history =  findViewById(R.id.lv_2);
-                list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));
+                list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));}
             }
         });
 
@@ -98,8 +105,8 @@ public class Tanjifen_history extends AppCompatActivity {
                 p = String.valueOf(Integer.parseInt(getPage()) - 1);
                 if(!p.equals("0")){
                 setPage(p);
-                System.out.println("last!!!!!!!!!!!"+getPage());}else{
-                    p = String.valueOf(Integer.parseInt(getPage()));;System.out.println("last!!!!!!!!!!!"+getPage());
+                }else{
+                    p = String.valueOf(Integer.parseInt(getPage()));
                 }
                 try {
                     json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+p);
@@ -111,6 +118,7 @@ public class Tanjifen_history extends AppCompatActivity {
                 Type type=new TypeToken<LinkedList<History>>(){}.getType();
                 Gson gson=new Gson();
                 mData = gson.fromJson(data,type);
+                pageT.setText("第"+p+"页");
                 list_history =  findViewById(R.id.lv_2);
                 list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));
             }
