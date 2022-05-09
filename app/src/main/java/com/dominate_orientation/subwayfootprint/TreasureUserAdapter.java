@@ -48,6 +48,7 @@ public class TreasureUserAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return mData.size();
+
     }
 
     @Override
@@ -153,13 +154,16 @@ public class TreasureUserAdapter extends BaseAdapter {
                                     public void run() {
                                         try {
                                             //String json = "";
+                                            Token app = (Token)mContext.getApplicationContext();
+                                            String token = null;
+                                            token =app.getToken();
                                             String json = "{\n" +
                                                     "\"tid\": "+"\""+mData.get(position).getTid()+"\""+
                                                     "}";
                                             OkHttpClient client = new OkHttpClient();
                                             Request request = new Request.Builder()
                                                     .url("https://thelittlestar.cn:8088/treasure/openTreasure")
-                            //                       .addHeader("token",token)
+                                                   .addHeader("token",token)
                                                     .post(RequestBody.create(MediaType.parse("application/json"), json))
                                                     .build();
                                             Response response = client.newCall(request).execute();
