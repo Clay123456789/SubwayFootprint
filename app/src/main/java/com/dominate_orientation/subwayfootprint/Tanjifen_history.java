@@ -72,7 +72,7 @@ public class Tanjifen_history extends AppCompatActivity {
                 String json= null;
                 String p;
                 p=String.valueOf(Integer.parseInt(getPage()) + 1);
-                setPage(p);
+
                 System.out.println("next!!!!!!"+getPage());
                 try {
                     json = postSync("https://thelittlestar.cn:8088/user/getUserCreditRecords?group="+p);
@@ -87,7 +87,7 @@ public class Tanjifen_history extends AppCompatActivity {
                 System.out.println("?????????"+data);
                 if(!data.equals("[]")){
                     pageT.setText("第"+p+"页");
-
+                    setPage(p);
                 list_history =  findViewById(R.id.lv_2);
                 list_history.setAdapter(new  HistoryAdapter(mData,Tanjifen_history.this));}
             }
