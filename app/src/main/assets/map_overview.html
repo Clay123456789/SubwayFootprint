@@ -29,7 +29,6 @@
         //[1]:startstation
         //[2]:endstation
         //[3]:passedstations
-        
         passStations.get_station(msg);
         passStations.voyage_enable();
     }
@@ -48,7 +47,6 @@
     function change_station_color(message)
     {
         this.arr=message.split('_');
-        alert(arr);
         for(i in arr)
         {
             this.ditu.addCustomNode(arr[i], {
@@ -56,6 +54,9 @@
                 r: 14,
                 customClass: "custom_circle"
             })
+            //this.ditu.addInfoWindow(arr[i], {content: '<div>已走过</div>'});
+            this.ditu.addMarker(arr[i], {});
+            //passStations.testSuccess("你已经点亮了"+arr[i]+',');
         }
     }
 
@@ -74,13 +75,40 @@
         //地铁加载完成，执行complete事件
         mySubway.event.on("subway.complete", function(ev, info) {
             var id = info.id;
+            this.ditu=mySubway;
+            for(i in arr)
+            {
+                this.ditu.addCustomNode(arr[i], {
+                    type: "circle",
+                    r: 14,
+                    customClass: "custom_circle"
+                    })
+                //this.ditu.addInfoWindow(arr[i], {content: '<div>已走过</div>'});
+                this.ditu.addMarker(arr[i], {});
+                //passStations.testSuccess("你已经点亮了"+arr[i]+',');
+            }
         });
 
         //点击站点，显示此站点的信息窗体
         mySubway.event.on("station.touch", function(ev, info) {
             var id = info.id;
+            console.log(info);
             mySubway.stopAnimation();
-            mySubway.addInfoWindow(id, {});
+            mySubway.addInfoWindow(info.name, {});
+
+            for(i in arr)
+            {
+                this.ditu.addCustomNode(arr[i], {
+                    type: "circle",
+                    r: 14,
+                    customClass: "custom_circle"
+                    })
+                //this.ditu.addInfoWindow(arr[i], {content: '<div>已走过</div>'});
+                this.ditu.addMarker(arr[i], {});
+                //passStations.testSuccess("你已经点亮了"+arr[i]+',');
+            }
+
+
             var center = mySubway.getStCenter(id);
             mySubway.setCenter(center);
         });
@@ -129,9 +157,9 @@
             }
         }
 
-        //传出选取的站点信息    
+        //传出选取的站点信息
     	mySubway.event.on
-        ("subway.routeComplete", function (ev,info) 
+        ("subway.routeComplete", function (ev,info)
             {
                 //console.log("route-complete","   -- ", info);
                 routeinfo = info
@@ -141,12 +169,12 @@
         );
 
 
-            
+
     };
 
-	
+
     </script>
-    <style>
+    <style type="text/css">
     .overlay {
     background-color:#EFEFEF;
     position: fixed;
@@ -155,9 +183,16 @@
     z-index: 1000;
     top: 0px;
     left: 0px;
-    opacity: .1; /* in FireFox */ 
+    opacity: .1; /* in FireFox */
     filter: alpha(opacity=50); /* in IE */
     }
-    </style>
+    .custom_circle{
+        width: 30px;
+        height: 30px;
+        fill: #EFEFEF;
+        fill-opacity: 0.8;
+        stroke-width: 0;
+    }
+</style>
 </body>
 </html>

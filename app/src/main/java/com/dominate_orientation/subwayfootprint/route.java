@@ -22,6 +22,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,6 +82,7 @@ public class route extends AppCompatActivity {
 
 
     ImageView pre_line = null;
+    String present_line="";
     ImageView next_line = null;
     ImageView last_line = null;
     ImageView last_pre = null;
@@ -164,6 +166,10 @@ public class route extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //允许post
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
         it = getIntent();
@@ -215,14 +221,6 @@ public class route extends AppCompatActivity {
 
         passTreasure=new User_treasure();
 
-        /*new Thread()
-        {
-            @Override
-            public void run() {
-                while(!no_station_left);
-                go_to_next.setEnabled(false);
-            }
-        }.start();*/
 
         mContext=route.this;
         builder=new AlertDialog.Builder(mContext);
@@ -399,13 +397,38 @@ public class route extends AppCompatActivity {
     public void ps(String s){ ps.setText(s);}
     public void ns(String s){ ns.setText(s);}
     public void ls(CharSequence s){ ls.setText(s);}
-    public void ps(CharSequence s){ ps.setText(s);}
+    public void ps(CharSequence s){
+        ps.setText(s);
+        //先post
+        try {
+            String json = "{\"pid\": "+"\""+city_to_pid.get(present_city)+this.present_line+ps.getText().toString()+"\""+
+                    ",\"credit\":"+"10"+
+                    "}";
+            System.out.println(json);
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("https://thelittlestar.cn:8088/user/addLightedStation")
+                    .addHeader("token",token)
+                    .post(RequestBody.create(MediaType.parse("application/json"), json))
+                    .build();
+            Response response = client.newCall(request).execute();
+            String responseData = response.body().string();
+            System.out.println(responseData);
+            JSONObject jsonObject = new JSONObject(responseData);
+            String message = jsonObject.getString("message");
+            Log.i("message", jsonObject.getString("message"));
+            JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     public void ns(CharSequence s){ ns.setText(s);}
 
     public void init_texts()
     {
-        ps(infos[infos_index].start);
         set_line(pre_line,infos[infos_index].line);
+        ps(infos[infos_index].start);
 
         if(infos[infos_index].passed.length>0)
         {
@@ -451,8 +474,8 @@ public class route extends AppCompatActivity {
                     pre_next.setAlpha(0);
                     go_to_next.setEnabled(false);
                     ensconce.setEnabled(true);
-                    ps(ns.getText());
                     set_line(next_line,infos[infos_index].line);
+                    ps(ns.getText());
                     ns("已到达！可以藏宝啦");
                 }
             }else
@@ -528,126 +551,151 @@ public class route extends AppCompatActivity {
         String tmp = null;
         try {
             if (s.indexOf("1号") != -1 && s.indexOf("11")== -1) {
+                this.present_line=s+'_';
                 tmp = line_1;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("2号") != -1&& s.indexOf("12")== -1) {
+                this.present_line=s+'_';
                 tmp = line_2;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("4号") != -1&& s.indexOf("14")== -1) {
+                this.present_line=s+'_';
                 tmp = line_4;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("5号") != -1&& s.indexOf("15")== -1) {
+                this.present_line=s+'_';
                 tmp = line_5;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("6号") != -1&& s.indexOf("16")== -1) {
+                this.present_line=s+'_';
                 tmp = line_6;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("7号") != -1&& s.indexOf("17")== -1) {
+                this.present_line=s+'_';
                 tmp = line_7;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("8号") != -1&& s.indexOf("18")== -1) {
+                this.present_line=s+'_';
                 tmp = line_8;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("9号") != -1&& s.indexOf("19")== -1) {
+                this.present_line=s+'_';
                 tmp = line_9;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("10号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_10;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("11号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_11;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("13号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_13;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("14号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_14;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("15号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_15;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("16号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_16;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("17号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_17;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("19号") != -1) {
+                this.present_line=s+'_';
                 tmp = line_19;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("房山") != -1) {
+                this.present_line=s+'_';
                 tmp = line_fs;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("昌平") != -1) {
+                this.present_line=s+'_';
                 tmp = line_cp;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("亦庄") != -1) {
+                this.present_line=s+'_';
                 tmp = line_yz;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("s1") != -1) {
+                this.present_line=s+'_';
                 tmp = line_s1;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("西郊") != -1) {
+                this.present_line=s+'_';
                 tmp = line_xj;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("亦庄T1") != -1) {
+                this.present_line=s+'_';
                 tmp = line_yzt1;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("首都") != -1) {
+                this.present_line=s+'_';
                 tmp = line_capair;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("大兴") != -1) {
+                this.present_line=s+'_';
                 tmp = line_dxair;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
                 iv.setImageDrawable(res);
             }else if (s.indexOf("燕房") != -1) {
+                this.present_line=s+'_';
                 tmp = line_yf;
                 int imageResource = getResources().getIdentifier(tmp, null, getPackageName());
                 Drawable res = getResources().getDrawable(imageResource);
