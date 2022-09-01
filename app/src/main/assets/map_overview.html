@@ -13,6 +13,8 @@
 
         //callback to android
     var routeinfo = {};
+    var arr={};
+    var ditu={};
     function callback(){
         var msg = "";
         for(i in routeinfo['data']['buslist'][0]['segmentlist'])//[0]['startname']
@@ -42,9 +44,24 @@
         document.body.appendChild(div);
     }
 
+    //change station color
+    function change_station_color(message)
+    {
+        this.arr=message.split('_');
+        alert(arr);
+        for(i in arr)
+        {
+            this.ditu.addCustomNode(arr[i], {
+                type: "circle",
+                r: 14,
+                customClass: "custom_circle"
+            })
+        }
+    }
+
     window.cbk = function() 
     {
-        var mySubway = subway("mybox", {
+            mySubway = subway("mybox", {
             adcode: 1100,
             theme: "colorful",
             client: 0,
@@ -52,6 +69,7 @@
                 switch: true
             }
         });
+        this.ditu=mySubway;
 
         //地铁加载完成，执行complete事件
         mySubway.event.on("subway.complete", function(ev, info) {

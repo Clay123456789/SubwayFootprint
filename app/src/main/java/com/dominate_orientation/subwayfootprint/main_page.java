@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
-
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -21,8 +21,17 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 //发数据取决于route_enabled和msg内容！！！
@@ -36,6 +45,7 @@ public class main_page extends AppCompatActivity {
     Button voyage = null;
     Boolean route_exist = false;
     Button swap_city = null;
+    String stations="";
 
 
     //city list
@@ -61,6 +71,7 @@ public class main_page extends AppCompatActivity {
         index_to_city = new LinkedHashMap<Integer,String>();
         
         init_web();
+        get_light_station();
 
         route_exist = false;
 
@@ -88,12 +99,20 @@ public class main_page extends AppCompatActivity {
             return true;
         });
 
+        //此处呼叫js
+        stations="西二旗_上地_";
+        changeStaionColor();
+
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     public void testJS(View view) {
         wv.loadUrl("javascript:wtf()");
     }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    public void changeStaionColor() {wv.loadUrl("javascript:change_station_color()"); }
+
 
     @JavascriptInterface
     public void get_station(String msg) {
@@ -106,6 +125,14 @@ public class main_page extends AppCompatActivity {
         //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         route_exist = true;
         //Toast.makeText(this, info[1].start, Toast.LENGTH_SHORT).show();
+    }
+
+    //获取点亮站点
+    public void get_light_station()
+    {
+        String message="";
+        postRunnable pr=new postRunnable(stations,(Token)getApplicationContext(),message);
+        new Thread(pr).start();
     }
 
 
@@ -197,4 +224,50 @@ public class main_page extends AppCompatActivity {
         wv.loadUrl(web_files[web_files_index]);
     }
 
+}
+
+class postRunnable implements Runnable{
+    String stations;
+    Token app;
+    String message;
+    public postRunnable(String s,Token app,String message)
+    {
+        this.stations=s;
+        this.app=app;
+        this.message=message;
+    }
+
+    @Override
+    public void run() {
+        try {
+            String token=app.getToken();
+            String json="{}";
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("https://thelittlestar.cn:8088/user/getUserLightedStations")
+                    .addHeader("token",token)
+                    .post(RequestBody.create(MediaType.parse("application/json"), json))
+                    .build();
+            Response response = client.newCall(request).execute();
+            String responseData = response.body().string();
+            JSONObject jsonObject = new JSONObject(responseData);
+            message = jsonObject.getString("message");
+            Log.i("message", jsonObject.getString("message"));
+            JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+            //System.out.println(message);
+            for(int i=0;i<jsonArray.length();i++)
+            {
+                String tmp1[]=jsonArray.get(i).toString().split("pid\":\"");
+                String tmp2[]=tmp1[1].split("\",\"time");
+                String tmp3[]=tmp2[0].split("_");
+                stations=stations+tmp3[2]+'_';
+            }
+            //到此已经拿到所有地铁站
+            //呼叫js
+            System.out.println(stations);
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
 }
