@@ -44,8 +44,7 @@ public class main_page extends AppCompatActivity {
     String present_city = "北京";
     LinkedHashMap<Integer,String> index_to_city= null;
 
-    //layout
-    //final LinearLayout container = findViewById(R.id.container);
+
     ClearEditText cet1;
     ClearEditText cet2;
 
@@ -55,8 +54,7 @@ public class main_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-        //cet1 = (ClearEditText) findViewById(R.id.start_point);
-        //cet2 = (ClearEditText) findViewById(R.id.end_point);
+
         voyage = (Button) findViewById(R.id.voyage);
         swap_city = (Button)findViewById(R.id.swap_city);
         wv = (WebView) findViewById(R.id.metro_overview);
@@ -79,7 +77,7 @@ public class main_page extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(main_page.this, Shangcheng.class);
+                    intent =new Intent(main_page.this, Shop_Main.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:

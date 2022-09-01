@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Shop_record">
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="411dp"
+        android:layout_height="51dp"
+
+        android:layout_marginBottom="552dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/History_1"
+            android:layout_width="80dp"
+
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="     名称"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+
+        <TextView
+            android:id="@+id/History_3"
+            android:layout_width="51dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:text="数目"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/History_4"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="购买时间"
+            android:textSize="20dp"
+android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+
+            ></TextView>
+
+        <TextView
+            android:id="@+id/History_5"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="单价"
+            android:textSize="20dp"
+android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="411dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="horizontal"
+
+        app:layout_constraintEnd_toEndOf="@id/linearLayout5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ListView
+            android:id="@+id/lv_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"></ListView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="407dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="@id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/linearLayout4">
+
+        <Button
+            android:id="@+id/button_last"
+            android:layout_width="145dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/radius_border"
+            android:text="上一页"
+            android:clickable="true"
+            />
+
+        <TextView
+            android:id="@+id/page_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="TextView" />
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="146dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:background="@drawable/radius_border"
+            android:clickable="true"
+            android:text="下一页" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/footButton"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_icon" />
+</androidx.constraintlayout.widget.ConstraintLayout>

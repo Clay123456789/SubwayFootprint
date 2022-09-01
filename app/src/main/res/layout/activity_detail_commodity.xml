@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f1efea">
+
+    <TextView
+        android:id="@+id/tv_d_dis"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="#397ceb"
+        android:gravity="center"
+        android:text="商品详情"
+        android:textSize="30dp"
+        android:background="@color/AliceBlue"
+
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/iv_d_chanpin"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        />
+
+    <TextView
+        android:id="@+id/xiangqing"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:background="#FAEBD7"
+        android:gravity="center"
+        android:text="  "
+        android:textSize="30dp"></TextView>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+
+    android:background="@color/cardview_dark_background"
+  >
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xiangqing"
+
+        android:gravity="center"
+        android:text="价格：100碳积分"
+        android:textColor="#FF8F03"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buy_car"
+        android:layout_width="0dp"
+        android:layout_height="60sp"
+        android:layout_weight="1"
+        android:layout_below="@+id/xiangqing"
+        android:layout_marginLeft="10dp"
+
+        android:background="@color/Orange"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="加入购物车"
+        android:textSize="20dp"
+
+        android:textColor="#FAFAFA" />
+    <Button
+        android:layout_below="@+id/xiangqing"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/purchase"
+        android:background="#E24146"
+        android:layout_width="120dp"
+        android:layout_height="60sp"
+android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#FAFAFA"
+
+        android:clickable="true"
+        android:text="购买" />
+</LinearLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/footButton"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_icon" />
+
+</LinearLayout>

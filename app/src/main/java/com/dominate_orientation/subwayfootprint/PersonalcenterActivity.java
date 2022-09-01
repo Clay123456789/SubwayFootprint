@@ -275,6 +275,11 @@ public class PersonalcenterActivity extends AppCompatActivity {
         Intent intent = new Intent(PersonalcenterActivity.this, Treasure_user.class);
         startActivity(intent);
     }
+    public void onClick2(View view) {
+        //跳转商城记录
+        Intent intent = new Intent(PersonalcenterActivity.this, Shop_record.class);
+        startActivity(intent);
+    }
     public void alert_edit1(View view){
         Bundle bundle = new Bundle();
         bundle.putString("username", username.getText().toString());

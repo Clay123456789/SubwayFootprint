@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Shop_Main">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+
+        android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FAEBD7">
+
+    <TextView
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:text="       商城"
+        android:textSize="28sp"
+        android:textColor="@color/black"
+
+        android:gravity="center"/>
+    <ImageView
+        android:id="@+id/car"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/car">
+
+    </ImageView>
+
+
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+
+        android:src="@drawable/location"/>
+    <Spinner
+        android:layout_width="10dp"
+        android:layout_height="match_parent">
+
+    </Spinner>
+    <EditText
+        android:id="@+id/select01"
+        android:layout_marginTop="6dp"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:hint="搜索心仪的奖品吧！"
+        android:textColorHint="#95A1AA"
+        android:singleLine="true"
+        android:paddingLeft="10dp"
+
+        android:maxLines="1"
+
+
+    android:background="@drawable/edittext_shape01"/>
+
+    <ImageView
+        android:id="@+id/find"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/find">
+
+    </ImageView>
+
+</LinearLayout>
+
+        <ViewFlipper
+            android:id="@+id/flipper"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+
+            android:inAnimation="@anim/left_in"
+            android:outAnimation="@anim/right_out">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/commmerical"
+                 />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/things"
+                 />
+        </ViewFlipper>
+
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="#9bc9cf" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/footButton"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_icon" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -56,6 +56,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
 
     <application
         android:name=".Token"
@@ -67,6 +72,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubwayFootprint"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".code"
+            android:exported="false" />
+
+        <activity
+            android:name=".Shop_record"
+            android:exported="false" />
+        <activity
+            android:name=".BuyHistory"
+            android:exported="false" />
+        <activity
+            android:name=".Detail_commodity"
+            android:exported="false" />
+        <activity
+            android:name=".Shop_Main"
+            android:exported="false" />
         <activity
             android:name=".Shangcheng"
             android:exported="false" />
@@ -87,6 +108,10 @@
         <activity
             android:name=".FirstOpen"
             android:exported="false" />
+        <activity
+            android:name=".Order"
+            android:exported="false" />
+
         <activity
             android:name=".AnimOpenTreasure"
             android:exported="false" />

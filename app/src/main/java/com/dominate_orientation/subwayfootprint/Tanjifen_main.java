@@ -105,7 +105,7 @@ public class Tanjifen_main extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener((menuItem)->{
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
-                    intent =new Intent(Tanjifen_main.this, main_page.class);
+                    intent =new Intent(Tanjifen_main.this, code.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_credit:
@@ -113,7 +113,7 @@ public class Tanjifen_main extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.nav_shop:
-                    intent =new Intent(Tanjifen_main.this,Shangcheng.class);
+                    intent =new Intent(Tanjifen_main.this,Shop_Main.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_person:

@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,7 +24,7 @@ public class ShowAllMessage extends AppCompatActivity {
     private TextView textView8;
     private TextView textView9;
     private Intent intent;
-
+    private WebView myWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +47,24 @@ public class ShowAllMessage extends AppCompatActivity {
         textView5.setText(cc.getGetdate());
         textView6=findViewById(R.id.text06);
         textView6.setText(cc.getContent());
-        textView7=findViewById(R.id.text07);
-        textView7.setText(cc.getMid());
+
         textView8=findViewById(R.id.text08);
         textView8.setText(cc.getMessage());
-        textView9=findViewById(R.id.text09);
-        if(cc.getStatus().equals("1")){
-            textView9.setText("已打开宝箱");
-        }else{
-            textView9.setText("未打开宝箱");
-        }
-
-
-
+        System.out.println(":"+textView2.getText());
+if( textView2.getText().equals("优惠券")){
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);//这两句设置禁止所有检查
+        myWebView=findViewById(R.id.web1);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.loadUrl("http://10.128.237.76:8080");
+        //localStorage  允许存储
+        myWebView.getSettings().setDomStorageEnabled(true);
+        myWebView.getSettings().setAppCacheMaxSize(1024*1024*8);//存储的最大容量
+        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
+        myWebView.getSettings().setAppCachePath(appCachePath);
+        myWebView.getSettings().setAllowFileAccess(true);
+        myWebView.getSettings().setAppCacheEnabled(true);
+    }
 
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottomNavigationView);

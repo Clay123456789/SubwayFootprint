@@ -30,12 +30,12 @@
         android:id="@+id/award_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_check_bury"
+        android:layout_below="@+id/award_text7"
         android:layout_centerInParent="true"
         android:choiceMode="singleChoice"
         android:divider="@color/black"
-        android:dividerHeight="2dp"
-        android:layout_above="@+id/btn_check_bury"
-        android:layout_below="@+id/award_text7"/>
+        android:dividerHeight="2dp" />
 
     <Button
         android:layout_width="300dp"

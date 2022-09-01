@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="美团优惠卷"
+
+        android:textColor="@color/Orange"
+        android:textStyle="bold"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:gravity="center"
+        android:layout_marginLeft="8dp"
+        android:text="Test"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="10dp"
+
+        android:gravity="center"
+        android:text="Test"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/cost"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:text="Test"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+
+
+
+    </LinearLayout>
