@@ -241,8 +241,11 @@
                 <LinearLayout style="@style/bottom_layout">
 
                     <TextView
+                        android:id="@+id/Shop_record"
                         style="@style/usertext"
-                        android:text="信息反馈" />
+                        android:clickable="true"
+                        android:onClick="onClick2"
+                        android:text="奖品使用" />
 
                     <ImageView
                         style="@style/img_arrow"
